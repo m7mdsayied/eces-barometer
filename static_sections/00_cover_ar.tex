@@ -1,0 +1,54 @@
+% =========================================================
+% PAGE 1: COVER PAGE (ARABIC)
+% =========================================================
+\pagestyle{empty} % No page numbers on graphical pages
+
+\begin{tikzpicture}[remember picture, overlay]
+
+    % 1. BACKGROUND IMAGE
+    % Using the Arabic specific background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{cover_bg_ar.png}
+    };
+
+    % 2. ECES LOGO
+    % Same position as English
+    \node[anchor=north] at ([yshift=-1.5cm]current page.north) {
+        \includegraphics[width=2.5cm]{eces_logo.png}
+    };
+
+    % 3. MAIN TITLE
+    % "Business Barometer" in Arabic
+    \node[anchor=north] at ([yshift=-5cm]current page.north) {
+        \fontsize{45}{55}\selectfont \textbf{\color{ecesteal} بارومتر الأعمال}
+    };
+
+    % 4. SUBTITLES (Mirrored for RTL)
+    
+    % Right side: Issue Number (The image shows Issue on the Right in Arabic)
+    \node[anchor=north] at ([xshift=4cm, yshift=-7cm]current page.north) {
+        \fontsize{16}{20}\selectfont \textbf{\color{ecesteal} العدد \IssueNumber}
+    };
+    
+    % Left side: Current Date
+    \node[anchor=north] at ([xshift=-4cm, yshift=-7cm]current page.north) {
+        \fontsize{16}{20}\selectfont \textbf{\color{ecesteal} \CurrentQuarterText}
+    };
+
+    % 5. FOOTER TEXT (White text on dark bar)
+    % Coordinates adjusted to fit inside the dark teal shape
+    \node[anchor=north, align=center, text width=18cm] at ([yshift=-22.8cm]current page.north) {
+        \fontsize{13}{16}\selectfont \bfseries \color{white}
+        تقييم الأداء للفترة \CurrentQuarterText\\
+        والتوقعات للفترة \NextQuarterText\\
+        من وجهة نظر مجتمع الأعمال
+    };
+
+    % 6. SPONSOR LOGO (CIB)
+    % The image shows the CIB logo at the bottom. 
+    % Assuming the file is named 'cib_logo.png' (similar to eces_logo.png)
+    \node[anchor=north] at ([yshift=-26.5cm]current page.north) {
+        \includegraphics[width=2.8cm]{cib_logo.png}
+    };
+
+\end{tikzpicture}

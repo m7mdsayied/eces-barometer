@@ -1,0 +1,191 @@
+% =========================================================
+% PAGE 6: REPORT DETAILS / METHODOLOGY (ARABIC)
+% =========================================================
+
+% 1. Reset Geometry
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image & Page Number
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background (Arabic)
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg_ar.png}
+    };
+    
+    % B. Page Number (Bottom Left for RTL)
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% TITLE SECTION
+% ---------------------------------------------------------
+\noindent
+{\fontsize{22}{26}\selectfont \textbf{\color{ecestitle} التقرير التفصيلي}}
+
+\vspace{0.3em}
+
+\noindent
+{\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} المنهجية}}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% FIRST PARAGRAPH
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont
+استكمالا لجهود المركز المصري للدراسات الاقتصادية في توفير معلومات متكاملة تعكس التطورات التي يشهدها الاقتصاد المصري بشكل عام ومجتمع الأعمال بشكل خاص يقوم المركز بإصدار بارومتر الأعمال منذ 1998. يقدم البارومتر تقييما دوريا ربع سنوي لأداء عينة من شركات القطاع الخاص تغطي مختلف القطاعات والأحجام. ويعكس هذا التقييم رأي مجتمع الأعمال بشأن التطورات التي شهدتها مجموعة من المتغيرات وذلك خلال الربع محل الدراسة كما يلقي الضوء على توقعاتها لتطورات نفس مجموعة المتغيرات خلال الربع التالي.
+}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% DIAGRAM 1: Indicators (ch4.png)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Top image on first page (Icons of production, prices, etc.)
+    \includegraphics[width=0.95\linewidth]{ch4.png}
+\end{figure}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% REMAINING TEXT (PAGE 1)
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont
+ويزيد من أهمية هذا العدد من بارومتر الأعمال ما يواجه مجتمع الأعمال منذ مطلع عام 2020 من تحديات نتيجة لجائحة كورونا تبعها تعاف مصحوب بالعديد من التحديات خلال عام 2021 ثم الحرب الروسية الأوكرانية في مطلع عام 2022. بالإضافة إلى الاضطرابات الجيوسياسية في الشرق الأوسط والبحر الأحمر منذ أكتوبر 2023، مما فاقم من هذه التحديات؛ لذا من المهم تتبع تأثير هذه المستجدات عليه.
+
+\vspace{0.8em}
+
+% Dynamic Variables
+ويستعرض هذا التقرير تقييما لأداء شركات العينة خلال الربع (\CurrentQuarterText) وتوقعاتها للربع (\NextQuarterText).
+
+\vspace{0.8em}
+
+يبدأ التقرير بإلقاء نظرة عامة على الاقتصاد الكلي على المستويين العالمي والمحلي، ثم يقوم باستعراض نتائج تقييم الأداء والتوقعات على مستوى المؤشر الإجمالي، بعدها ينتقل إلى المعوقات التي واجهت مجتمع الأعمال خلال الربع محل الدراسة، وأولويات تحسين مناخ الأعمال من وجهة نظر شركات العينة. وأخيرا، يختتم التقرير بتقييم الأداء والتوقعات على مستوى المؤشرات الفرعية.
+
+\vspace{0.8em}
+
+وقد تم بناء بارومتر الأعمال استنادا إلى نتائج مسح يجريه المركز بصفة دورية كل ثلاثة شهور لعينة ثابتة تضم 120 شركة من شركات القطاع الخاص موزعة على النحو التالي:
+}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% DIAGRAM 2: Sample Distribution (ch5.png)
+% Bottom image on first page (Pie Charts/Bar Charts)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.95\linewidth]{ch5.png}
+\end{figure}
+
+\clearpage
+
+% =========================================================
+% PAGE 7: METHODOLOGY CONTINUED (ARABIC)
+% =========================================================
+
+% 1. Geometry Persists
+
+% 2. Background Image & Page Number
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg_ar.png}
+    };
+    
+    % B. Page Number
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% METHODOLOGY BULLET POINTS
+% ---------------------------------------------------------
+\noindent
+\begin{itemize} \itemsep0.8em
+    \item \fontsize{11}{14}\selectfont يقوم التحليل بتقييم أداء شركات العينة خلال الربع محل الدراسة وتوقعاتها للربع التالي مع مقارنتها بنتائج الربع السابق والربع المناظر من العام السابق.
+    
+    \item \fontsize{11}{14}\selectfont يتم تقييم الأداء والتوقعات على مستويين هما: نتائج المؤشر الإجمالي، ونتائج المؤشرات الفرعية.
+    
+    \item \fontsize{11}{14}\selectfont يمثل مؤشر بارومتر الأعمال متوسطا بسيطا لمجموعة المؤشرات الفرعية للمتغيرات الواردة في الاستبيان. ويأخذ المؤشر الإجمالي قيما أكبر أو أقل أو مساوية للمستوى المحايد (50 نقطة).
+\end{itemize}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% CENTRAL GRAPHIC (Gauge / ch6.png)
+% Top image on second page (0 - 50 - 100 Gauge)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{ch6.png}
+\end{figure}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% EQUATION SECTION (RTL LAYOUT)
+% ---------------------------------------------------------
+\noindent
+% Right text (appears first in RTL)
+\begin{minipage}[c]{0.28\textwidth}
+    \fontsize{11}{14}\selectfont
+    ويتم حساب المؤشرات الفرعية لكل متغير باستخدام المعادلة الآتية:
+\end{minipage}%
+\hfill
+% Center Equation
+\begin{minipage}[c]{0.28\textwidth}
+    \centering
+    \colorbox{ecesteal}{
+        \begin{minipage}{4.5cm}
+            \centering
+            \vspace{5pt}
+            \color{white}
+            \large
+            $X = \displaystyle \frac{I + S}{100 + S} \times 100$
+            \vspace{5pt}
+        \end{minipage}
+    }
+\end{minipage}%
+\hfill
+% Left text (Explanation)
+\begin{minipage}[c]{0.38\textwidth}
+    \fontsize{10}{13}\selectfont
+    حيث $I$ هي نسبة الشركات التي أفادت بزيادة المتغير، و$S$ هي نسبة الشركات التي أفادت بثباته.
+\end{minipage}
+
+\vspace{2.5em}
+
+% ---------------------------------------------------------
+% BOTTOM TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{فيما يتعلق بالمعوقات وأولويات تحسين مناخ الأعمال:}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{11}{14}\selectfont
+تقوم الشركات بتقييم شدة كل معوق بحيث يتراوح التقييم من صفر (معوق غير مؤثر)، إلى 4 (معوق شديد التأثير). ويُسمح للشركة باختيار أكثر من معوق واحد. وفيما يتعلق بأولويات تحسين مناخ الأعمال، تقوم الشركات بتقييم أولويات تحسين مناخ الأعمال بحيث يتراوح تقييم كل محور من صفر (محور غير هام)، إلى 4 (محور له أولوية كبيرة). ويُسمح للشركات باختيار أكثر من محور كأولوية لتحسين مناخ الأعمال.
+
+\vspace{0.8em}
+
+يلي ذلك حساب متوسط مرجح لأعداد الشركات وتقييمها للمعوق/ الأولوية على مستوى العينة ككل.
+
+\vspace{0.8em}
+
+يُعاد تقييم متوسطات كافة المعوقات/ الأولويات لتتراوح ما بين صفر و1 ثم يتم عمل معايرة Normalization على مستوى القيم الجديدة لمتوسطات كافة المعوقات/ الأولويات بحيث يمكن ترتيب المعوقات/ الأولويات تنازليا حسب شدتهم فتكون النسبة 100 أشد معوق وأكبر أولوية.
+}
+
+\clearpage

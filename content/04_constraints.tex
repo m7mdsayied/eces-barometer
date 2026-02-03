@@ -1,0 +1,512 @@
+% =========================================================
+% PAGE 16: CONSTRAINTS & PRIORITIES (Section II)
+% =========================================================
+
+% 1. Geometry
+% Standard margins
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image (con_bg.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% HEADER SECTION (Title + Logo)
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.80\textwidth}
+    \vspace{0pt} % Align top
+    {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} II. Constraints that faced the business community during the quarter under review, and priorities for improving the business environment from the perspective of the sample of firms}}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.18\textwidth}
+    \vspace{0pt} % Align top
+    % Adjust width as needed for ph.png
+    \raggedleft
+    \includegraphics[width=\linewidth]{ph.png}
+\end{minipage}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% SUBHEADER (2-1)
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{ecestitle} \textit{2-1 Constraints faced by the business community during the quarter under study}}}
+
+\vspace{0.8em}
+
+% ---------------------------------------------------------
+% BOLD INTRO PARAGRAPH
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{The recurring increases in energy and water tariffs topped the list of constraints that faced all firms during the quarter under study, followed by the challenges related to high inflation, and difficulties in dealing with government agencies.}}
+
+\vspace{0.8em}
+
+% ---------------------------------------------------------
+% BODY TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+Figure 2-1 shows the main constraints that faced the business community during the quarter under study (\CurrentQuarterText), ranked by their severity from the perspective of the sample of firms.
+
+\vspace{0.8em}
+
+Higher energy and water tariffs topped the list of constraints that faced all firms during the quarter under study, as continuous rises in energy and water tariffs leads to higher production costs, especially for energy- and water-intensive activities, and production activities in general, which represents an additional burden on firms. High inflation came in second place, as it negatively impacts the business community on both the supply and demand sides, in addition to the workers’ constant demands for higher wages and lack of cash liquidity for investment. Difficulties in dealing with government agencies came in third, as it negatively impacts the business community due to slow procedures, bureaucracy, and employee treatment, in addition to the multiplicity of judicial police officers in many government agencies, opening the door wide to corruption and unofficial payments. In fourth place came uncertainty regarding future economic policy directions and lack of disclosure of the country’s future economic directions as a constraint that prevents firms from developing future plans. Also, there is the absence of a long-term vision, especially with regard to investment and debt. The high fees of government services came in fifth place, as the disparity in policies across governorates and border crossings in terms of fees or logistical restrictions (such as transit permits) led to changing costs and operational processes, and reduced profit margins for firms.
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 17: CONSTRAINTS (Figure 2.1 & Size Analysis)
+% =========================================================
+
+% 1. Geometry (Persist Standard margins)
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image (con_bg.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% FIGURE 2.1 (Constraints Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Assumes ch13.png includes the sidebar and the chart
+    \includegraphics[width=\linewidth]{ch13.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\noindent
+{\fontsize{8}{10}\selectfont
+Source: Survey Results.\\
+\textit{Note: Some indicators were newly introduced starting from the study quarter.\\
+The numbers refer to the percentage of firms that identified specific obstacles, and firms could select more than one obstacle.}
+}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% SUBSECTION 2-1-1
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{ecestitle} \textit{2-1-1 Constraints according to the size of firms}}}
+
+\vspace{0.8em}
+
+% ---------------------------------------------------------
+% BODY TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+Besides energy and water tariffs and high inflation topping the list of constraints for all firms, there is variation in the order of constraints according to the size of the firms. In general, small and medium enterprises face more challenges compared to large firms.
+
+\vspace{0.8em}
+
+With regards to large firms, high rates of inflation topped the list of constraints, followed by high energy and water tariffs in second place, difficulties in dealing with government agencies in third place, then uncertainty about future economic policy directions.
+
+\vspace{0.8em}
+
+For small and medium enterprises, higher energy and water tariffs topped the list of constraints, followed by high inflation rates in second place, unclear future economic policy directions in third place, then difficulties in dealing with government agencies.
+
+\vspace{0.8em}
+
+Figure 2-2 shows the main constraints faced by both large and small and medium-sized enterprises during the quarter under study (\CurrentQuarterText), ranked by their severity from the perspective of the sample of firms.
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 18: CONSTRAINTS BY FIRM SIZE (Figure 2.2)
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% FIGURE 2.2 (Size Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains the bar chart for Constraints by Firm Size
+    \includegraphics[width=\linewidth]{ch14.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\noindent
+{\fontsize{8}{10}\selectfont
+Source: Survey Results.\\
+\textit{Note: Some indicators were newly introduced starting from the study quarter.}
+}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% SUBSECTION 2-1-2
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{ecestitle} \textit{2-1-2 Constraints according to economic sectors}}}
+
+\vspace{0.8em}
+
+% ---------------------------------------------------------
+% BODY TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+The views of economic sectors regarding the main constraints faced varied. High energy and water tariffs were the most severe constraint that faced the manufacturing and tourism industries sectors, while high inflation led the constraints for the construction, transportation, and communications sectors, but was reported as an additional constraint for the tourism sector. The challenges associated with unclear future directions of economic policy was at the forefront of the constraints facing the financial services sector (Figure 2-3).
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 19: CONSTRAINTS BY SECTOR (Figure 2.3)
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% FIGURE 2.3 (Sector Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains the Constraints by Economic Sector table/chart
+    \includegraphics[width=\linewidth]{ch15.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\noindent
+{\fontsize{8}{10}\selectfont
+\textit{Source:} Survey Results.\\
+\textit{Note: Some indicators were newly introduced starting from the study quarter.}
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 20: PRIORITIES FOR IMPROVING BUSINESS CLIMATE
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% HEADER SECTION (Title + Logo)
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.80\textwidth}
+    \vspace{0pt} % Align top
+    {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} 2-2 Priorities for improving the business climate in Egypt (according to the views of the sample of firms)}}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.18\textwidth}
+    \vspace{0pt} % Align top
+    % Logo on the top right
+    \raggedleft
+    \includegraphics[width=\linewidth]{ph2.png}
+\end{minipage}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% INTRO PARAGRAPH (Bold)
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{The most important priorities to focus on from a corporate perspective: Controlling inflation, revisiting energy and water prices, disclosing the directions of future economic policies, and continuing efforts to solve tax system problems, with the need to facilitate government procedures.}}
+
+
+% ---------------------------------------------------------
+% BODY TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+Revisiting energy and water tariffs led the priorities that the sample of firms see as necessary, because they are increased at close intervals, up to at least twice a year, which increases cost and decreases business volume. This is followed by addressing high inflation due to its negative impact on all sectors, the need to disclose future economic policy directions so firms can build future plans for projects, then continuing to solve the problems related to the tax system and preventing double taxation. Then comes ceasing the retroactive inspection of previous years, and facilitating government procedures with the aim of promoting economic growth (Figure 2-4).
+}
+
+
+% ---------------------------------------------------------
+% FIGURE 2.4 (Priorities Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains the Priorities chart with sidebar
+    \includegraphics[width=\linewidth]{ch16.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\noindent
+{\fontsize{8}{10}\selectfont
+Source: Survey Results.\\
+\textit{Note: Some indicators were newly introduced starting from the study quarter.}
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 21: PRIORITIES BY FIRM SIZE
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION HEADER
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{ecestitle} 2-2-1 Priorities according to firm sizes}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{Comparing priorities according to firm sizes reveals the following:}}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% BODY TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+Priorities varied depending on the size of the firms. For large firms, addressing high inflation rates should come first, followed by a tariff revisit of energy and water, then facilitation of government procedures in third place, solving the problems of the tax system in fourth place, and finally reforming the customs system in fifth place. Small and medium enterprises see revisiting the tariffs of energy and water as a top priority, followed by addressing high inflation, then disclosure of future economic policy directions in third place. Then comes solving the problems of the tax system in fourth place, and facilitation of government procedures in fifth place (Figure 2-5).
+}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% FIGURE 2.5 (Size Priorities Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains the Priorities by Firm Size chart
+    \includegraphics[width=\linewidth]{ch17.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+Source: Survey Results.\\
+\textit{Note: Some indicators were newly introduced starting from the study quarter.}
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 22: PRIORITIES BY SECTOR
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION HEADER
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{ecestitle} 2-2-2 Priorities according to economic sectors}}
+
+\vspace{0.8em}
+
+% ---------------------------------------------------------
+% BODY TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+The manufacturing and tourism sectors agree that their top priority is revisiting energy and water tariffs, while disclosure of future economic policy directions topped the priorities of the financial service sector. The need to address inflation was one of the top priorities of the construction sector and represented an additional priority for the tourism sector. Solving tax system problems was a top priority for the telecommunications sector, while reducing fees of government services was a top priority for the transport sector (Figure 2-6).
+}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% FIGURE 2.6 (Sector Priorities Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains the Priorities by Economic Sector chart
+    \includegraphics[width=\linewidth]{ch18.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+Source: Survey results.
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 23: BUSINESS COMMUNITY EXPECTATIONS
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% HEADER SECTION (Title + Logo)
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.80\textwidth}
+    \vspace{0pt} % Align top
+    {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} Business community expectations based on its vision regarding the government's directions over the coming period.}}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.18\textwidth}
+    \vspace{0pt} % Align top
+    % Logo on the top right
+    \raggedleft
+    \includegraphics[width=\linewidth]{ph3.png}
+\end{minipage}
+
+\vspace{2em}
+
+% ---------------------------------------------------------
+% BODY TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+Expectations of higher energy and water tariffs, and a decrease in the duration of power outages, with stable interest rates, exchange rate, and other variables during the upcoming quarter, according to the views of the sample of firms. (Figure 2-7).
+}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% FIGURE 2.7 (Expectations Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains the Expectations chart
+    \includegraphics[width=\linewidth]{ch19.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+Source: Survey results.\\
+\textit{Note: Some indicators were newly introduced starting from the current quarter.}
+}
+
+\clearpage

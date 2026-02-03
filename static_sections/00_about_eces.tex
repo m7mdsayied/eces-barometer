@@ -1,0 +1,137 @@
+% =========================================================
+% PAGE: ABOUT ECES
+% =========================================================
+
+% 1. Set Geometry
+% Standard text margins (Left 2cm, Right 2cm)
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image & Page Number
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    % Uses \thepage so it updates automatically
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% HEADER SECTION: TITLE & LOGO
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.72\textwidth}
+    \vspace{0pt} % Align tops of minipages
+    {\fontsize{22}{26}\selectfont \textbf{\color{ecestitle} About ECES}} \vspace{0.8em}
+    
+    {\fontsize{9}{12}\selectfont \color{black}
+    The Egyptian Center for Economic Studies (ECES) is an independent, non-profit think tank that conducts specialized economic research, drawing on international experience and constructive discussions among various stakeholders. ECES’s main objective is to propose sound economic policies, and institutional and legislative reforms that contribute to sustainable development in Egypt, all on the basis of combined economic efficiency and social justice.
+    }
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.25\textwidth}
+    \vspace{0pt} % Align tops of minipages
+    \raggedleft
+    \includegraphics[width=3.5cm]{eces_logo.png}
+\end{minipage}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% SECTION: BOARD OF DIRECTORS
+% ---------------------------------------------------------
+\noindent
+{\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} ECES Board of Directors}} \vspace{0.8em}
+
+{\fontsize{8.5}{11}\selectfont \color{black}
+\textbf{Chairman:} Omar Mohanna, Chairman of: Egypt-US Business Council (EUSBC), Chubb Insurance Egypt, Prometeon Tyre Egypt Co. (Pirelli), Coca-Cola HBC Egypt \& the United Bank
+
+\textbf{Vice Chairman:} Tarek Tawfik, Chairman, Cairo Poultry
+
+\textbf{Secretary General:} Mohamed Kassem, Chairman, World Trading Co., Egypt
+
+\textbf{Treasurer:} Alaa Hashim, Founder and Executive Partner, TRANSCENDIUM
+
+\vspace{0.8em}
+
+Ahmed Abou Ali, Partner, Hassouna \& Abou Ali Law Offices\\
+Ahmed Fikry Abdel Wahab, General Manager and CEO, EGA - Egyptian German Automotive\\
+Hussein Choucri, Chairman and Managing Director, HC Securities and Investment\\
+Sherif ElKholy, Partner and Co-head of the Middle East \& North Africa, Actis\\
+Aladdin Sabaa, Chairman of Basata E-Payments and Basata Finance\\
+Mohamed Zakaria Mohie El Din, Chairman and Managing Director, National Company for Chemical Industries – NASYDCO\\
+Hisham El Khazindar, Co-Founder and Managing Director, Qalaa Holdings
+}
+
+\vspace{1.2em}
+
+% ---------------------------------------------------------
+% SECTION: HONORARY CHAIRPERSONS
+% ---------------------------------------------------------
+{\fontsize{9}{11}\selectfont \textbf{ECES Honorary Chairpersons}\\
+Galal El Zorba, Chairman of Nile Holding Co.\\
+Hazem Hassan, Chairman, KPMG Hazem Hassan Management Consultants
+}
+
+\vspace{1.2em}
+
+% ---------------------------------------------------------
+% SECTION: ECES STAFF
+% ---------------------------------------------------------
+\noindent
+{\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} ECES Staff}}
+
+\noindent
+{\fontsize{8}{10}\selectfont \underline{\href{https://eces.org.eg/en/eces-team/}{\color{eceslink} https://eces.org.eg/en/eces-team/}}}
+
+\vspace{0.8em}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+    % Left Column
+    \fontsize{7.5}{10}\selectfont
+    Abla Abdel-Latif, PhD, Executive Director and Director of Research\\
+    Sahar Aboud, PhD, Principal Economist\\
+    Rama Said, Senior Economist\\
+    Racha Seif El-Dine, Senior Economist\\
+    Ahmed Dawoud, Economist\\
+    Mohamed Hosny, Economist\\
+    Marian Adel, Economist\\
+    Sondos Samir, Research Analyst\\
+    Aya Saleh, Research Analyst\\
+    Israa Adel, Research Analyst\\
+    Youssef Nasr, Research Analyst\\
+    Mahmoud Mohamed, Research Analyst\\
+    Ahmed Habashy, Data Analyst\\
+    Abdelrahman Eleshaky, Data Analyst\\
+    Osama ElShamy, Data Analyst\\
+    Mohamed Abdellatef, Data Analyst
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    % Right Column
+    \fontsize{7.5}{10}\selectfont
+    Ahmed Fathy, Field Researcher\\
+    Hossam Khater, Field Researcher\\
+    Mohamed Khater, Field Researcher\\
+    Yasser Selim, Managing Editor\\
+    Fatma Al-Zahraa Ali, Senior Editor/ Translator\\
+    Ebrahim ElEmbady, IT Manager\\
+    Walied El-Torky, Digital Communication Manager\\
+    Mohamed Abdel-Hakam, Communication Specialist\\
+    Mohamed Leheta, Finance and Administration Manager\\
+    Miral Michel, Assistant to the Executive Director\\
+    Amani Medhat, Research and Executive Assistant\\
+    Mohamed Atef, Administrative Assistant\\
+    Hussein Mohamed, Support Staff\\
+    Tarek Attia, Support Staff\\
+    Mohamed Gamal, Support Staff\\
+    Walid Ibrahim, Support Staff\\
+    Amr Mohamed, Support Staff
+\end{minipage}

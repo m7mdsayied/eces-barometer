@@ -1,0 +1,80 @@
+% =========================================================
+% PAGE 2: TABLE OF CONTENTS
+% =========================================================
+
+\begin{tikzpicture}[remember picture, overlay]
+
+    % 1. BACKGROUND LAYERS
+    % A. Main Background (Contains left sidebar gauges)
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{TOC_bg.png}
+    };
+
+    % B. Header Map Image (Top banner)
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth]{map.png}
+    };
+
+    % 2. HEADER TEXT (Overlaying the map)
+    % Main Title
+    \node[anchor=north west] at (2cm, -3.5cm) {
+        \fontsize{32}{38}\selectfont \textbf{\color{ecesteal} Business Barometer}
+    };
+    
+    % Issue Number (Dynamic Variable)
+    \node[anchor=north west] at (2cm, -5.5cm) {
+        \fontsize{16}{20}\selectfont \textbf{\color{ecesteal} Issue \IssueNumber}
+    };
+    
+    % Date (Dynamic Variable - Right aligned relative to text block)
+    \node[anchor=north west] at (10.5cm, -5.5cm) {
+        \fontsize{16}{20}\selectfont \textbf{\color{ecesteal} \CurrentQuarterText}
+    };
+
+    % 3. TABLE OF CONTENTS LIST
+    % Title
+    \node[anchor=north west] at (5cm, -9cm) {
+        \fontsize{20}{24}\selectfont \textbf{\color{ecestitle} Contents}
+    };
+
+    % List Items
+    % Note: Page numbers are hardcoded. Update if content length changes.
+    \node[anchor=north west, align=left] at (5cm, -10.5cm) {
+        \begin{minipage}{14.5cm}
+            \fontsize{11}{16}\selectfont 
+            
+            Executive Summary \dotfill 2 \\[0.4cm]
+            Business Barometer Methodology \dotfill 6 \\[0.4cm]
+            Business Barometer Index (BBI) \dotfill 12 \\[0.4cm]
+            I. Performance evaluation and outlook according to the overall index \dotfill 12 \\[0.4cm]
+            II. Constraints that faced the business community during the quarter under \\
+            review, and priorities for improving the business environment from the \\
+            perspective of the sample of firms \dotfill 16 \\[0.4cm]
+            III. Performance evaluation and outlook according to sub-indices \dotfill 24 \\[0.4cm]
+            Tables Appendix \dotfill 28
+            
+        \end{minipage}
+    };
+
+    % 4. FOOTER / SPONSOR (TOC Style)
+    % "Sponsored by"
+    \node[anchor=south] at ([yshift=4.5cm]current page.south) {
+        \fontsize{10}{12}\selectfont \color{black} Sponsored by
+    };
+
+    % CIB Logo
+    \node[anchor=south] at ([yshift=3cm]current page.south) {
+        \includegraphics[width=2.5cm]{cib_logo.png}
+    };
+
+    % Slogan
+    \node[anchor=south] at ([yshift=2.5cm]current page.south) {
+        \fontsize{8}{10}\selectfont \textbf{\color{eceslink} THE BANK TO TRUST}
+    };
+
+    % Website Link
+    \node[anchor=south] at ([yshift=2cm]current page.south) {
+        \fontsize{10}{12}\selectfont \textbf{\underline{\href{https://cibeg.com}{\color{eceslink} cibeg.com}}}
+    };
+
+\end{tikzpicture}

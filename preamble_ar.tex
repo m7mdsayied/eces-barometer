@@ -1,0 +1,54 @@
+% =========================================================
+% PREAMBLE (ARABIC): PACKAGES & DESIGN SETUP
+% =========================================================
+
+% 1. Page Layout
+\usepackage[margin=0in]{geometry} 
+
+% 2. Graphics and Colors
+\usepackage{graphicx}
+\usepackage{tikz}       % For precise absolute positioning
+\usepackage{xcolor}
+
+% 3. Language & Font Support (XeLaTeX)
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+% Set Default Language to Arabic
+\setmainlanguage{arabic}
+\setotherlanguage{english}
+
+% 4. Font Configuration
+% We configure it to look in the local "fonts" folder
+\setmainfont[
+    Path = fonts/,
+    UprightFont = Almarai-Regular.ttf,
+    BoldFont = Almarai-Bold.ttf,
+    Script = Arabic
+]{Almarai}
+
+\newfontfamily\arabicfont[
+    Path = fonts/,
+    UprightFont = Almarai-Regular.ttf,
+    BoldFont = Almarai-Bold.ttf,
+    Script = Arabic
+]{Almarai}
+
+% 5. Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% 6. Graphics Path
+\graphicspath{{./images/static/}{./images/charts_ar/}}
+
+% 7. Custom Color Definitions (Same as English for Consistency)
+\definecolor{ecesteal}{HTML}{005963}   % Dark Teal
+\definecolor{ecestitle}{HTML}{00b5e2}  % Cyan
+\definecolor{eceslink}{HTML}{0066cc}   % Blue
+\definecolor{textgreen}{HTML}{4CAF50}
+\definecolor{textpurple}{HTML}{C2185B}
+\definecolor{textblue}{HTML}{2196F3}
+\definecolor{textdark}{HTML}{333333}
+
+% 8. Paragraph Formatting for Arabic
+\setlength{\parindent}{0pt} % Often preferred in modern Arabic reports
+\linespread{1.3}            % Arabic fonts usually need more line height

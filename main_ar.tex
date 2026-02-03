@@ -1,0 +1,97 @@
+\documentclass[a4paper,12pt]{article}
+
+% =========================================================
+% 1. SYSTEM SETUP
+% =========================================================
+
+% A. PREAMBLE: Loads packages, Almarai font, colors, and RTL settings.
+\input{preamble_ar}
+
+% B. CONFIG: Defines Issue Number, Dates, and Quarter Variables (Arabic).
+% (Update this file for every new release)
+\input{config_ar}
+
+\begin{document}
+
+% =========================================================
+% 2. FRONT MATTER (STATIC DESIGN)
+% =========================================================
+
+% PAGE 1: COVER PAGE
+% Uses 'cover_bg_ar.png' (implied inside the file) and variables from config_ar.tex
+\input{static_sections/00_cover_ar.tex}
+\clearpage
+
+% PAGE 2: TABLE OF CONTENTS
+% Uses 'TOC_bg_ar.png' (implied) and 'map.png'
+\input{static_sections/00_toc_ar.tex}
+\clearpage
+
+% =========================================================
+% 3. EXECUTIVE SUMMARY
+% =========================================================
+
+% PAGE 3-5: EXECUTIVE SUMMARY
+% Note: Inside this file, ensure \newgeometry sets the RIGHT margin 
+% if you want the sidebar on the right side.
+% Background: 'exc_bg_ar.png' (implied)
+\input{content/01_exec_summary_ar.tex}
+\clearpage
+
+% =========================================================
+% 4. ORGANIZATIONAL INFO & METHODOLOGY
+% =========================================================
+
+% PAGE 5: ABOUT ECES
+% Resets geometry to standard
+% Background: 'con_bg_ar.png'
+\input{static_sections/00_about_eces_ar.tex}
+\clearpage
+
+% PAGE 6-7: METHODOLOGY
+% Background: 'con_bg_ar.png'
+\input{static_sections/00_methodology_ar.tex}
+\clearpage
+
+% =========================================================
+% 5. MACROECONOMIC REPORT
+% =========================================================
+
+% PAGE 8-11: MACROECONOMIC OVERVIEW
+% Background: 'mc_bg_ar.png' (implied)
+\input{content/02_macro_overview_ar.tex}
+\clearpage
+
+% =========================================================
+% 6. MAIN ANALYSIS (BBI)
+% =========================================================
+
+% PAGE 12-15: SECTION I - OVERALL INDEX & SECTORS
+% Resets geometry to standard
+% Background: 'con_bg_ar.png'
+% TODO: Uncomment when file is ready
+\input{content/03_analysis_overall_ar.tex}
+\clearpage
+
+% PAGE 16-23: SECTION II - CONSTRAINTS & PRIORITIES
+% Background: 'con_bg_ar.png'
+% TODO: Uncomment when file is ready
+\input{content/04_constraints_ar.tex}
+\clearpage
+
+% PAGE 24-27: SECTION III - SUB-INDICES
+% Background: 'con_bg_ar.png'
+% TODO: Uncomment when file is ready
+\input{content/05_subindices_ar.tex}
+\clearpage
+
+% =========================================================
+% 7. APPENDIX
+% =========================================================
+
+% PAGE 28-29: DATA TABLES
+% Background: 'con_bg_ar.png'
+% TODO: Uncomment when file is ready
+\input{content/06_tables_ar.tex}
+
+\end{document}

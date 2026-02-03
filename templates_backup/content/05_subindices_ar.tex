@@ -1,0 +1,337 @@
+% =========================================================
+% PAGE 23: SUB-INDICES PERFORMANCE (Figure 3.1) - ARABIC
+% =========================================================
+
+% 1. Geometry
+% Standard margins
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image (con_bg_ar.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg_ar.png}
+    };
+    
+    % B. Page Number (Dynamic) - Left side for Arabic
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION TITLE
+% ---------------------------------------------------------
+\noindent
+{\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} ثالثاً: تقييم الأداء والتوقعات وفقاً للمؤشرات الفرعية}}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% SUBSECTION 3.1
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{ecestitle} 3.1 تقييم الأداء}}
+
+\vspace{0.8em}
+
+% ---------------------------------------------------------
+% BODY TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+ارتفاع مؤشرات الإنتاج والمبيعات المحلية واستغلال الطاقة الإنتاجية عن المستوى المحايد خلال الربع محل الدراسة ولكن كانت أقل من الربع السابق وأن كانت أفضل من الربع المناظر. بينما حققت الشركات الكبيرة قيما أعلى من المستوى المحايد بـ 5 نقاط وأعلى من الربع السابق والمناظر، بينما سجلت في مؤشر المخزون السلعي قيما أقل من المستوى المحايد بـ 7 نقاط وأقل من الربع السابق والمناظر.
+
+\vspace{0.8em}
+
+وحققت الشركات الصغيرة والمتوسطة قيما أعلى من المستوى المحايد بـ 5 نقاط واقل من الربع السابق بـ 5 نقاط ولكن أفضل من الربع المناظر بـ 8 نقاط. بينما سجلت قيما دون المستوى المحايد بـ 8 نقاط في مؤشر المخزون السلعي، قيما أقل من الربع السابق بـ 5 نقاط ولكن أفضل من الربع المناظر بـ 3 نقاط.
+}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% FIGURE 3.1 (Sub-indices Performance)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains the Production and Sales Indices chart
+    \includegraphics[width=\linewidth]{ch20.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+المصدر: نتائج الاستبيان.\\
+* تم عكس مؤشر المخزون السلعي ليعكس الأثر السلبي الناتج عن ارتفاع المخزون السلعي على الشركات. لذلك فكلما كان المؤشر السلعي مرتفعا كان المخزون السلعي منخفض والعكس صحيح.
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 24: PRICES, WAGES, INVESTMENT, EMPLOYMENT INDICES - ARABIC
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg_ar.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg_ar.png}
+    };
+    
+    % B. Page Number (Dynamic) - Left side for Arabic
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION TITLE: CONTINUATION FROM PAGE 23
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{تجاوز مؤشر أسعار المنتجات النهائية والأجور لكافة الشركات المستوى المحايد}}
+
+\vspace{0.5em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+تجاوز مؤشر أسعار المنتجات النهائية لكافة الشركات المستوى المحايد ليعكس ثبات الأسعار خلال الربع محل الدراسة. وتجاوز مؤشر الأجور المستوى المحايد بـ 4 نقاط خلال الربع محل الدراسة إلا أنه انخفض مقارنة بالربع السابق (الشكل 3-2).
+}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% FIGURE 3.2 (Prices/Wages)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Price and Production Cost Indices
+    \includegraphics[width=\linewidth]{ch21.png}
+\end{figure}
+
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+المصدر: نتائج الاستبيان.\\
+* تم عكس مؤشر أسعار المدخلات ليعكس الأثر السلبي الناتج عن ارتفاع الأسعار على المؤشر الإجمالي. لذلك فكلما كان المؤشر منخفضا كان الارتفاع السعري أكبر والعكس صحيح.
+}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% SECTION 2: INVESTMENT AND EMPLOYMENT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{13}\selectfont \textbf{استقرار مؤشري الاستثمار والتوظيف لكافة الشركات}}
+
+\vspace{0.6em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+على صعيد الشركات الكبيرة سجل مؤشر الاستثمار خلال الربع محل الدراسة قيما أعلى من المستوى المحايد بنقطة واحدة وأقل من الربع السابق والمناظر. بينما سجل مؤشر التوظيف قيما عند المستوى المحايد وأقل من الربع السابق والمناظر.
+
+\vspace{0.6em}
+
+وبالنسبة للشركات الصغيرة والمتوسطة جاء مؤشر الاستثمار عند المستوى المحايد مسجلا تراجعا عن الربع السابق. إلا أنه سجل نفس قيم الربع المناظر. بينما سجل مؤشر التوظيف قيما أعلى من المستوى المحايد بنقطة واحدة وأعلى من الربع السابق والمناظر (الشكل 3-3).
+}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% FIGURE 3.3 (Invest/Employ)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Investment and Employment Indices
+    \includegraphics[width=\linewidth]{ch22.png}
+\end{figure}
+
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+المصدر: نتائج الاستبيان.
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 25: PERFORMANCE EXPECTATIONS (Figure 3.4) - ARABIC
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg_ar.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg_ar.png}
+    };
+    
+    % B. Page Number (Dynamic) - Left side for Arabic
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION HEADER
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{ecestitle} 3.2 توقعات الأداء}}
+
+\vspace{0.8em}
+
+% ---------------------------------------------------------
+% INTRO TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+\textbf{توقعات بارتفاع أداء كافة الشركات عن المستوى المحايد خلال الربع القادم نظرا لتوقعات بثبات معظم المؤشرات الفرعية.}
+
+\vspace{0.8em}
+
+جاءت توقعات الشركات الكبيرة حول مؤشري الإنتاج واستغلال الطاقة الإنتاجية خلال الربع (\NextQuarterText) أعلى من المستوى المحايد ولكن أقل من الربع السابق والمناظر. بينما سجلت التوقعات المتعلقة بالمبيعات المحلية والصادرات قيما أقل من الربع السابق ولكن أعلى من الربع المناظر. وأشارت التوقعات إلى ارتفاع في مؤشر المخزون السلعي عن المستوى المحايد وعن كل من الربع السابق والمناظر.
+
+\vspace{0.8em}
+
+وجاءت توقعات الشركات الصغيرة والمتوسطة للمبيعات المحلية والمخزون أعلى من المستوى المحايد ومقارنة بكل من الربع السابق والمناظر، بينما جاءت توقعات مؤشري الإنتاج واستغلال الطاقة الإنتاجية أقل بنقطة واحدة عن الربع السابق وإن كانت أفضل من الربع المناظر بـ 4 نقاط. بينما كانت توقعات مؤشر الصادرات أقل من الربع السابق والمناظر (الشكل 3-4).
+}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% FIGURE 3.4 (Expectations Size)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Production and Sales Indices by Firm Size - Outlook
+    \includegraphics[width=\linewidth]{ch23.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES
+% ---------------------------------------------------------
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+المصدر: نتائج الاستبيان.\\
+* تم عكس مؤشر المخزون السلعي ليعكس الأثر السلبي الناتج عن ارتفاع المخزون السلعي على الشركات. لذلك فكلما كان المؤشر منخفضا كان المخزون السلعي مرتفعا والعكس صحيح.
+}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% BOTTOM TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{توقعات بارتفاع أسعار المنتجات النهائية والأجور لكافة الشركات عن المستوى المحايد}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+انخفض مؤشر أسعار المنتجات النهائية مقارنة بالربع السابق والمناظر، ولكنه تجاوز المستوى المحايد، مدفوعا بارتفاع مؤشر أسعار المدخلات عن الربع السابق والمناظر.
+
+\vspace{0.8em}
+
+في حين تتوقع الشركات الصغيرة والمتوسطة ثبات مؤشر الأجور عند نفس قيم الربع السابق وأعلى من المستوى المحايد بنقطتين ولكن أقل من الربع المناظر
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 26: PRICES, WAGES, INVESTMENT OUTLOOK - ARABIC
+% =========================================================
+
+% 1. Geometry (Persist)
+
+% 2. Background Image (con_bg_ar.png)
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg_ar.png}
+    };
+    
+    % B. Page Number (Dynamic) - Left side for Arabic
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% TOP TEXT (Continuation)
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+بنقطة واحدة. وجاءت توقعات الشركات الكبيرة أعلى من الربع السابق بنقطة واحدة ولكنها أقل من الربع المناظر بنقطتين (الشكل 3-5).
+}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% FIGURE 3.5 (Expectations Prices)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Prices and Production Cost Indices by Firm Size - Outlook
+    \includegraphics[width=\linewidth]{ch24.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE & NOTES FOR FIG 3.5
+% ---------------------------------------------------------
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+المصدر: نتائج الاستبيان.\\
+* تم عكس مؤشر أسعار المدخلات ليعكس الأثر السلبي الناتج عن ارتفاع الأسعار على المؤشر الإجمالي. لذلك فكلما كان المؤشر منخفضا كان الارتفاع السعري أكبر والعكس صحيح.
+}
+
+\vspace{2em}
+
+% ---------------------------------------------------------
+% MIDDLE SECTION: INVESTMENT AND EMPLOYMENT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{ثبات توقعات مؤشري الاستثمار والتوظيف لكافة الشركات عند المستوى المحايد}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+تتوقع كافة الشركات أن يتجاوز مؤشر الاستثمار المستوى المحايد وكذلك الربع السابق والمناظر بنقطة واحدة. كما تتوقع أن يتجاوز مؤشر التوظيف الربع السابق بنقطة واحدة ويماثل الربع المناظر ويسجل قيما أعلى من المستوى المحايد بنقطة واحدة (الشكل 3-6).
+}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% FIGURE 3.6 (Expectations Invest/Employ)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Investment and Employment Indices by Firm Size - Outlook
+    \includegraphics[width=\linewidth]{ch25.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% SOURCE FOR FIG 3.6
+% ---------------------------------------------------------
+\vspace{-0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont
+المصدر: نتائج الاستبيان.
+}
+
+\clearpage

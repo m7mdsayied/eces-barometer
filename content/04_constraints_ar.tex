@@ -1,0 +1,345 @@
+% =========================================================
+% PAGE 16: SECTION II - CONSTRAINTS (Intro)
+% =========================================================
+
+% 1. Geometry
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+    
+    % Optional: If you have the specific header icon (Blue box with chart), place it here
+    % \node[anchor=north west] at ([xshift=0cm, yshift=-2cm]current page.north west) {
+    %     \includegraphics[width=2.5cm]{obs_ar.png} 
+    % };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% TITLE SECTION (Simulating the Blue Header)
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}{\textwidth}
+    {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} ثانياً: المعوقات التي واجهت مجتمع الأعمال خلال الربع}}
+    
+    \vspace{0.2em}
+    {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} محل الدراسة، وأولويات تحسين مناخ الأعمال من وجهة}}
+    
+    \vspace{0.2em}
+    {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} نظر شركات العينة}}
+\end{minipage}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% SECTION 1-2
+% ---------------------------------------------------------
+\noindent
+{\fontsize{12}{15}\selectfont \textbf{\color{ecestitle} 1-2 المعوقات التي واجهت مجتمع الأعمال خلال الربع محل الدراسة}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{الزيادة المتكررة في أسعار الطاقة والمياه تتصدر قائمة المعوقات التي واجهت كافة الشركات خلال الربع محل الدراسة، تليها التحديات المرتبطة بارتفاع التضخم، ثم إجراءات التعامل مع الجهات الحكومية.}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+يوضح الشكل 1-2 المعوقات الرئيسية التي واجهت مجتمع الأعمال خلال الربع محل الدراسة (\CurrentQuarterTextAr). مرتبة حسب شدتها من وجهة نظر شركات العينة.
+
+استمر \textbf{ارتفاع تكاليف الطاقة والمياه} ليتصدر قائمة المعوقات بالنسبة لكافة الشركات خلال الربع محل الدراسة، حيث إن الارتفاع المستمر في أسعار الطاقة والمياه يؤدي إلى ارتفاع تكاليف الإنتاج، خاصة للأنشطة كثيفة استهلاك الطاقة والمياه، والأنشطة الإنتاجية بوجه عام، مما يمثل عبئاً إضافياً على الشركات. وجاءت التحديات \textbf{المرتبطة بارتفاع التضخم} في المرتبة الثانية، لما يسببه من معاناة مجتمع الأعمال على جانبي العرض والطلب، بالإضافة إلى مطالبات العمالة المستمرة برفع الأجور، وعدم توافر سيولة نقدية للاستثمار. وجاءت \textbf{تحديات إجراءات التعامل مع الجهات الحكومية} في المرتبة الثالثة؛ حيث تتسبب في معاناة مجتمع الأعمال نتيجة بطء الإجراءات، والروتين، وتعامل الموظفين، بالإضافة إلى تعدد موظفي الضبطية القضائية في معظم الجهات الحكومية، وفتح مجال للفساد والمصروفات غير الرسمية.
+
+ويأتي في المرتبة الرابعة \textbf{غموض توجهات السياسة الاقتصادية في المستقبل} وعدم الإفصاح عن اتجاهات الدولة الاقتصادية خلال الفترات المستقبلية من المعوقات التي تحول دون قدرة الشركات على وضع خطط مستقبلية، كما لا يوجد رؤيا طويلة الأجل، وخاصة فيما يتعلق بالاستثمار والديون. وجاءت \textbf{زيادة الرسوم المفروضة على الخدمات الحكومية} في المرتبة الخامسة؛ حيث أدى ارتفاع كافة الرسوم وتفاوت السياسات بين المحافظات والمناقذ الحدودية في الرسوم أو القيود اللوجيستية (كتصاريح العبور) إلى عدم استقرار التكاليف، والعمليات التشغيلية، وتقليل هامش الربح للشركات.
+}
+
+% ---------------------------------------------------------
+% FIGURE 1-2 (Constraints Overall)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{ch13.png}
+\end{figure}
+
+\clearpage
+
+% =========================================================
+% PAGE 17: CONSTRAINTS BY FIRM SIZE
+% =========================================================
+
+\newgeometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION 1-1-2
+% ---------------------------------------------------------
+\noindent
+{\fontsize{12}{15}\selectfont \textbf{\color{ecestitle} 1-1-2 المعوقات وفقاً لحجم الشركات}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+بالرغم من تصدر \textbf{تكاليف الطاقة والمياه وارتفاع التضخم} قائمة معوقات \textbf{كافة الشركات}، إلا أن هناك تباين في ترتيب المعوقات وفقاً لحجم الشركات. وبشكل عام، تواجه \textbf{الشركات الصغيرة والمتوسطة} عدداً أكبر من التحديات مقارنة \textbf{بالشركات الكبيرة}.
+
+بالنسبة \textbf{للشركات الكبيرة}، تصدر ارتفاع معدلات \textbf{التضخم} قائمة المعوقات التي تواجهها، يليه \textbf{ارتفاع تكاليف الطاقة والمياه} في المرتبة الثانية، ثم \textbf{المشكلات المرتبطة بإجراءات التعامل مع الجهات الحكومية} في المرتبة الثالثة، يليها \textbf{غموض توجهات السياسة الاقتصادية في المستقبل}.
+
+أما بالنسبة \textbf{للشركات الصغيرة والمتوسطة}، فقد تصدر \textbf{ارتفاع تكاليف الطاقة والمياه} قائمة المعوقات، يليه \textbf{ارتفاع معدلات التضخم} في المرتبة الثانية، ثم \textbf{غموض توجهات السياسة الاقتصادية في المستقبل} في المرتبة الثالثة، يليه \textbf{المشكلات المرتبطة بإجراءات التعامل مع الجهات الحكومية}.
+
+ويوضح الشكل 2-2 المعوقات الرئيسية التي واجهت الشركات الكبيرة والصغيرة والمتوسطة على السواء خلال الربع محل الدراسة (\CurrentQuarterTextAr)، مرتبة حسب شدتها من وجهة نظر شركات العينة.
+}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% FIGURE 2-2 (Constraints by Size)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{ch14.png}
+\end{figure}
+
+\clearpage
+
+% =========================================================
+% PAGE 18: CONSTRAINTS BY SECTOR
+% =========================================================
+
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION 2-1-2
+% ---------------------------------------------------------
+\noindent
+{\fontsize{12}{15}\selectfont \textbf{\color{ecestitle} 2-1-2 المعوقات وفقاً للقطاعات الاقتصادية}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+اتسمت آراء \textbf{القطاعات الاقتصادية تجاه المعوقات الرئيسية التي واجهتها بالتباين}؛ حيث تصدر \textbf{ارتفاع تكاليف الطاقة والمياه} أشد المعوقات التي واجهت قطاعي \textbf{الصناعات التحويلية والسياحة}، بينما جاء \textbf{ارتفاع معدلات التضخم} في مقدمة المعوقات بالنسبة لقطاعات \textbf{التشييد والبناء، والنقل، والاتصالات}، وكمعوق إضافي \textbf{لقطاع السياحة}، بينما جاءت التحديات المرتبطة \textbf{بغموض توجهات السياسة الاقتصادية في المستقبل} في مقدمة المعوقات التي تواجه قطاع \textbf{الخدمات المالية} (الشكل 2-3).
+}
+
+\vspace{2em}
+
+% ---------------------------------------------------------
+% FIGURE 2-3 (Constraints by Sector - Heatmap)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{ch15.png}
+\end{figure}
+
+\clearpage
+
+% =========================================================
+% PAGE 19: PRIORITIES (Intro)
+% =========================================================
+
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+    % Optional: Header Icon (Handshake)
+    % \node[anchor=north west] at ([xshift=0cm, yshift=-2cm]current page.north west) {
+    %     \includegraphics[width=2.5cm]{pri_ar.png} 
+    % };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION 2-2
+% ---------------------------------------------------------
+\noindent
+{\fontsize{12}{15}\selectfont \textbf{\color{ecestitle} 2-2 أولويات تحسين مناخ الأعمال في مصر (وفقاً لآراء شركات العينة)}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{أهم الأولويات التي يجب التركيز عليها من وجهة نظر الشركات: إعادة النظر في أسعار الطاقة والمياه والسيطرة على التضخم، وضرورة الإفصاح عن توجهات السياسات الاقتصادية في المستقبل، واستمرار جهود حل مشكلات المنظومة الضريبية مع ضرورة تسهيل الإجراءات الحكومية}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+جاءت مراجعة أسعار \textbf{الطاقة والمياه} على رأس الأولويات التي ترى شركات العينة ضرورة العمل عليها لأنها ترتفع على فترات متقاربة تصل إلى مرتين على الأقل سنوياً مما يتسبب في ارتفاع التكاليف وتراجع حجم الأعمال؛ يليها معالجة ارتفاع معدلات \textbf{التضخم} لما له من تأثير سلبي على كافة القطاعات، مع ضرورة \textbf{الإفصاح عن توجهات السياسات الاقتصادية في المستقبل} حتى تستطيع الشركات بناء خطط مستقبلية للمشروعات؛ يليها استمرار العمل على حل مشكلات \textbf{المنظومة الضريبية} ومنع الازدواج الضريبي، وإيقاف الفحص بأثر رجعي لسنوات سابقة؛ و\textbf{تسهيل الإجراءات الحكومية} بهدف نمو الاقتصاد (الشكل 2-4).
+}
+
+\vspace{2em}
+
+% ---------------------------------------------------------
+% FIGURE 2-4 (Priorities Overall)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{ch16.png}
+\end{figure}
+
+\clearpage
+
+% =========================================================
+% PAGE 20: PRIORITIES BY FIRM SIZE
+% =========================================================
+
+\newgeometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION 1-2-2
+% ---------------------------------------------------------
+\noindent
+{\fontsize{12}{15}\selectfont \textbf{\color{ecestitle} 1-2-2 الأولويات وفقاً لأحجام الشركات}}
+
+\vspace{0.5em}
+
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{بمقارنة الأولويات وفقاً لأحجام الشركات يتضح ما يلي:}}
+
+\vspace{0.5em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+تباينت الأولويات على حسب حجم الشركات؛ حيث ترى \textbf{الشركات الكبيرة} أن معالجة ارتفاع \textbf{معدلات التضخم} يجب أن تأتي على رأس الأولويات، يليها مراجعة أسعار \textbf{الطاقة والمياه} في المرتبة الثانية، ثم تسهيل \textbf{الإجراءات الحكومية} في المرتبة الثالثة، يليها معالجة مشكلات \textbf{المنظومة الضريبية} في المرتبة الرابعة، وضرورة الاهتمام \textbf{بالمنظومة الجمركية} في المرتبة الخامسة.
+
+أما \textbf{الشركات الصغيرة والمتوسطة} فترى أن مراجعة أسعار \textbf{الطاقة والمياه} يجب أن تكون على \textbf{قمة الأولويات}، يليها ضرورة معالجة ارتفاع \textbf{معدلات التضخم}، ثم \textbf{الإفصاح عن توجهات السياسات الاقتصادية في المستقبل} في المرتبة الثالثة، يليه معالجة مشكلات \textbf{المنظومة الضريبية} في المرتبة الرابعة، ثم تسهيل \textbf{الإجراءات الحكومية} في المرتبة الخامسة (الشكل 2-5).
+}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% FIGURE 2-5 (Priorities by Size)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{ch17.png}
+\end{figure}
+
+\clearpage
+
+% =========================================================
+% PAGE 21: PRIORITIES BY SECTOR
+% =========================================================
+
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION 2-2-2
+% ---------------------------------------------------------
+\noindent
+{\fontsize{12}{15}\selectfont \textbf{\color{ecestitle} 2-2-2 الأولويات وفقاً للقطاعات الاقتصادية}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+أجمع \textbf{قطاعا الصناعات التحويلية والسياحة} على أن أهم أولوياتهما هو إيجاد حلول لمراجعة \textbf{أسعار الطاقة والمياه}، بينما تصدر \textbf{الإفصاح عن توجهات السياسات الاقتصادية في المستقبل} أولويات \textbf{قطاع الخدمات المالية}، وجاءت ضرورة معالجة \textbf{التضخم} كأحد أهم أولويات \textbf{قطاع التشييد والبناء، والنقل، والاتصالات}، وتصدر حل \textbf{مشكلات المنظومة الضريبية} أهم أولويات \textbf{قطاع الاتصالات}، في حين تصدر \textbf{تخفيض الرسوم المفروضة على الخدمات الحكومية} أهم أولويات \textbf{قطاع النقل} (الشكل 2-6).
+}
+
+\vspace{2em}
+
+% ---------------------------------------------------------
+% FIGURE 2-6 (Priorities by Sector - Heatmap)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{ch18.png}
+\end{figure}
+
+\clearpage
+
+% =========================================================
+% PAGE 22: EXPECTATIONS & GOV VISION
+% =========================================================
+
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+\begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+    % Sidebar Icon (Gavel/Law)
+    % Placed on the LEFT for Arabic
+    % \node[anchor=north west] at ([xshift=0cm, yshift=-2cm]current page.north west) {
+    %     \includegraphics[width=2.5cm]{law_ar.png} 
+    % };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% TITLE SECTION
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}{0.85\textwidth}
+    
+    {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} توقعات مجتمع الأعمال بناء على رؤيته لتوجهات}}
+    
+    \vspace{0.2em}
+    {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} الحكومة الفترة القادمة}}
+    
+    \vspace{1em}
+    
+    {\fontsize{10}{13}\selectfont \textbf{توقعات بارتفاع رسوم الطاقة والمياه، وانخفاض مدة انقطاع الكهرباء، واستقرار أسعار الفائدة، وسعر الصرف وباقي المتغيرات خلال الربع القادم وفقاً لآراء العينة (الشكل 2-7).}}
+    
+\end{minipage}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% FIGURE 2-7 (Gov Vision Expectations)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Sidebar Chart
+    \includegraphics[width=0.9\linewidth]{ch19.png}
+\end{figure}
+
+\vspace{0.5em}
+\noindent
+{\fontsize{8}{10}\selectfont المصدر: نتائج الاستبيان.}
+
+\clearpage

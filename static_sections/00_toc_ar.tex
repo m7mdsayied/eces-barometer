@@ -1,0 +1,82 @@
+% =========================================================
+% PAGE 2: TABLE OF CONTENTS (ARABIC)
+% =========================================================
+
+\begin{tikzpicture}[remember picture, overlay]
+
+    % 1. BACKGROUND LAYERS
+    % A. Main Background (Contains right sidebar gauges in Arabic version)
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{TOC_bg_ar.png}
+    };
+
+    % B. Header Map Image
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth]{map.png}
+    };
+
+    % 2. HEADER TEXT
+    % Main Title (Centered roughly in the blue area)
+    \node[anchor=north] at ([yshift=-3.5cm]current page.north) {
+        \fontsize{40}{48}\selectfont \textbf{\color{ecesteal} بارومتر الأعمال}
+    };
+    
+    % Subtitles (Aligned relative to the main title)
+    % Issue Number (Right side)
+    \node[anchor=north east] at ([xshift=-6cm, yshift=-6cm]current page.north east) {
+        \fontsize{18}{22}\selectfont \textbf{\color{ecesteal} العدد \IssueNumber}
+    };
+    
+    % Date (Left side)
+    \node[anchor=north west] at ([xshift=6cm, yshift=-6cm]current page.north west) {
+        \fontsize{18}{22}\selectfont \textbf{\color{ecesteal} \CurrentQuarterText}
+    };
+
+    % 3. TABLE OF CONTENTS LIST
+    % Title "Contents" - Aligned Right
+    \node[anchor=north east] at ([xshift=-3cm, yshift=-9cm]current page.north east) {
+        \fontsize{22}{26}\selectfont \textbf{\color{ecestitle} المحتويات}
+    };
+
+    % List Items
+    % We anchor Top-Right to control the right margin against the icons
+    \node[anchor=north east, align=right] at ([xshift=-3cm, yshift=-11cm]current page.north east) {
+        \begin{minipage}{13cm}
+            \fontsize{12}{18}\selectfont 
+            \setlength{\parskip}{0.4cm} % Space between items
+            
+            % Item 1
+            ملخص تنفيذي \dotfill 2 \\
+            
+            % Item 2
+            التقرير التفصيلي \dotfill 6 \\
+            
+            % Item 3
+            المنهجية \dotfill 6 \\
+            
+            % Item 4
+            مؤشر بارومتر الأعمال \dotfill 12 \\
+            
+            % Item 5
+            أولا: تقييم الأداء والتوقعات وفقا للمؤشر الإجمالي \dotfill 12 \\
+            
+            % Item 6 (Long text broken manually to match image)
+            ثانيا: المعوقات التي واجهت مجتمع الأعمال خلال الربع محل الدراسة، \\
+            وأولويات تحسين مناخ الأعمال من وجهة نظر شركات العينة \dotfill 16 \\
+            
+            % Item 7
+            ثالثا: تقييم الأداء والتوقعات وفقا للمؤشرات الفرعية \dotfill 23 \\
+            
+            % Item 8
+            ملحق الجداول \dotfill 27
+            
+        \end{minipage}
+    };
+
+    % 4. FOOTER / PAGE NUMBER
+    % Page number 1 at bottom left (as seen in image)
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{10}{10}\selectfont \textbf{1}
+    };
+
+\end{tikzpicture}

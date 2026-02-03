@@ -1,0 +1,274 @@
+% =========================================================
+% PAGE 12: BUSINESS BAROMETER INDEX (BBI)
+% =========================================================
+
+% 1. Geometry
+% Standard margins for the main text area
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image & Graphics
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+    % C. Top Right Gadgets (oev.png)
+    % Placed absolutely in the top right corner
+    \node[anchor=north east] at ([xshift=0cm, yshift=-2cm]current page.north east) {
+        \includegraphics[width=2.5cm]{oev.png}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% TITLE SECTION
+% ---------------------------------------------------------
+% Use a minipage to prevent text from overlapping the top-right image
+\noindent
+\begin{minipage}{0.85\textwidth}
+    
+    {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} Business Barometer Index (BBI)}}
+    
+    \vspace{0.5em}
+    
+    {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} I. Performance evaluation and expectations \\ according to the overall index}}
+    
+    \vspace{0.8em}
+    
+    {\fontsize{10}{13}\selectfont \textbf{The business performance index continued to surpass the neutral level during the quarter under study, with varying performance across sectors.}}
+    
+\end{minipage}
+
+\vspace{0.8em}
+
+% ---------------------------------------------------------
+% SUBSECTION 1-1
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{ecestitle} \textit{1-1 Overall index}}}
+
+\vspace{0.5em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+The Business Performance Index for the quarter under study (\CurrentQuarterText) exceeded the neutral level by one point, as most indices surpassed this threshold, reflecting stable performance in the previous quarter. Compared to the previous quarter, the business performance index declined by about 7 points due to a sharp decline in the wage index following a significant jump during the previous quarter, as well as a decline in the production, sales, and capacity utilization indices, albeit still above the neutral level (Figure 1-1).
+
+\vspace{0.8em}
+
+The performance expectations index for the quarter \NextQuarterText{} also recorded higher values than neutral by 4 points, one point less than the previous quarter, and two points higher than the corresponding quarter. This is attributed to expectations of an increase in all indices above the neutral level due to current stable performance, with the exception of the tourism, communications, and financial services sectors, whose sub-indices are expected to rise during the upcoming quarter (Figure 1-2).
+}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% CHART (Overall Index)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Adjust width to fill the text area
+    \includegraphics[width=\linewidth]{ch9.png}
+\end{figure}
+
+% ---------------------------------------------------------
+% FOOTNOTES / SOURCE
+% ---------------------------------------------------------
+\noindent
+{\fontsize{8}{10}\selectfont
+\textit{Source:} Survey results.\\
+* Data for January-March 2020 are unavailable due to the pandemic-related lockdown.\\
+** Data for April-June 2020 are unavailable due to the pandemic-related lockdown
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 13: CHARTS (Firm Size & Sectors)
+% =========================================================
+
+% 1. Geometry & Page Setup
+% Tighter vertical margins for this page to fit multiple charts
+\newgeometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
+
+% 2. Background Image
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION 1-2: INDEX BY FIRM SIZE
+% ---------------------------------------------------------
+\noindent
+{\fontsize{9}{11}\selectfont \textbf{\color{ecestitle} 1-2 The index according by firm size}}
+
+\noindent
+{\fontsize{8}{11}\selectfont
+Performance is consistent across different sizes of firms, as the business performance index for all firms exceeded the neutral level during the quarter under study, recording lower values than in the previous quarter, although higher than the corresponding quarter. This reflects the stable performance of all sub-indices, with an improvement in the export index for large firms compared to the previous and corresponding quarters (Figure 1-3).
+
+The expectations index (for \NextQuarterText) also exceeded the neutral level for all firms, recording 3 points higher for large firms, but 4 points lower than in the previous quarter, and 1 point higher than in the corresponding quarter. As for small and medium enterprises, the expectations index recorded higher values than the neutral level by 4 points, similar to the previous quarter, and two points higher than the corresponding quarter. This is due to expectations of stable performance during the upcoming quarter (Figure 1-4).
+}
+
+
+% ---------------------------------------------------------
+% FIGURES 1.3 & 1.4 (Size Charts)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains both the Past Performance and Outlook charts for Firm Size
+    \includegraphics[width=\linewidth]{ch10.png}
+\end{figure}
+
+
+
+% ---------------------------------------------------------
+% SECTION 1-3: INDEX BY ECONOMIC SECTORS
+% ---------------------------------------------------------
+\noindent
+{\fontsize{9}{12}\selectfont \textbf{\color{ecestitle} 1-3 The index according to economic sectors}}
+
+\noindent
+{\fontsize{8}{11}\selectfont
+The performance index for all sectors exceeded the neutral level except for manufacturing, which recorded values below the neutral level and the lowest performance among all sectors. Meanwhile, the values for the construction sector came at the neutral level, while telecommunications reported the best performance during the quarter under study. Compared to the previous quarter, the business performance index declined for all sectors. The sharpest decline came in tourism, followed by manufacturing industries.
+}
+
+% ---------------------------------------------------------
+% FIGURE 1.5 (Sector Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % Contains the Economic Sectors chart
+    \includegraphics[width=\linewidth]{ch11.png}
+\end{figure}
+
+\clearpage
+
+% =========================================================
+% PAGE 14: DETAILED SECTOR ANALYSIS
+% =========================================================
+
+% 1. Geometry
+% Reset to standard margins
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% INTRO TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{The following is an analysis of performance of the economic sectors during the quarter under study, based on the sample’s responses, and compared to the previous and corresponding quarters:}}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% MAIN BULLET POINTS (Past Performance)
+% ---------------------------------------------------------
+\begin{itemize} \itemsep0.6em
+    \item \fontsize{10}{13}\selectfont The manufacturing industries sector recorded the lowest performance of all sectors, with values below the neutral level by two points, and less than the previous quarter by 7 points, albeit higher than the corresponding quarter by one point. This is primarily due to production, sales, and export indices falling below the neutral level during the quarter under review, and their decline compared to the previous quarter. This decline is due to lower demand, particularly after the end of the holidays and the school year, which was clearly evident in the ready-made garment and food industries.
+
+    \item \fontsize{10}{13}\selectfont The construction sector posted values at the neutral level during the quarter under review, which is 3 points lower than the previous quarter and 4 points higher than the corresponding quarter. This is attributed to the stability of all indices during the quarter under review, as a result of continued demand for housing in resorts and new cities, and the launch of new projects in El-Wahat [Oases] and the North Coast. Furthermore, the government’s infrastructure, road, and new city projects played a significant role in the sector’s recovery. Rising input prices remain the sector’s biggest challenge during the current quarter.
+
+    \item \fontsize{10}{13}\selectfont The tourism sector posted higher values than neutral by 7 points, and lower than the previous quarter by 9 points, albeit 9 points higher than the corresponding quarter. This is attributed to the recovery in inbound tourism to Egypt during the quarter under study, higher occupancy rates in hotels and tourist resorts, increased demand for airline reservations, and a rise in outbound tourism due to the Hajj and Umrah seasons, in addition to an increase in domestic tourism with the arrival of the summer and the end of the school year.
+
+    \item \fontsize{10}{13}\selectfont The transport sector reported higher values than neutral by 6 points, 5 points lower than the previous quarter and 8 points higher than the corresponding quarter. This improvement is attributed to increased import and export activity. The period under study witnessed an increase in refrigerated land transport, in addition to increased tourism activity, particularly beach tourism.
+
+    \item \fontsize{10}{13}\selectfont The telecommunications sector reported the best performance during the quarter under study, reporting values exceeding the neutral level by 15 points. It performed one point lower than the previous quarter, and 15 points better than the corresponding quarter. This is attributed to the recovery of all sector indices, especially exports, declining intermediate input prices compared to the previous quarter, and the continued increase in demand for IT services. Meanwhile, the country continues to expand infrastructure, develop railway facilities, and increase government tenders in this respect. In addition, the higher demand for educational and training programs played a role in the sector's recovery.
+
+    \item \fontsize{10}{13}\selectfont The financial services sector recorded higher values than the neutral level by 12 points, with performance lower than the previous quarter by 5 points, and 26 points higher than the corresponding quarter. This is due to the recovery of all sector indices as a result of increased trading volumes due to stable monetary policies, lower interest rates, and increased financial flows into the market.
+\end{itemize}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% OUTLOOK SECTION
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{On the outlook side, the expectations index exceeded the neutral level for all sectors, with the telecommunications sector reporting the best values:}}
+
+\begin{itemize} \itemsep0.6em
+    \item \fontsize{10}{13}\selectfont The outlook index for the manufacturing sector exceeded the neutral level by 4 points, with values higher than the previous and corresponding quarters. This is due to expectations that all sub-indices will remain stable during the upcoming quarter.
+\end{itemize}
+
+\clearpage
+
+% =========================================================
+% PAGE 15: SECTOR OUTLOOK ANALYSIS (Continued)
+% =========================================================
+
+% 1. Geometry (Persists from previous page)
+
+% 2. Background Image
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% BULLET POINTS (Sector Outlooks)
+% ---------------------------------------------------------
+\begin{itemize} \itemsep0.6em
+    \item \fontsize{10}{13}\selectfont Expectations for the construction sector surpassed the neutral level by 4 points, with an expected performance 7 points lower than the previous quarter and 2 points higher than the corresponding quarter. This is due to stable indices, continued implementation of the Reconciliation Law, relative price stability for both inputs and units, expectations of lower interest rates in banks, more investment in the real estate sector, and increased sales during the summer due to the vacations of workers abroad, as well as the government's infrastructure projects.
+
+    \item \fontsize{10}{13}\selectfont Expectations of the tourism sector were optimistic, with values surpassing the neutral level by two points, albeit less than the previous and corresponding quarters. This increase is due to expectations of continued tourism activity, particularly domestic tourism during the summer and holiday seasons, as well as conference tourism. However, foreign tourism is expected to decline following the end of the Hajj season.
+
+    \item \fontsize{10}{13}\selectfont Expectations for the transportation sector exceeded the neutral level by two points, albeit lower than the previous and corresponding quarters. This is due to the stability of all indices, expected stable trade activity, and expectations that tourism will remain at the same level as the previous quarter. Improvements in other sectors also played a significant role in the sector's increased activity.
+
+    \item \fontsize{10}{13}\selectfont The expectations index for the telecommunications sector reported the best performance, exceeding the neutral level by 13 points, with values higher than the previous and corresponding quarters. This is driven by expectations of increased service exports to foreign markets, particularly Africa, the country's drive to develop infrastructure and utilities through national projects, and increased demand for information technology products.
+
+    \item \fontsize{10}{13}\selectfont The expectations index for the financial services sector recorded 7 points above the neutral level, although lower than the previous and corresponding quarters. Listed firms showed positive performance in the previous period, in addition to expectations of new government IPOs. Declining inflation and rising foreign currency inflows also augment confidence in the Egyptian market (Figure 1-6).
+\end{itemize}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% FIGURE 1.6 (Outlook Chart)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % BBI by Economic Sectors - Outlook
+    \includegraphics[width=\linewidth]{ch12.png}
+\end{figure}
+
+\vspace{-0.5em}
+\noindent
+{\fontsize{7}{9}\selectfont Source: Survey results.}
+
+\clearpage

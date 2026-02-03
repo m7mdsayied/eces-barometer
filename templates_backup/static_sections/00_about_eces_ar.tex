@@ -1,0 +1,145 @@
+% =========================================================
+% PAGE: ABOUT ECES (ARABIC)
+% =========================================================
+
+% 1. Set Geometry
+% Standard text margins (Left 2cm, Right 2cm)
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image & Page Number
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background (Arabic Version)
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg_ar.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    % Moved to Bottom Left for Arabic layout
+    \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% HEADER SECTION: TITLE & LOGO
+% ---------------------------------------------------------
+\noindent
+% In RTL, this first minipage appears on the Right
+\begin{minipage}[t]{0.72\textwidth}
+    \vspace{0pt} 
+    {\fontsize{22}{26}\selectfont \textbf{\color{ecestitle} نبذة عن المركز المصري للدراسات الاقتصادية}} \vspace{0.8em}
+    
+    {\fontsize{10}{13}\selectfont \color{black}
+    المركز المصري للدراسات الاقتصادية مؤسسة بحثية مستقلة غير هادفة للربح تسعى من خلال البحوث العلمية المتخصصة والاستناد إلى الخبرات العالمية والنقاش المجتمعي البناء إلى المساهمة في تطوير السياسات الاقتصادية واقتراح الإصلاحات المؤسسية والتشريعية التي تعمل على تحقيق التنمية المستدامة في مصر على أسس الكفاءة الاقتصادية والعدالة الاجتماعية.
+    }
+\end{minipage}%
+\hfill
+% This minipage appears on the Left containing the logo
+\begin{minipage}[t]{0.25\textwidth}
+    \vspace{0pt} 
+    \raggedleft % This aligns the image to the left within the minipage in RTL context
+    \includegraphics[width=3.5cm]{eces_logo.png}
+\end{minipage}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% SECTION: BOARD OF DIRECTORS
+% ---------------------------------------------------------
+\noindent
+{\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} أعضاء مجلس إدارة المركز المصري للدراسات الاقتصادية}} \vspace{0.8em}
+
+{\fontsize{9}{12}\selectfont \color{black}
+\textbf{رئيس مجلس الإدارة:} عمر مهنا، رئيس مجلس إدارة كل من: تشب للتأمين - مصر؛ مجموعة بروميتيون للإطارات (بيرللي)؛ وكوكا كولا اتش بي سي - مصر؛ والمصرف المتحد
+
+\textbf{نائب رئيس مجلس الإدارة:} طارق توفيق، رئيس مجلس الإدارة، شركة القاهرة للدواجن
+
+\textbf{الأمين العام:} محمد قاسم، رئيس مجلس الإدارة، الشركة المصرية العالمية للتجارة
+
+\textbf{أمين الصندوق:} علاء هاشم، مؤسس وشريك تنفيذي، شركة ترانسنديوم
+
+\vspace{0.8em}
+
+أحمد أبو علي، شريك بمكتب حسونة وأبو علي للاستشارات القانونية\\
+أحمد فكري عبد الوهاب، المدير العام والرئيس التنفيذي، الشركة المصرية الألمانية للسيارات - إجا\\
+حسين شكري، رئيس مجلس الإدارة والعضو المنتدب، شركة اتش سي لتداول الأوراق المالية والاستثمار\\
+شريف هشام الخولي، شريك ورئيس منطقة الشرق الأوسط وشمال أفريقيا - أكتيس\\
+علاء الدين سبع، شريك مؤسس، شركة BPE\\
+محمد زكريا محي الدين، رئيس مجلس الإدارة والعضو المنتدب، الأهلية للصناعات الكيماوية - ناسيدكو\\
+هشام الخازندار، الشريك المؤسس والعضو المنتدب، شركة القلعة
+}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% SECTION: HONORARY CHAIRPERSONS
+% ---------------------------------------------------------
+{\fontsize{11}{14}\selectfont \textbf{الرؤساء الفخريون للمركز}\\
+\fontsize{9}{12}\selectfont
+جلال الزربة، رئيس مجلس الإدارة، شركة النيل القابضة\\
+حازم حسن، رئيس مجلس الإدارة، حازم حسن للخبرة الاستشارية KPMG
+}
+
+\vspace{1.2em}
+
+% ---------------------------------------------------------
+% SECTION: ECES STAFF
+% ---------------------------------------------------------
+\noindent
+{\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} فريق العمل بالمركز}}
+
+\noindent
+{\fontsize{9}{11}\selectfont \underline{\href{https://eces.org.eg/}{\color{eceslink} https://eces.org.eg/فريق-العمل/}}}
+
+\vspace{0.8em}
+
+\noindent
+% COLUMN 1 (Right in RTL)
+\begin{minipage}[t]{0.32\textwidth}
+    \fontsize{8}{11}\selectfont
+    د. عبلة عبد اللطيف - المدير التنفيذي ومدير البحوث\\
+    د. سحر عبود - اقتصادي رئيسي\\
+    راما سعيد - اقتصادي أول\\
+    رشا سيف - اقتصادي أول\\
+    أحمد داوود - اقتصادي\\
+    محمد حسني - اقتصادي\\
+    ماريان عادل - اقتصادي\\
+    سندس سمير - باحث اقتصادي\\
+    آية صالح - باحث اقتصادي\\
+    إسراء عادل - باحث اقتصادي\\
+    يوسف نصر - باحث اقتصادي
+\end{minipage}%
+\hfill
+% COLUMN 2 (Center)
+\begin{minipage}[t]{0.32\textwidth}
+    \fontsize{8}{11}\selectfont
+    محمود محمد - باحث اقتصادي\\
+    أحمد حبشي - محلل بيانات\\
+    عبدالرحمن الاسحاقي - محلل بيانات\\
+    أسامة الشامي - محلل بيانات\\
+    محمد عبد اللطيف - محلل بيانات\\
+    أحمد فتحي - باحث ميداني\\
+    حسام خاطر - باحث ميداني\\
+    محمد خاطر - باحث ميداني\\
+    ياسر سليم - مدير التحرير\\
+    فاطمة الزهراء علي - محررة/ مترجمة أولى\\
+    إبراهيم الإمبابي - مسؤول تكنولوجيا المعلومات
+\end{minipage}%
+\hfill
+% COLUMN 3 (Left in RTL)
+\begin{minipage}[t]{0.32\textwidth}
+    \fontsize{8}{11}\selectfont
+    وليد التركي - مدير الاتصالات الرقمية\\
+    محمد عبد الحكم - أخصائي اتصالات\\
+    محمد لهيطة - المدير المالي والإداري\\
+    ميرال ميشيل - مساعد المدير التنفيذي\\
+    أماني مدحت - مساعد بحثي وتنفيذي\\
+    محمد عاطف - مساعد إداري\\
+    حسين محمد - مساعد\\
+    طارق عطيه - مساعد\\
+    محمد جمال - مساعد\\
+    وليد إبراهيم - مساعد\\
+    عمرو محمد - مساعد
+\end{minipage}

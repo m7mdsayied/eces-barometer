@@ -1,0 +1,37 @@
+% =========================================================
+% PREAMBLE: PACKAGES & DESIGN SETUP (CORRECTED)
+% =========================================================
+
+% 1. Page Layout
+\usepackage[margin=0in]{geometry} % No margins for full-page background images
+
+% 2. Graphics and Colors
+\usepackage{graphicx}
+\usepackage{tikz}       % For precise absolute positioning
+\usepackage{xcolor}
+
+% 3. Fonts and Links
+\usepackage{fontspec}
+\usepackage[hidelinks]{hyperref}  % For clickable links
+
+% 4. Font Setup
+\setmainfont{SinkinSans}[
+    Path = fonts/,
+    Extension = .otf,      
+    UprightFont = *-400Regular, 
+    BoldFont = *-800Black,
+]
+
+% 5. Graphics Path
+% Tells LaTeX to look inside these folders for images
+\graphicspath{{./images/static/}{./images/charts/}}
+
+% 6. Custom Color Definitions
+\definecolor{ecesteal}{HTML}{005963}   % Dark Teal (Main Text)
+\definecolor{ecestitle}{HTML}{00b5e2}  % Cyan (for "Contents")
+\definecolor{eceslink}{HTML}{0066cc}   % Blue (for URL)
+% Local colors used in Executive Summary
+\definecolor{textgreen}{HTML}{4CAF50}
+\definecolor{textpurple}{HTML}{C2185B}
+\definecolor{textblue}{HTML}{2196F3}
+\definecolor{textdark}{HTML}{333333}

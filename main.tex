@@ -1,0 +1,93 @@
+\documentclass[a4paper,12pt]{article}
+
+% =========================================================
+% 1. SYSTEM SETUP
+% =========================================================
+
+% A. PREAMBLE: Loads packages, fonts, colors, and TikZ settings.
+\input{preamble}
+
+% B. CONFIG: Defines Issue Number, Dates, and Quarter Variables.
+% (Update this file for every new release)
+\input{config}
+
+\begin{document}
+
+% =========================================================
+% 2. FRONT MATTER (STATIC DESIGN)
+% =========================================================
+
+% PAGE 1: COVER PAGE
+% Uses 'cover_bg.png' and variables from config.tex
+\input{static_sections/00_cover.tex}
+\clearpage
+
+% PAGE 2: TABLE OF CONTENTS
+% Uses 'TOC_bg.png' and 'map.png'
+\input{static_sections/00_toc.tex}
+\clearpage
+
+% =========================================================
+% 3. EXECUTIVE SUMMARY
+% =========================================================
+
+% PAGE 3-5: EXECUTIVE SUMMARY
+% Includes the custom sidebar geometry (Left Margin: 5cm)
+% Background: 'exc_bg.png'
+\input{content/01_exec_summary.tex}
+\clearpage
+
+% =========================================================
+% 4. ORGANIZATIONAL INFO & METHODOLOGY
+% =========================================================
+
+% PAGE 5: ABOUT ECES
+% Resets geometry to standard (Left Margin: 2cm)
+% Background: 'con_bg.png'
+\input{static_sections/00_about_eces.tex}
+\clearpage
+
+% PAGE 6-7: METHODOLOGY
+% Background: 'con_bg.png'
+\input{static_sections/00_methodology.tex}
+\clearpage
+
+% =========================================================
+% 5. MACROECONOMIC REPORT
+% =========================================================
+
+% PAGE 8-11: MACROECONOMIC OVERVIEW
+% Switches back to sidebar geometry (Left Margin: 5cm)
+% Background: 'mc_bg.png'
+\input{content/02_macro_overview.tex}
+\clearpage
+
+% =========================================================
+% 6. MAIN ANALYSIS (BBI)
+% =========================================================
+
+% PAGE 12-15: SECTION I - OVERALL INDEX & SECTORS
+% Resets geometry to standard (Left Margin: 2cm)
+% Background: 'con_bg.png'
+\input{content/03_analysis_overall.tex}
+\clearpage
+
+% PAGE 16-23: SECTION II - CONSTRAINTS & PRIORITIES
+% Background: 'con_bg.png'
+\input{content/04_constraints.tex}
+\clearpage
+
+% PAGE 24-27: SECTION III - SUB-INDICES
+% Background: 'con_bg.png'
+\input{content/05_subindices.tex}
+\clearpage
+
+% =========================================================
+% 7. APPENDIX
+% =========================================================
+
+% PAGE 28-29: DATA TABLES
+% Background: 'con_bg.png'
+\input{content/06_tables.tex}
+
+\end{document}

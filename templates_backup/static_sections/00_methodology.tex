@@ -1,0 +1,179 @@
+% =========================================================
+% PAGE 6: REPORT DETAILS / METHODOLOGY
+% =========================================================
+
+% 1. Reset Geometry
+% This page uses standard margins (no left sidebar)
+\newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
+
+% 2. Background Image & Page Number
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% TITLE SECTION
+% ---------------------------------------------------------
+\noindent
+{\fontsize{22}{26}\selectfont \textbf{\color{ecestitle} Report Details}}
+
+\vspace{0.3em}
+
+\noindent
+{\fontsize{14}{17}\selectfont \textbf{\color{ecestitle} Business Barometer Methodology}}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% FIRST PARAGRAPH
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+To complement its efforts in providing integrated information that reflects the developments witnessed by the Egyptian economy in general and the business community in particular, the Egyptian Center for Economic Studies (ECES) has been issuing its Business Barometer (BB) since 1998. The BB provides a quarterly assessment of the performance of a sample of private firms covering various sectors and sizes. This assessment reflects the opinion of the business community regarding developments across a set of variables during the quarter under review, and sheds light on its outlook for the development of the same set of variables in the next quarter.
+}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% DIAGRAM (Sample Distribution)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % ch4.png is usually the Sector/Size pie charts
+    \includegraphics[width=0.85\linewidth]{ch4.png}
+\end{figure}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% REMAINING TEXT
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+The significance of this issue of the Business Barometer increases in light of the challenges the business community has faced since early 2020, starting with the COVID-19 pandemic, followed by a recovery accompanied by many challenges in 2021, the Russian-Ukrainian war in early 2022, and most recently, the war in Gaza and geopolitical unrest in the Red Sea since October 2023, which has exacerbated these challenges. Therefore, it is important to track the impact of these developments.
+
+\vspace{0.8em}
+
+% DYNAMIC VARIABLES USED HERE
+This report presents an evaluation of the sample firms’ performance during the quarter (\CurrentQuarterText) and their expectations for the quarter (\NextQuarterText).
+
+\vspace{0.8em}
+
+The report begins with an overview of the macroeconomy at both the global and local levels, it then presents the performance evaluation and expectations at the level of the overall index, followed by to the constraints faced by the business community during the study period, and the priorities for improving the business climate from the sample firms’ perspectives. Finally, the report concludes with an evaluation of performance and expectations at the level of the sub-indices.
+
+\vspace{0.8em}
+
+The Business Barometer is based on the results of a periodic survey conducted by the center every three months on a fixed sample of 120 private sector firms distributed as follows:
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 7: METHODOLOGY CONTINUED
+% =========================================================
+
+% 1. Geometry (Persists from previous page)
+
+% 2. Background Image & Page Number
+\begin{tikzpicture}[remember picture, overlay]
+    
+    % A. Main Background
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
+    };
+    
+    % B. Page Number (Dynamic)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{\thepage}
+    };
+
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% METHODOLOGY BULLET POINTS
+% ---------------------------------------------------------
+\noindent
+\begin{itemize} \itemsep0.8em
+    \item \fontsize{10}{13}\selectfont The analysis evaluates the performance of the sample firms during the study period and their expectations for the next quarter, compared to the results of the previous quarter and the corresponding quarter of the previous year.
+    
+    \item \fontsize{10}{13}\selectfont Performance and expectations are evaluated on two levels: the overall index results and the sub-indices’ results.
+    
+    \item \fontsize{10}{13}\selectfont The Business Barometer Index represents a simple average of a set of sub-indices for the variables mentioned in the questionnaire. The overall index takes values greater than, less than, or equal to the neutral level (50 points).
+\end{itemize}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% CENTRAL GRAPHIC (Index Gauge)
+% ---------------------------------------------------------
+\begin{figure}[h!]
+    \centering
+    % ch5.png is the visual explanation of the index score
+    \includegraphics[width=0.7\linewidth]{ch5.png}
+\end{figure}
+
+\vspace{0.5em}
+
+% ---------------------------------------------------------
+% EQUATION SECTION
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[c]{0.28\textwidth}
+    \fontsize{10}{12}\selectfont
+    The index is calculated for each variable using this equation:
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.28\textwidth}
+    \centering
+    % Teal box with White Math Text
+    \colorbox{ecesteal}{
+        \begin{minipage}{4.5cm}
+            \centering
+            \vspace{5pt}
+            \color{white}
+            \large
+            $X = \displaystyle \frac{I + S}{100 + S} \times 100$
+            \vspace{5pt}
+        \end{minipage}
+    }
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.38\textwidth}
+    \fontsize{10}{12}\selectfont
+    where $I$ is the share of firms reporting an increase and $S$ the share of firms reporting “same.”
+\end{minipage}
+
+\vspace{2em}
+
+% ---------------------------------------------------------
+% BOTTOM TEXT (Calculation details)
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{Regarding the constraints and priorities for improving the business climate:}}
+
+\vspace{0.8em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+Firms evaluate the severity of each constraint, with the rating ranging from zero (not impactful) to four (highly impactful). Firms are allowed to choose more than one constraint. Regarding the priorities for improving the business climate, firms rate the priorities, with the rating for each axis ranging from zero (not important) to four (high priority). Firms are allowed to choose more than one axis as a priority for improving the business climate.
+
+\vspace{0.8em}
+
+Next, a weighted average is calculated based on the number of firms and their evaluation of the constraint/priority across the entire sample.
+
+\vspace{0.8em}
+
+All averages for constraints/priorities are re-evaluated to range between zero and one, followed by normalization of the new averages for all constraints/priorities. This allows for ranking the constraints/priorities in descending order according to their severity, with 100\% being the most severe constraint and the highest priority.
+}
+
+\clearpage

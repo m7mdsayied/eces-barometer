@@ -1,0 +1,267 @@
+% =========================================================
+% PAGE 3: EXECUTIVE SUMMARY (START)
+% =========================================================
+
+% 1. Adjust Geometry
+% Shift margins to the right to avoid the sidebar in exc_bg.png
+% Left margin approx 5cm, Right 1.5cm
+\newgeometry{left=5cm, right=1.5cm, top=3cm, bottom=2.5cm}
+
+\begin{tikzpicture}[remember picture, overlay]
+    % Background Image (Sidebar + Footer bar)
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{exc_bg.png}
+    };
+    
+    % Page Number "2"
+    % Manually placed to match the design (bottom right)
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{2}
+    };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% TITLE
+% ---------------------------------------------------------
+\noindent
+{\fontsize{22}{26}\selectfont \textbf{\color{ecestitle} 
+Executive Summary
+}} \vspace{0.5em}
+
+% ---------------------------------------------------------
+% INTRO PARAGRAPH
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont \color{black}
+This edition of Business Barometer presents a periodic assessment conducted by the Egyptian Center for Economic Studies (ECES) of a sample of 120 private sector firms spanning various sectors and sizes. It reflects the business community’s views on developments in a number of variables, specifically: production, domestic sales, exports, commodity inventory, capacity utilization, prices, wages, employment, and investment, during the quarter \CurrentQuarterText. It also presents its projections for the quarter \NextQuarterText, and compares the results with the previous quarter (\PreviousQuarterText) and the corresponding quarter (\CorrespQuarterText). The following is a brief overview of the report’s key findings for the quarter under study (\CurrentQuarterText).
+} \vspace{1em}
+
+% ---------------------------------------------------------
+% SUBHEADER AND ARROW LEGEND
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.50\textwidth}
+    \vspace{0pt} % Align tops
+    \textbf{\underline{
+        Evaluating performance and exploring
+        }} \\
+    \textbf{\underline{
+        the outlook based on the overall index
+        }}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \vspace{0pt} % Align tops
+    % Constructing the legend text above the arrow
+    \centering
+    \includegraphics[width=\linewidth, height=1cm]{arrow.png}
+\end{minipage}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% BOXED CONTENT (HIGHLIGHTS)
+% ---------------------------------------------------------
+
+\noindent
+\begin{tikzpicture}
+    \node[draw=black, line width=0.8pt, inner sep=10pt, align=justify, text width=14.8cm] (box) {
+        \fontsize{10}{13}\selectfont
+        
+        -- The business performance index for the quarter \CurrentQuarterText{} surpassed the neutral level\\
+        -- The expectations index surpassed the neutral level for the upcoming quarter
+        
+        \vspace{0.3em}
+        \textbf{\color{textblue} \underline{
+            According to size:
+            }} \\
+        \color{textblue}
+        -- There is no variation in performance across firm sizes, as the business performance index for all firms exceeded the neutral level.
+
+        \vspace{0.3em}
+        \textbf{\color{textpurple} \underline{
+            Sectorally:
+            }} \\
+        \color{textpurple}
+         -- Performance indicators for all sectors exceeded the neutral level, with the exception of the manufacturing sector, which saw the lowest performance among sectors, achieving values below the neutral level.
+
+        \vspace{0.3em}
+        \textbf{\color{textgreen} \underline{
+            Challenges:
+            }} \\
+        \color{textgreen} 
+        -- Frequent hikes in energy and water prices top the list of constraints facing all firms, followed by the challenges related to higher inflation, then difficulties in dealing with government entities.\\
+        -- The manufacturing and construction sectors, as well as small and medium-sized enterprises (SMEs), have been the most affected.
+    };
+\end{tikzpicture}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% BOTTOM TEXT AND CHART
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+    \fontsize{8}{12}\selectfont
+    The Business Performance Index (BPI) for the quarter under review (\CurrentQuarterText) scored values one point above the neutral level, with sub-indices maintaining their good performance. Compared to the previous quarter, the BPI declined by about 7 points, due to a sharp decline in the wage index after a significant jump in the previous quarter, and to a decline in the production, sales, and capacity utilization indices, although they still registered values above the neutral level.
+    \vspace{0.5em}
+    
+    The Performance Expectations Index for the quarter \NextQuarterText{} also recorded values 4 points above the neutral level, which is attributed to expectations that all sub-indices will surpass the neutral level, reflecting the expected stability of the indices at the same performance as the current quarter, with the exception of the tourism, communications, and financial services sectors, whose sub-indices are expected to rise during the upcoming quarter.
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+    \vspace{0pt}
+    \centering
+    % Place the chart
+    \includegraphics[width=\linewidth]{ch1.png}
+\end{minipage}
+
+\clearpage
+
+% =========================================================
+% PAGE 4: DETAILED ANALYSIS (SIZE & SECTOR)
+% =========================================================
+
+% Geometry persists from previous page (Left: 5cm)
+
+\begin{tikzpicture}[remember picture, overlay]
+    % Background Image
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{exc_bg.png}
+    };
+    
+    % Page Number "3"
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{3}
+    };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION 1: ACCORDING TO SIZE
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+    \vspace{0pt} % Alignment anchor
+    % Heading
+    {\fontsize{11}{14}\selectfont \textbf{\color{textblue} \underline{According to size:}}} \vspace{0.5em}
+
+    % Text
+    \fontsize{10}{13}\selectfont
+    There is no variation in performance across firm sizes. The business performance index for all firms exceeded the neutral level during the quarter under study, recording lower values than the previous quarter, but better than the corresponding quarter. This reflects the consistent good performance of all sub-indices and the improvement in the export index for large firms during the current quarter.
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.40\textwidth}
+    \vspace{0pt} % Alignment anchor
+    \centering
+    % Top Chart (Large vs SMEs)
+    \includegraphics[width=\linewidth]{ch2.png}
+\end{minipage}
+
+\vspace{1.5em}
+
+% ---------------------------------------------------------
+% SECTION 2: SECTORALLY
+% ---------------------------------------------------------
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{textpurple} \underline{Sectorally:}}} \vspace{0.5em}
+
+\noindent
+{\fontsize{10}{13}\selectfont
+Performance indicators for all sectors exceeded the neutral level, with the exception of the manufacturing sector, which saw the lowest performance, scoring values below the neutral level. Meanwhile, the performance index for the construction sector recorded values at the neutral level.
+}
+
+\vspace{1em}
+
+% Middle Chart (Sectors)
+\noindent
+\includegraphics[width=\linewidth]{ch3.png}
+
+\vspace{1em}
+
+% ---------------------------------------------------------
+% SECTION 3: DETAILED TEXT (Manufacturing & Telecom)
+% ---------------------------------------------------------
+\noindent
+{\fontsize{10}{13}\selectfont
+The manufacturing sector recorded the lowest performance, with values two points below the neutral level and seven points lower than the previous quarter, albeit one point better than the corresponding quarter. This is primarily due to the decline in all sector indices below the neutral level during the quarter under review, and compared to the previous quarter, reflecting the decline in production and export indices. It is also due to the sharp decline in the wage index and the decrease in domestic sales, especially for food industries and ready-made garments, due to the decline in demand with the end of Ramadan and the holidays and the approaching end of the school year.
+
+\vspace{1em}
+
+The telecommunications sector registered the best performance, exceeding the neutral level by 15 points, but one point lower than the previous quarter and 15 points better than the corresponding quarter. This is attributed to the recovery of all sector indices, particularly exports, with expanded access to the African markets and decline in intermediate input prices compared to the previous quarter.
+}
+
+\clearpage
+
+% =========================================================
+% PAGE 5: CHALLENGES & MACROECONOMIC DEVELOPMENTS
+% =========================================================
+
+% Geometry persists from previous page (Left: 5cm)
+
+\begin{tikzpicture}[remember picture, overlay]
+    % Background Image
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{exc_bg.png}
+    };
+    
+    % Page Number "4"
+    \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
+        \fontsize{14}{14}\selectfont \textbf{4}
+    };
+\end{tikzpicture}
+
+% ---------------------------------------------------------
+% SECTION: CHALLENGES AND PRIORITIES
+% ---------------------------------------------------------
+
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{textgreen} \underline{Challenges and priorities from the business community's perspective:}}} \vspace{0.8em}
+
+% Bold Intro Paragraph
+\noindent
+{\fontsize{10}{13}\selectfont \textbf{The recurring increases in energy and water tariffs continue to top the list of constraints facing all firms during the quarter under study.}} \vspace{0.8em}
+
+% Main Text Body
+\noindent
+{\fontsize{10}{13}\selectfont
+Higher energy and water tariffs top the list of constraints facing all businesses, particularly in the manufacturing and tourism sectors. The result is an increase in production costs, particularly in energy- and water-intensive activities, and productive activities in general, representing an additional burden on firms. Challenges related to rising inflation ranked second, followed by difficulties in dealing with government agencies, which ranked third. The business community suffers from slow procedures and red tape, along with the presence of numerous judicial police officers in most government agencies, opening the door to corruption and unofficial payments. In fourth place came unclear future economic policy directions and lack of disclosure of the State’s future economic intentions. These constraints hinder firms’ ability to formulate future plans. Furthermore, there is a lack of a long-term vision, especially regarding investment and debt.
+
+\vspace{0.8em}
+
+Although energy and water tariffs and high inflation top the list of constraints facing all businesses, small and medium-sized enterprises (SMEs) specifically face a greater number of challenges than large firms.
+
+\vspace{0.8em}
+
+The key priorities to focus on from a business perspective are: reconsidering energy and water tariffs, controlling inflation, disclosing future economic policy directions, maintaining efforts to resolve tax system problems, along with facilitating government procedures. Finding solutions to address inflation, revisiting energy and water prices, and disclosure of future economic policy directions topped the list of priorities for \textbf{all firms}. \textbf{Meanwhile}, the remaining priorities varied, with \textbf{economic policy consistency} coming at fourth place \textbf{for large firms}, while improving the \textbf{tax system} came at fourth place for \textbf{SMEs}.
+}
+
+\vspace{2em}
+
+% ---------------------------------------------------------
+% SECTION: MACROECONOMIC DEVELOPMENTS
+% ---------------------------------------------------------
+
+\noindent
+{\fontsize{11}{14}\selectfont \textbf{\color{black} \underline{Main Macroeconomic Developments: *}}} \vspace{0.5em}
+
+\begin{itemize} \itemsep0.5em
+    \item \fontsize{10}{13}\selectfont \textbf{Globally:} Global growth forecasts continue to decline, with low and uneven growth and multiple challenges facing the global economy.
+    
+    \item \fontsize{10}{13}\selectfont \textbf{Locally:} There are signs of macroeconomic stability during the first half of 2025, due to improved tourism and Ras El-Hekma investments, a narrowing foreign exchange gap, and a decline in inflation. Structural reforms need to be completed to maximize benefits from macroeconomic stability and enhance the resilience of the Egyptian economy.
+\end{itemize}
+
+% ---------------------------------------------------------
+% FOOTNOTE
+% ---------------------------------------------------------
+\vfill
+
+\noindent
+{\fontsize{9}{11}\selectfont 
+* For more details on the latest global, regional and local financial developments, refer to the monthly financial report (\textbf{\color{eceslink} \underline{Financial Markets Snapshot}}).
+}
+
+% ---------------------------------------------------------
+% RESET GEOMETRY FOR NEXT SECTIONS
+% ---------------------------------------------------------
+\restoregeometry
+

@@ -1,0 +1,50 @@
+
+% =========================================================
+% PAGE 1: COVER PAGE
+% =========================================================
+\pagestyle{empty} % No page numbers on graphical pages
+
+\begin{tikzpicture}[remember picture, overlay]
+
+    % 1. BACKGROUND IMAGE
+    \node[anchor=north west, inner sep=0pt] at (current page.north west) {
+        \includegraphics[width=\paperwidth, height=\paperheight]{cover_bg.png}
+    };
+
+    % 2. ECES LOGO
+    \node[anchor=north] at ([yshift=-1.5cm]current page.north) {
+        \includegraphics[width=2.5cm]{eces_logo.png}
+    };
+
+    % 3. MAIN TITLE
+    \node[anchor=north] at ([yshift=-5cm]current page.north) {
+        \fontsize{40}{48}\selectfont \textbf{\color{ecesteal} Business Barometer}
+    };
+
+    % 4. SUBTITLES
+    % Left side: Issue Number (Dynamic)
+    \node[anchor=north] at ([xshift=-4cm, yshift=-7cm]current page.north) {
+        \fontsize{16}{20}\selectfont \textbf{\color{ecesteal} Issue \IssueNumber}
+    };
+    % Right side: Current Date (Dynamic)
+    \node[anchor=north] at ([xshift=4cm, yshift=-7cm]current page.north) {
+        \fontsize{16}{20}\selectfont \textbf{\color{ecesteal} \CurrentQuarterText}
+    };
+
+    % 5. FOOTER TEXT (White text on dark bar)
+    % Automatically fills in the "Current" and "Next" periods from config.tex
+    \node[anchor=north, align=center, text width=18cm] at ([yshift=-24cm]current page.north) {
+        \fontsize{12}{15}\selectfont \bfseries \color{white}
+        Performance Evaluation during the period \CurrentQuarterText\\
+        and Outlook for the period \NextQuarterText\\
+        from the Business Community's point of view
+    };
+
+    % 6. SPONSOR TEXT
+    \node[anchor=north] at ([yshift=-25.5cm]current page.north) {
+        \fontsize{10}{12}\selectfont \textbf{\color{ecesteal} Sponsored by}
+    };
+
+
+
+\end{tikzpicture}
