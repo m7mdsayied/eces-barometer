@@ -383,10 +383,27 @@ def display_pdf(pdf_path):
     if not os.path.exists(pdf_path):
         st.error("Preview file not found.")
         return
+
+    # Read PDF file
     with open(pdf_path, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="800" type="application/pdf"></iframe>'
-    st.markdown(pdf_display, unsafe_allow_html=True)
+        pdf_bytes = f.read()
+
+    # Try iframe method first (works on some browsers)
+    try:
+        base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
+        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="800" type="application/pdf"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+    except:
+        pass
+
+    # Always provide download button as fallback
+    st.download_button(
+        label="📥 Download Preview PDF",
+        data=pdf_bytes,
+        file_name=os.path.basename(pdf_path),
+        mime="application/pdf",
+        use_container_width=True
+    )
 
 # ==========================================
 # 3. COMPILER & TOOLS
