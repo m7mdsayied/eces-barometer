@@ -2,4 +2,3 @@ texlive-xetex
 texlive-fonts-recommended
 texlive-latex-extra
 texlive-lang-arabic
-fonts-amiri
