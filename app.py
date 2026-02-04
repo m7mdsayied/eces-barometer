@@ -4,6 +4,11 @@ import re
 import subprocess
 import base64
 import shutil
+import json
+import bcrypt
+from datetime import datetime
+from pathlib import Path
+from typing import Optional, Dict, List
 
 # ==========================================
 # 1. CONFIGURATION & THEME
@@ -14,6 +19,151 @@ st.set_page_config(
     page_icon="📊",
     initial_sidebar_state="expanded"
 )
+
+# ==========================================
+# 2. AUTHENTICATION & AUDIT MODULE
+# ==========================================
+class AuthManager:
+    """Handles user authentication and management"""
+
+    def __init__(self, auth_dir: str):
+        self.auth_dir = Path(auth_dir)
+        self.users_file = self.auth_dir / "users.json"
+        self._ensure_auth_dir()
+
+    def _ensure_auth_dir(self):
+        """Create auth directory and bootstrap admin user if needed"""
+        self.auth_dir.mkdir(exist_ok=True)
+
+        if not self.users_file.exists():
+            # Bootstrap initial admin
+            initial_data = {
+                "version": "1.0",
+                "users": {
+                    "admin": {
+                        "username": "admin",
+                        "password_hash": self._hash_password("admin123"),
+                        "role": "admin",
+                        "created_at": datetime.utcnow().isoformat() + "Z",
+                        "created_by": "system",
+                        "last_login": None,
+                        "is_active": True
+                    }
+                }
+            }
+            self._save_users(initial_data)
+
+    def _hash_password(self, password: str) -> str:
+        """Hash password using bcrypt"""
+        return bcrypt.hashpw(password.encode('utf-8'),
+                            bcrypt.gensalt(rounds=12)).decode('utf-8')
+
+    def _verify_password(self, password: str, password_hash: str) -> bool:
+        """Verify password against hash"""
+        return bcrypt.checkpw(password.encode('utf-8'),
+                             password_hash.encode('utf-8'))
+
+    def _load_users(self) -> Dict:
+        """Load users from JSON file"""
+        with open(self.users_file, 'r', encoding='utf-8') as f:
+            return json.load(f)
+
+    def _save_users(self, data: Dict):
+        """Save users to JSON file"""
+        with open(self.users_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+    def authenticate(self, username: str, password: str) -> Optional[Dict]:
+        """Authenticate user and return user data if successful"""
+        users_data = self._load_users()
+        user = users_data["users"].get(username)
+
+        if user and user["is_active"] and self._verify_password(password, user["password_hash"]):
+            # Update last login
+            user["last_login"] = datetime.utcnow().isoformat() + "Z"
+            users_data["users"][username] = user
+            self._save_users(users_data)
+            return user
+        return None
+
+    def create_user(self, username: str, password: str, role: str,
+                   created_by: str) -> tuple:
+        """Create new user (admin only)"""
+        users_data = self._load_users()
+
+        if username in users_data["users"]:
+            return False, "Username already exists"
+
+        if role not in ["admin", "user"]:
+            return False, "Invalid role"
+
+        users_data["users"][username] = {
+            "username": username,
+            "password_hash": self._hash_password(password),
+            "role": role,
+            "created_at": datetime.utcnow().isoformat() + "Z",
+            "created_by": created_by,
+            "last_login": None,
+            "is_active": True
+        }
+        self._save_users(users_data)
+        return True, "User created successfully"
+
+    def get_all_users(self) -> List[Dict]:
+        """Get list of all users (for admin panel)"""
+        users_data = self._load_users()
+        return list(users_data["users"].values())
+
+    def update_user_status(self, username: str, is_active: bool) -> tuple:
+        """Enable/disable user account"""
+        users_data = self._load_users()
+        if username not in users_data["users"]:
+            return False, "User not found"
+
+        users_data["users"][username]["is_active"] = is_active
+        self._save_users(users_data)
+        return True, f"User {'activated' if is_active else 'deactivated'}"
+
+    def change_password(self, username: str, new_password: str) -> tuple:
+        """Change user password"""
+        users_data = self._load_users()
+        if username not in users_data["users"]:
+            return False, "User not found"
+
+        users_data["users"][username]["password_hash"] = self._hash_password(new_password)
+        self._save_users(users_data)
+        return True, "Password changed successfully"
+
+
+class AuditLogger:
+    """Handles activity logging"""
+
+    def __init__(self, auth_dir: str):
+        self.log_file = Path(auth_dir) / "audit_log.jsonl"
+
+    def log(self, username: str, action: str, details: Dict = None):
+        """Append log entry"""
+        entry = {
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "username": username,
+            "action": action,
+            "details": details or {}
+        }
+
+        with open(self.log_file, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + '\n')
+
+    def get_recent_logs(self, limit: int = 100) -> List[Dict]:
+        """Get recent log entries (for admin panel)"""
+        if not self.log_file.exists():
+            return []
+
+        with open(self.log_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+
+        # Get last N lines
+        recent_lines = lines[-limit:] if len(lines) > limit else lines
+        return [json.loads(line) for line in recent_lines if line.strip()]
 
 # Initialize Session State for Language
 if 'language' not in st.session_state:
@@ -224,6 +374,114 @@ BASE_DIR = os.getcwd()
 IMAGES_DIR = os.path.join(BASE_DIR, "images", "charts")
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
+# Initialize authentication system
+AUTH_DIR = os.path.join(BASE_DIR, ".auth")
+auth_manager = AuthManager(AUTH_DIR)
+audit_logger = AuditLogger(AUTH_DIR)
+
+# ==========================================
+# 3. LOGIN PAGE
+# ==========================================
+def show_login_page():
+    """Render full-screen login page"""
+
+    # Login page styling
+    st.markdown("""
+        <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .login-header h1 {
+            color: var(--accent-blue);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Center layout
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+        st.markdown('<div class="login-container">', unsafe_allow_html=True)
+
+        # Header
+        st.markdown("""
+            <div class="login-header">
+                <h1>📊 ECES Barometer</h1>
+                <p>Content Management System</p>
+            </div>
+        """, unsafe_allow_html=True)
+
+        # Login form
+        with st.form("login_form"):
+            username = st.text_input("Username", placeholder="Enter username")
+            password = st.text_input("Password", type="password", placeholder="Enter password")
+
+            col_btn1, col_btn2 = st.columns(2)
+            with col_btn1:
+                login_btn = st.form_submit_button("Login", type="primary", use_container_width=True)
+
+            if login_btn:
+                if not username or not password:
+                    st.error("Please enter both username and password")
+                else:
+                    user = auth_manager.authenticate(username, password)
+                    if user:
+                        # Set session state
+                        st.session_state['authenticated'] = True
+                        st.session_state['username'] = user['username']
+                        st.session_state['role'] = user['role']
+
+                        # Log login
+                        audit_logger.log(username, "login", {"success": True})
+
+                        st.success(f"Welcome, {username}!")
+                        st.rerun()
+                    else:
+                        audit_logger.log(username, "failed_login", {"reason": "invalid_credentials"})
+                        st.error("Invalid username or password")
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+        # Footer
+        st.markdown("---")
+        st.markdown("""
+            <div style='text-align: center; color: var(--text-secondary); font-size: 0.8rem;'>
+                Default credentials: admin / admin123<br>
+                Please change password after first login
+            </div>
+        """, unsafe_allow_html=True)
+
+
+# ==========================================
+# 4. AUTHENTICATION GUARD
+# ==========================================
+# Check authentication before showing main app
+if 'authenticated' not in st.session_state:
+    st.session_state['authenticated'] = False
+
+if not st.session_state['authenticated']:
+    show_login_page()
+    st.stop()  # Prevent rendering rest of app
+
+# User is authenticated at this point
+current_user = st.session_state['username']
+current_role = st.session_state['role']
+
 # ==========================================
 # FACTORY RESET SYSTEM
 # ==========================================
@@ -305,6 +563,15 @@ def factory_reset(target="all"):
                         os.path.join(BASE_DIR, config_file)
                     )
 
+            # Log the reset
+            audit_logger.log(
+                st.session_state.get('username', 'unknown'),
+                "factory_reset",
+                {
+                    "target": target,
+                    "language": st.session_state.get('language', 'Unknown')
+                }
+            )
             return True, "All files restored to factory state"
 
         else:
@@ -320,6 +587,15 @@ def factory_reset(target="all"):
                 return False, f"File {target} not found in backup"
 
             shutil.copy2(src, dst)
+            # Log the reset
+            audit_logger.log(
+                st.session_state.get('username', 'unknown'),
+                "factory_reset",
+                {
+                    "target": target,
+                    "language": st.session_state.get('language', 'Unknown')
+                }
+            )
             return True, f"Restored {target}"
 
     except Exception as e:
@@ -377,7 +653,20 @@ def load_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as f: return f.read()
 
 def save_file(filepath, content):
-    with open(filepath, 'w', encoding='utf-8') as f: f.write(content)
+    """Save file with audit logging"""
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(content)
+
+    # Log the save operation
+    audit_logger.log(
+        st.session_state.get('username', 'unknown'),
+        "save_file",
+        {
+            "filepath": os.path.relpath(filepath, BASE_DIR),
+            "language": st.session_state.get('language', 'Unknown'),
+            "size_bytes": len(content)
+        }
+    )
 
 def display_pdf(pdf_path):
     if not os.path.exists(pdf_path):
@@ -479,13 +768,42 @@ def generate_preview(content_latex):
     try:
         # ALWAYS use xelatex for best compatibility (required for Arabic, fine for English)
         subprocess.run(["xelatex", "-interaction=nonstopmode", preview_tex], cwd=BASE_DIR, stdout=subprocess.DEVNULL)
-        
+
         if os.path.exists(preview_pdf):
+            # Log successful preview
+            audit_logger.log(
+                st.session_state.get('username', 'unknown'),
+                "generate_preview",
+                {
+                    "language": st.session_state.get('language', 'Unknown'),
+                    "success": True
+                }
+            )
             return preview_pdf, None
         else:
             error_msg = parse_latex_log(os.path.join(BASE_DIR, preview_log))
+            # Log failed preview
+            audit_logger.log(
+                st.session_state.get('username', 'unknown'),
+                "generate_preview",
+                {
+                    "language": st.session_state.get('language', 'Unknown'),
+                    "success": False,
+                    "error": error_msg[:200] if error_msg else "Unknown error"
+                }
+            )
             return None, error_msg
     except Exception as e:
+        # Log exception
+        audit_logger.log(
+            st.session_state.get('username', 'unknown'),
+            "generate_preview",
+            {
+                "language": st.session_state.get('language', 'Unknown'),
+                "success": False,
+                "error": str(e)[:200]
+            }
+        )
         return None, str(e)
 
 def parse_latex_blocks(content):
@@ -517,6 +835,34 @@ def reconstruct_latex(blocks):
 # 4. SIDEBAR NAVIGATION
 # ==========================================
 with st.sidebar:
+    # User Info Section
+    st.markdown(f"""
+        <div style='background: var(--card-bg); padding: 1rem; border-radius: 8px;
+                    border: 1px solid var(--border-color); margin-bottom: 1rem;'>
+            <div style='display: flex; justify-content: space-between; align-items: center;'>
+                <div>
+                    <div style='color: var(--accent-blue); font-weight: 600;'>
+                        👤 {current_user}
+                    </div>
+                    <div style='color: var(--text-secondary); font-size: 0.8rem;'>
+                        {current_role.upper()}
+                    </div>
+                </div>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # Logout Button
+    if st.button("🚪 Logout", use_container_width=True):
+        audit_logger.log(current_user, "logout", {})
+        # Clear session state
+        st.session_state['authenticated'] = False
+        st.session_state['username'] = None
+        st.session_state['role'] = None
+        st.rerun()
+
+    st.markdown("---")
+
     st.image("https://via.placeholder.com/200x60/262730/4facfe?text=ECES+Barometer", width='stretch')
 
     st.markdown("""
@@ -545,11 +891,22 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("### Control Center")
-    
-    nav_options = {
-        "English": ["📝 Report Sections", "⚙️ Report Variables", "📊 Chart Manager", "🚀 Finalize & Publish"],
-        "Arabic": ["📝 أقسام التقرير", "⚙️ متغيرات التقرير", "📊 إدارة الرسوم البيانية", "🚀 إنهاء ونشر"]
-    }
+
+    # Base navigation options
+    base_nav_english = ["📝 Report Sections", "⚙️ Report Variables", "📊 Chart Manager", "🚀 Finalize & Publish"]
+    base_nav_arabic = ["📝 أقسام التقرير", "⚙️ متغيرات التقرير", "📊 إدارة الرسوم البيانية", "🚀 إنهاء ونشر"]
+
+    # Add admin panel for admin users
+    if current_role == "admin":
+        nav_options = {
+            "English": base_nav_english + ["👥 User Management"],
+            "Arabic": base_nav_arabic + ["👥 إدارة المستخدمين"]
+        }
+    else:
+        nav_options = {
+            "English": base_nav_english,
+            "Arabic": base_nav_arabic
+        }
     
     # Map Arabic selections back to English logic keys
     nav_map = dict(zip(nav_options["Arabic"], nav_options["English"]))
@@ -615,6 +972,33 @@ with st.sidebar:
                 if st.button("✗ Cancel", use_container_width=True, key="confirm_no"):
                     st.session_state['confirm_reset_all'] = False
                     st.rerun()
+
+    # Password Change Section
+    st.markdown("---")
+    st.markdown("### 🔑 Change Password" if not is_arabic else "### 🔑 تغيير كلمة المرور")
+
+    with st.expander("Update your password" if not is_arabic else "تحديث كلمة المرور", expanded=False):
+        with st.form("change_password_form"):
+            current_pw = st.text_input("Current Password" if not is_arabic else "كلمة المرور الحالية", type="password")
+            new_pw = st.text_input("New Password" if not is_arabic else "كلمة المرور الجديدة", type="password")
+            confirm_pw = st.text_input("Confirm New Password" if not is_arabic else "تأكيد كلمة المرور", type="password")
+
+            if st.form_submit_button("Update Password" if not is_arabic else "تحديث كلمة المرور", use_container_width=True):
+                # Verify current password
+                user = auth_manager.authenticate(current_user, current_pw)
+                if not user:
+                    st.error("Current password is incorrect" if not is_arabic else "كلمة المرور الحالية غير صحيحة")
+                elif len(new_pw) < 8:
+                    st.error("New password must be at least 8 characters" if not is_arabic else "كلمة المرور الجديدة يجب أن تكون 8 أحرف على الأقل")
+                elif new_pw != confirm_pw:
+                    st.error("New passwords do not match" if not is_arabic else "كلمة المرور الجديدة غير متطابقة")
+                else:
+                    success, msg = auth_manager.change_password(current_user, new_pw)
+                    if success:
+                        audit_logger.log(current_user, "change_password", {})
+                        st.success("Password updated successfully!" if not is_arabic else "تم تحديث كلمة المرور بنجاح!")
+                    else:
+                        st.error(msg)
 
 # ==========================================
 # 5. VIEW: REPORT SECTIONS
@@ -780,6 +1164,15 @@ elif selected_view == "📊 Chart Manager":
                     if uploaded:
                         with open(filepath, "wb") as f:
                             f.write(uploaded.getbuffer())
+                        # Log chart upload
+                        audit_logger.log(
+                            st.session_state.get('username', 'unknown'),
+                            "upload_chart",
+                            {
+                                "filename": filename,
+                                "size_bytes": uploaded.size
+                            }
+                        )
                         st.success(f"Updated {filename}")
                         st.rerun()
 
@@ -818,10 +1211,30 @@ elif selected_view == "🚀 Finalize & Publish":
                     
                     expected_pdf = target_main.replace(".tex", ".pdf")
                     if os.path.exists(os.path.join(BASE_DIR, expected_pdf)):
+                        # Log successful compilation
+                        audit_logger.log(
+                            st.session_state.get('username', 'unknown'),
+                            "generate_pdf",
+                            {
+                                "language": st.session_state.get('language', 'Unknown'),
+                                "main_file": target_main,
+                                "success": True
+                            }
+                        )
                         status.update(label="Success!", state="complete", expanded=False)
                         st.session_state['pdf_ready'] = True
                         st.session_state['final_pdf_name'] = expected_pdf
                     else:
+                        # Log failed compilation
+                        audit_logger.log(
+                            st.session_state.get('username', 'unknown'),
+                            "generate_pdf",
+                            {
+                                "language": st.session_state.get('language', 'Unknown'),
+                                "main_file": target_main,
+                                "success": False
+                            }
+                        )
                         status.update(label="Compilation Failed", state="error")
                         st.error("PDF was not created. Check logs.")
                 except Exception as e:
@@ -841,3 +1254,239 @@ elif selected_view == "🚀 Finalize & Publish":
                     type="primary",
                     width='stretch'
                 )
+
+# ==========================================
+# 9. VIEW: USER MANAGEMENT (Admin Only)
+# ==========================================
+elif selected_view == "👥 User Management":
+    if current_role != "admin":
+        st.error("Access Denied: Admin privileges required" if not is_arabic else "الوصول مرفوض: يتطلب صلاحيات المسؤول")
+        st.stop()
+
+    header = "👥 إدارة المستخدمين" if is_arabic else "👥 User Management"
+    st.markdown(f"## {header}")
+
+    # Three tabs
+    tab1, tab2, tab3 = st.tabs([
+        "➕ Create User" if not is_arabic else "➕ إنشاء مستخدم",
+        "📋 Manage Users" if not is_arabic else "📋 إدارة المستخدمين",
+        "📊 Activity Log" if not is_arabic else "📊 سجل النشاط"
+    ])
+
+    # --- TAB 1: CREATE USER ---
+    with tab1:
+        st.markdown("### Create New User" if not is_arabic else "### إنشاء مستخدم جديد")
+
+        with st.form("create_user_form"):
+            col1, col2 = st.columns(2)
+
+            with col1:
+                new_username = st.text_input(
+                    "Username" if not is_arabic else "اسم المستخدم",
+                    placeholder="lowercase, alphanumeric",
+                    help="Letters, numbers, and underscore only"
+                )
+                new_password = st.text_input(
+                    "Password" if not is_arabic else "كلمة المرور",
+                    type="password",
+                    help="Minimum 8 characters"
+                )
+
+            with col2:
+                new_role = st.selectbox(
+                    "Role" if not is_arabic else "الدور",
+                    ["user", "admin"],
+                    help="Admin can manage users and access all features"
+                )
+                password_confirm = st.text_input(
+                    "Confirm Password" if not is_arabic else "تأكيد كلمة المرور",
+                    type="password"
+                )
+
+            st.markdown("---")
+            create_btn = st.form_submit_button(
+                "Create User" if not is_arabic else "إنشاء المستخدم",
+                type="primary",
+                use_container_width=True
+            )
+
+            if create_btn:
+                # Validation
+                if not new_username or not new_password:
+                    st.error("Username and password are required" if not is_arabic else "اسم المستخدم وكلمة المرور مطلوبان")
+                elif len(new_password) < 8:
+                    st.error("Password must be at least 8 characters" if not is_arabic else "كلمة المرور يجب أن تكون 8 أحرف على الأقل")
+                elif new_password != password_confirm:
+                    st.error("Passwords do not match" if not is_arabic else "كلمات المرور غير متطابقة")
+                elif not new_username.replace('_', '').isalnum():
+                    st.error("Username must be alphanumeric (underscore allowed)" if not is_arabic else "اسم المستخدم يجب أن يكون أبجدي رقمي")
+                else:
+                    # Create user
+                    success, message = auth_manager.create_user(
+                        new_username.lower(),
+                        new_password,
+                        new_role,
+                        current_user
+                    )
+
+                    if success:
+                        audit_logger.log(
+                            current_user,
+                            "create_user",
+                            {"new_user": new_username, "role": new_role}
+                        )
+                        st.success(f"✅ {message}")
+                        st.rerun()
+                    else:
+                        st.error(f"❌ {message}")
+
+    # --- TAB 2: MANAGE USERS ---
+    with tab2:
+        st.markdown("### User List" if not is_arabic else "### قائمة المستخدمين")
+
+        users = auth_manager.get_all_users()
+
+        if not users:
+            st.info("No users found" if not is_arabic else "لم يتم العثور على مستخدمين")
+        else:
+            for user in users:
+                with st.expander(
+                    f"{'🟢' if user['is_active'] else '🔴'} {user['username']} ({user['role']})",
+                    expanded=False
+                ):
+                    col1, col2 = st.columns(2)
+
+                    with col1:
+                        st.markdown(f"""
+                        **Username:** `{user['username']}`
+                        **Role:** {user['role']}
+                        **Status:** {'✅ Active' if user['is_active'] else '❌ Inactive'}
+                        **Created:** {user['created_at'][:10]}
+                        **Created By:** {user['created_by']}
+                        **Last Login:** {user['last_login'][:10] if user['last_login'] else 'Never'}
+                        """)
+
+                    with col2:
+                        # Actions
+                        st.markdown("**Actions:**" if not is_arabic else "**الإجراءات:**")
+
+                        # Prevent self-modification
+                        if user['username'] == current_user:
+                            st.info("Cannot modify your own account" if not is_arabic else "لا يمكن تعديل حسابك")
+                        else:
+                            # Deactivate/Activate
+                            if user['is_active']:
+                                if st.button(
+                                    f"🔒 Deactivate {user['username']}" if not is_arabic else f"🔒 تعطيل {user['username']}",
+                                    key=f"deactivate_{user['username']}"
+                                ):
+                                    success, msg = auth_manager.update_user_status(
+                                        user['username'], False
+                                    )
+                                    if success:
+                                        audit_logger.log(
+                                            current_user,
+                                            "deactivate_user",
+                                            {"target_user": user['username']}
+                                        )
+                                        st.success(msg)
+                                        st.rerun()
+                            else:
+                                if st.button(
+                                    f"🔓 Activate {user['username']}" if not is_arabic else f"🔓 تفعيل {user['username']}",
+                                    key=f"activate_{user['username']}"
+                                ):
+                                    success, msg = auth_manager.update_user_status(
+                                        user['username'], True
+                                    )
+                                    if success:
+                                        audit_logger.log(
+                                            current_user,
+                                            "activate_user",
+                                            {"target_user": user['username']}
+                                        )
+                                        st.success(msg)
+                                        st.rerun()
+
+                            # Reset Password
+                            with st.form(f"reset_pw_{user['username']}"):
+                                new_pw = st.text_input(
+                                    "New Password" if not is_arabic else "كلمة المرور الجديدة",
+                                    type="password",
+                                    key=f"newpw_{user['username']}"
+                                )
+                                if st.form_submit_button("🔑 Reset Password" if not is_arabic else "🔑 إعادة تعيين كلمة المرور"):
+                                    if len(new_pw) < 8:
+                                        st.error("Password must be at least 8 characters" if not is_arabic else "كلمة المرور يجب أن تكون 8 أحرف على الأقل")
+                                    else:
+                                        success, msg = auth_manager.change_password(
+                                            user['username'], new_pw
+                                        )
+                                        if success:
+                                            audit_logger.log(
+                                                current_user,
+                                                "reset_password",
+                                                {"target_user": user['username']}
+                                            )
+                                            st.success(msg)
+
+    # --- TAB 3: ACTIVITY LOG ---
+    with tab3:
+        st.markdown("### Recent Activity" if not is_arabic else "### النشاط الأخير")
+
+        # Filter options
+        col_filter1, col_filter2, col_filter3 = st.columns(3)
+        with col_filter1:
+            log_limit = st.selectbox("Show entries:" if not is_arabic else "عرض الإدخالات:", [50, 100, 200, 500], index=1)
+        with col_filter2:
+            filter_user = st.selectbox(
+                "Filter by user:" if not is_arabic else "تصفية حسب المستخدم:",
+                ["All"] + [u['username'] for u in users]
+            )
+        with col_filter3:
+            filter_action = st.selectbox(
+                "Filter by action:" if not is_arabic else "تصفية حسب الإجراء:",
+                ["All", "login", "logout", "save_file", "generate_pdf",
+                 "factory_reset", "create_user", "upload_chart"]
+            )
+
+        # Get logs
+        logs = audit_logger.get_recent_logs(limit=log_limit)
+
+        # Apply filters
+        if filter_user != "All":
+            logs = [log for log in logs if log['username'] == filter_user]
+        if filter_action != "All":
+            logs = [log for log in logs if log['action'] == filter_action]
+
+        # Reverse to show newest first
+        logs = list(reversed(logs))
+
+        if not logs:
+            st.info("No activity logs found" if not is_arabic else "لم يتم العثور على سجلات نشاط")
+        else:
+            # Display as table
+            st.markdown(f"**Showing {len(logs)} entries**" if not is_arabic else f"**عرض {len(logs)} إدخال**")
+
+            for log in logs:
+                timestamp = log['timestamp'][:19].replace('T', ' ')
+                action_emoji = {
+                    'login': '🔓',
+                    'logout': '🔒',
+                    'save_file': '💾',
+                    'generate_pdf': '📄',
+                    'generate_preview': '👁️',
+                    'factory_reset': '🔄',
+                    'create_user': '➕',
+                    'upload_chart': '📊',
+                    'deactivate_user': '🔒',
+                    'activate_user': '🔓',
+                    'reset_password': '🔑',
+                    'change_password': '🔑'
+                }.get(log['action'], '📝')
+
+                with st.expander(
+                    f"{action_emoji} {timestamp} | {log['username']} | {log['action']}",
+                    expanded=False
+                ):
+                    st.json(log['details'])
