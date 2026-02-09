@@ -2,18 +2,19 @@
 % PAGE 12: BUSINESS BAROMETER INDEX (BBI) - ARABIC
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg_ar.png page=12
 % 1. Geometry
 % Standard margins for the main text area
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 % 2. Background Image & Graphics
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background (Assuming generic or AR specific background)
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg_ar.png}
     };
-    
+
     % B. Page Number (Dynamic - Bottom Left for Arabic usually, or keeps Bottom Right)
     % Keeping it Bottom Right to match English style, or move to Bottom Left if desired.
     \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
@@ -29,27 +30,29 @@
 
 \end{tikzpicture}
 
+% BLOCK:TITLE level=1 color=ecestitle
 % ---------------------------------------------------------
 % TITLE SECTION
 % ---------------------------------------------------------
 % Minipage width restricts text to the right side, leaving space for the left image
 \noindent
 \begin{minipage}{0.85\textwidth}
-    
+
     {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} مؤشر بارومتر الأعمال}}
-    
+
     \vspace{0.5em}
-    
+
     {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} أولاً: تقييم الأداء والتوقعات وفقاً للمؤشر الإجمالي}}
-    
+
     \vspace{0.8em}
-    
+
     {\fontsize{11}{14}\selectfont \textbf{استمرار ارتفاع مؤشر أداء الأعمال خلال الربع محل الدراسة عن المستوى المحايد، مع تباين الأداء على مستوى القطاعات.}}
-    
+
 \end{minipage}
 
 \vspace{1.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="1-1 تطور المؤشر الإجمالي"
 % ---------------------------------------------------------
 % SUBSECTION 1-1
 % ---------------------------------------------------------
@@ -58,6 +61,7 @@
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{11}{14}\selectfont
 تجاوزت قيم مؤشر أداء الأعمال للربع محل الدراسة (\CurrentQuarterTextAr) \textbf{المستوى المحايد} بنقطة واحدة. ويُعزى السبب في ذلك إلى تجاوز معظم المؤشرات للمستوى المحايد لتعكس استقراراً في الأداء الجيد الذي شهده الربع السابق. ومقارنة بالربع السابق، تراجع مؤشر أداء الأعمال بنحو 7 نقاط نتيجة انخفاض حاد في مؤشر الأجور بعد قفزة كبيرة خلال الربع السابق وكذلك تراجع مؤشرات الإنتاج، والمبيعات، ومستوى استغلال الطاقة الإنتاجية، إلا أنها لا تزال أعلى من المستوى المحايد (الشكل 1-1).
@@ -69,6 +73,7 @@
 
 \vspace{1em}
 
+% BLOCK:CHART chart=ch9.png title="الشكل 1-1 (المؤشر الإجمالي)"
 % ---------------------------------------------------------
 % CHART (Overall Index)
 % ---------------------------------------------------------
@@ -78,6 +83,7 @@
     \includegraphics[width=\linewidth]{ch9.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % FOOTNOTES / SOURCE
 % ---------------------------------------------------------
@@ -95,6 +101,7 @@
 % PAGE 13: CHARTS (Firm Size)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg_ar.png page=13
 % 1. Geometry & Page Setup
 \newgeometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
 
@@ -108,6 +115,7 @@
     };
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="1-2 المؤشر وفقاً لأحجام الشركات"
 % ---------------------------------------------------------
 % SECTION 1-2: INDEX BY FIRM SIZE
 % ---------------------------------------------------------
@@ -116,6 +124,7 @@
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 لا يوجد تباين في الأداء بين مختلف أحجام الشركات؛ حيث تجاوز مؤشر أداء الأعمال \textbf{لكافة الشركات المستوى المحايد} خلال الربع محل الدراسة مسجلاً قيماً أقل من الربع السابق، وإن كانت أفضل من الربع المناظر، ويعكس ذلك ثبات الأداء لكافة المؤشرات الفرعية، وعدم تحسنها مع ملاحظة تحسن مؤشر الصادرات للشركات الكبيرة عن الربعين السابق والمناظر (الشكل 1-3).
@@ -123,6 +132,7 @@
 كما تجاوز مؤشر التوقعات (للربع \NextQuarterTextAr) \textbf{المستوى المحايد لكافة الشركات} مسجلاً قيم أعلى منه بـ 3 نقاط \textbf{للشركات الكبيرة}، ولكنه لا يزال أقل من الربع السابق بـ 4 نقاط، وأفضل من الربع المناظر بنقطة واحدة. أما بالنسبة \textbf{للشركات الصغيرة والمتوسطة} فقد سجل مؤشر التوقعات \textbf{قيماً} أعلى من \textbf{المستوى المحايد} بـ 4 نقاط وبنفس قيم الربع السابق وأفضل من الربع المناظر بنقطتين، ويرجع ذلك إلى التوقعات بثبات الأداء خلال الربع القادم (الشكل 1-4).
 }
 
+% BLOCK:CHART chart=ch10.png title="الشكل 1-3/1-4 (حجم الشركات)"
 % ---------------------------------------------------------
 % FIGURES 1.3 & 1.4 (Size Charts)
 % ---------------------------------------------------------
@@ -132,6 +142,7 @@
     \includegraphics[width=\linewidth]{ch10.png}
 \end{figure}
 
+% BLOCK:SUBHEADER_LEGEND text="1-3 المؤشر وفقاً للقطاعات الاقتصادية"
 % ---------------------------------------------------------
 % SECTION 1-3: INDEX BY ECONOMIC SECTORS (INTRO)
 % ---------------------------------------------------------
@@ -141,11 +152,13 @@
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 تجاوز مؤشر الأداء \textbf{لكافة القطاعات} المستوى المحايد \textbf{باستثناء قطاع الصناعات التحويلية} الذي سجل قيماً أقل من المستوى المحايد وأقل أداءً بين جميع القطاعات، بينما جاءت قيم \textbf{قطاع التشييد والبناء} عند المستوى المحايد. وحقق \textbf{قطاع الاتصالات} أفضل أداء خلال الربع محل الدراسة، ومقارنة بالربع السابق، تراجع مؤشر أداء الأعمال \textbf{لكافة القطاعات}، وجاء التراجع الأكثر حدة في \textbf{قطاع السياحة} يليه \textbf{قطاع الصناعات التحويلية} (الشكل 1-5).
 }
 
+% BLOCK:CHART chart=ch11.png title="الشكل 1-5 (أداء القطاعات)"
 % ---------------------------------------------------------
 % FIGURE 1.5 (Sector Chart - Performance)
 % ---------------------------------------------------------
@@ -161,6 +174,7 @@
 % PAGE 14: DETAILED SECTOR ANALYSIS
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg_ar.png page=14
 % 1. Geometry
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
@@ -174,6 +188,7 @@
     };
 \end{tikzpicture}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % INTRO TEXT
 % ---------------------------------------------------------
@@ -182,6 +197,7 @@
 
 \vspace{0.5em}
 
+% BLOCK:BULLET_LIST
 % ---------------------------------------------------------
 % MAIN BULLET POINTS (Past Performance)
 % ---------------------------------------------------------
@@ -201,12 +217,14 @@
 
 \vspace{1em}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % OUTLOOK SECTION
 % ---------------------------------------------------------
 \noindent
 {\fontsize{10}{13}\selectfont \textbf{وعلى جانب مؤشر التوقعات، فقد تجاوز مؤشر التوقعات لكافة القطاعات المستوى المحايد وحقق مؤشر التوقعات لقطاع الاتصالات أفضل قيم.}}
 
+% BLOCK:BULLET_LIST
 \begin{itemize} \itemsep0.6em
     \item \fontsize{10}{13}\selectfont \textbf{تجاوز مؤشر التوقعات لقطاع الصناعات التحويلية المستوى المحايد} بـ 4 نقاط بقيم أفضل من الربعين السابق والمناظر. ويرجع ذلك إلى التوقعات بثبات كافة المؤشرات الفرعية خلال الربع القادم.
 \end{itemize}
@@ -217,6 +235,7 @@
 % PAGE 15: SECTOR OUTLOOK ANALYSIS (Continued)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg_ar.png page=15
 % 1. Geometry (Persists)
 
 % 2. Background Image
@@ -229,6 +248,7 @@
     };
 \end{tikzpicture}
 
+% BLOCK:BULLET_LIST
 % ---------------------------------------------------------
 % BULLET POINTS (Sector Outlooks)
 % ---------------------------------------------------------
@@ -246,6 +266,7 @@
 
 \vspace{0.5em}
 
+% BLOCK:CHART chart=ch12.png title="الشكل 1-6 (توقعات القطاعات)"
 % ---------------------------------------------------------
 % FIGURE 1.6 (Outlook Chart)
 % ---------------------------------------------------------
@@ -255,6 +276,7 @@
     \includegraphics[width=\linewidth]{ch12.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 \vspace{-0.5em}
 \noindent
 {\fontsize{8}{10}\selectfont المصدر: نتائج الاستبيان.}

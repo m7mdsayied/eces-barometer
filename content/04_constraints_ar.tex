@@ -2,6 +2,7 @@
 % PAGE 16: SECTION II - CONSTRAINTS (Intro)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=16
 % 1. Geometry
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
@@ -13,29 +14,31 @@
     \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
     };
-    
+
     % Optional: If you have the specific header icon (Blue box with chart), place it here
     % \node[anchor=north west] at ([xshift=0cm, yshift=-2cm]current page.north west) {
-    %     \includegraphics[width=2.5cm]{obs_ar.png} 
+    %     \includegraphics[width=2.5cm]{obs_ar.png}
     % };
 \end{tikzpicture}
 
+% BLOCK:TITLE level=1 color=ecestitle
 % ---------------------------------------------------------
 % TITLE SECTION (Simulating the Blue Header)
 % ---------------------------------------------------------
 \noindent
 \begin{minipage}{\textwidth}
     {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} ثانياً: المعوقات التي واجهت مجتمع الأعمال خلال الربع}}
-    
+
     \vspace{0.2em}
     {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} محل الدراسة، وأولويات تحسين مناخ الأعمال من وجهة}}
-    
+
     \vspace{0.2em}
     {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} نظر شركات العينة}}
 \end{minipage}
 
 \vspace{1.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="1-2 المعوقات التي واجهت مجتمع الأعمال"
 % ---------------------------------------------------------
 % SECTION 1-2
 % ---------------------------------------------------------
@@ -44,11 +47,13 @@
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH bold=true
 \noindent
 {\fontsize{11}{14}\selectfont \textbf{الزيادة المتكررة في أسعار الطاقة والمياه تتصدر قائمة المعوقات التي واجهت كافة الشركات خلال الربع محل الدراسة، تليها التحديات المرتبطة بارتفاع التضخم، ثم إجراءات التعامل مع الجهات الحكومية.}}
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 يوضح الشكل 1-2 المعوقات الرئيسية التي واجهت مجتمع الأعمال خلال الربع محل الدراسة (\CurrentQuarterTextAr). مرتبة حسب شدتها من وجهة نظر شركات العينة.
@@ -58,6 +63,7 @@
 ويأتي في المرتبة الرابعة \textbf{غموض توجهات السياسة الاقتصادية في المستقبل} وعدم الإفصاح عن اتجاهات الدولة الاقتصادية خلال الفترات المستقبلية من المعوقات التي تحول دون قدرة الشركات على وضع خطط مستقبلية، كما لا يوجد رؤيا طويلة الأجل، وخاصة فيما يتعلق بالاستثمار والديون. وجاءت \textbf{زيادة الرسوم المفروضة على الخدمات الحكومية} في المرتبة الخامسة؛ حيث أدى ارتفاع كافة الرسوم وتفاوت السياسات بين المحافظات والمناقذ الحدودية في الرسوم أو القيود اللوجيستية (كتصاريح العبور) إلى عدم استقرار التكاليف، والعمليات التشغيلية، وتقليل هامش الربح للشركات.
 }
 
+% BLOCK:CHART chart=ch13.png title="الشكل 1-2 (المعوقات الإجمالية)"
 % ---------------------------------------------------------
 % FIGURE 1-2 (Constraints Overall)
 % ---------------------------------------------------------
@@ -72,6 +78,7 @@
 % PAGE 17: CONSTRAINTS BY FIRM SIZE
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=17
 \newgeometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
 
 \begin{tikzpicture}[remember picture, overlay]
@@ -83,6 +90,7 @@
     };
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="1-1-2 المعوقات وفقاً لحجم الشركات"
 % ---------------------------------------------------------
 % SECTION 1-1-2
 % ---------------------------------------------------------
@@ -91,6 +99,7 @@
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 بالرغم من تصدر \textbf{تكاليف الطاقة والمياه وارتفاع التضخم} قائمة معوقات \textbf{كافة الشركات}، إلا أن هناك تباين في ترتيب المعوقات وفقاً لحجم الشركات. وبشكل عام، تواجه \textbf{الشركات الصغيرة والمتوسطة} عدداً أكبر من التحديات مقارنة \textbf{بالشركات الكبيرة}.
@@ -104,6 +113,7 @@
 
 \vspace{1em}
 
+% BLOCK:CHART chart=ch14.png title="الشكل 2-2 (المعوقات حسب الحجم)"
 % ---------------------------------------------------------
 % FIGURE 2-2 (Constraints by Size)
 % ---------------------------------------------------------
@@ -118,6 +128,7 @@
 % PAGE 18: CONSTRAINTS BY SECTOR
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=18
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 \begin{tikzpicture}[remember picture, overlay]
@@ -129,6 +140,7 @@
     };
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="2-1-2 المعوقات وفقاً للقطاعات الاقتصادية"
 % ---------------------------------------------------------
 % SECTION 2-1-2
 % ---------------------------------------------------------
@@ -137,6 +149,7 @@
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 اتسمت آراء \textbf{القطاعات الاقتصادية تجاه المعوقات الرئيسية التي واجهتها بالتباين}؛ حيث تصدر \textbf{ارتفاع تكاليف الطاقة والمياه} أشد المعوقات التي واجهت قطاعي \textbf{الصناعات التحويلية والسياحة}، بينما جاء \textbf{ارتفاع معدلات التضخم} في مقدمة المعوقات بالنسبة لقطاعات \textbf{التشييد والبناء، والنقل، والاتصالات}، وكمعوق إضافي \textbf{لقطاع السياحة}، بينما جاءت التحديات المرتبطة \textbf{بغموض توجهات السياسة الاقتصادية في المستقبل} في مقدمة المعوقات التي تواجه قطاع \textbf{الخدمات المالية} (الشكل 2-3).
@@ -144,6 +157,7 @@
 
 \vspace{2em}
 
+% BLOCK:CHART chart=ch15.png title="الشكل 2-3 (المعوقات حسب القطاع)"
 % ---------------------------------------------------------
 % FIGURE 2-3 (Constraints by Sector - Heatmap)
 % ---------------------------------------------------------
@@ -158,6 +172,7 @@
 % PAGE 19: PRIORITIES (Intro)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=19
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 \begin{tikzpicture}[remember picture, overlay]
@@ -169,10 +184,11 @@
     };
     % Optional: Header Icon (Handshake)
     % \node[anchor=north west] at ([xshift=0cm, yshift=-2cm]current page.north west) {
-    %     \includegraphics[width=2.5cm]{pri_ar.png} 
+    %     \includegraphics[width=2.5cm]{pri_ar.png}
     % };
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="2-2 أولويات تحسين مناخ الأعمال"
 % ---------------------------------------------------------
 % SECTION 2-2
 % ---------------------------------------------------------
@@ -181,11 +197,13 @@
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH bold=true
 \noindent
 {\fontsize{10}{13}\selectfont \textbf{أهم الأولويات التي يجب التركيز عليها من وجهة نظر الشركات: إعادة النظر في أسعار الطاقة والمياه والسيطرة على التضخم، وضرورة الإفصاح عن توجهات السياسات الاقتصادية في المستقبل، واستمرار جهود حل مشكلات المنظومة الضريبية مع ضرورة تسهيل الإجراءات الحكومية}}
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 جاءت مراجعة أسعار \textbf{الطاقة والمياه} على رأس الأولويات التي ترى شركات العينة ضرورة العمل عليها لأنها ترتفع على فترات متقاربة تصل إلى مرتين على الأقل سنوياً مما يتسبب في ارتفاع التكاليف وتراجع حجم الأعمال؛ يليها معالجة ارتفاع معدلات \textbf{التضخم} لما له من تأثير سلبي على كافة القطاعات، مع ضرورة \textbf{الإفصاح عن توجهات السياسات الاقتصادية في المستقبل} حتى تستطيع الشركات بناء خطط مستقبلية للمشروعات؛ يليها استمرار العمل على حل مشكلات \textbf{المنظومة الضريبية} ومنع الازدواج الضريبي، وإيقاف الفحص بأثر رجعي لسنوات سابقة؛ و\textbf{تسهيل الإجراءات الحكومية} بهدف نمو الاقتصاد (الشكل 2-4).
@@ -193,6 +211,7 @@
 
 \vspace{2em}
 
+% BLOCK:CHART chart=ch16.png title="الشكل 2-4 (الأولويات الإجمالية)"
 % ---------------------------------------------------------
 % FIGURE 2-4 (Priorities Overall)
 % ---------------------------------------------------------
@@ -207,6 +226,7 @@
 % PAGE 20: PRIORITIES BY FIRM SIZE
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=20
 \newgeometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
 
 \begin{tikzpicture}[remember picture, overlay]
@@ -218,6 +238,7 @@
     };
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="1-2-2 الأولويات وفقاً لأحجام الشركات"
 % ---------------------------------------------------------
 % SECTION 1-2-2
 % ---------------------------------------------------------
@@ -226,11 +247,13 @@
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH bold=true
 \noindent
 {\fontsize{10}{13}\selectfont \textbf{بمقارنة الأولويات وفقاً لأحجام الشركات يتضح ما يلي:}}
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 تباينت الأولويات على حسب حجم الشركات؛ حيث ترى \textbf{الشركات الكبيرة} أن معالجة ارتفاع \textbf{معدلات التضخم} يجب أن تأتي على رأس الأولويات، يليها مراجعة أسعار \textbf{الطاقة والمياه} في المرتبة الثانية، ثم تسهيل \textbf{الإجراءات الحكومية} في المرتبة الثالثة، يليها معالجة مشكلات \textbf{المنظومة الضريبية} في المرتبة الرابعة، وضرورة الاهتمام \textbf{بالمنظومة الجمركية} في المرتبة الخامسة.
@@ -240,6 +263,7 @@
 
 \vspace{1em}
 
+% BLOCK:CHART chart=ch17.png title="الشكل 2-5 (الأولويات حسب الحجم)"
 % ---------------------------------------------------------
 % FIGURE 2-5 (Priorities by Size)
 % ---------------------------------------------------------
@@ -254,6 +278,7 @@
 % PAGE 21: PRIORITIES BY SECTOR
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=21
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 \begin{tikzpicture}[remember picture, overlay]
@@ -265,6 +290,7 @@
     };
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="2-2-2 الأولويات وفقاً للقطاعات الاقتصادية"
 % ---------------------------------------------------------
 % SECTION 2-2-2
 % ---------------------------------------------------------
@@ -273,6 +299,7 @@
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 أجمع \textbf{قطاعا الصناعات التحويلية والسياحة} على أن أهم أولوياتهما هو إيجاد حلول لمراجعة \textbf{أسعار الطاقة والمياه}، بينما تصدر \textbf{الإفصاح عن توجهات السياسات الاقتصادية في المستقبل} أولويات \textbf{قطاع الخدمات المالية}، وجاءت ضرورة معالجة \textbf{التضخم} كأحد أهم أولويات \textbf{قطاع التشييد والبناء، والنقل، والاتصالات}، وتصدر حل \textbf{مشكلات المنظومة الضريبية} أهم أولويات \textbf{قطاع الاتصالات}، في حين تصدر \textbf{تخفيض الرسوم المفروضة على الخدمات الحكومية} أهم أولويات \textbf{قطاع النقل} (الشكل 2-6).
@@ -280,6 +307,7 @@
 
 \vspace{2em}
 
+% BLOCK:CHART chart=ch18.png title="الشكل 2-6 (الأولويات حسب القطاع)"
 % ---------------------------------------------------------
 % FIGURE 2-6 (Priorities by Sector - Heatmap)
 % ---------------------------------------------------------
@@ -294,6 +322,7 @@
 % PAGE 22: EXPECTATIONS & GOV VISION
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=22
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 \begin{tikzpicture}[remember picture, overlay]
@@ -306,29 +335,31 @@
     % Sidebar Icon (Gavel/Law)
     % Placed on the LEFT for Arabic
     % \node[anchor=north west] at ([xshift=0cm, yshift=-2cm]current page.north west) {
-    %     \includegraphics[width=2.5cm]{law_ar.png} 
+    %     \includegraphics[width=2.5cm]{law_ar.png}
     % };
 \end{tikzpicture}
 
+% BLOCK:TITLE level=2 color=ecestitle
 % ---------------------------------------------------------
 % TITLE SECTION
 % ---------------------------------------------------------
 \noindent
 \begin{minipage}{0.85\textwidth}
-    
+
     {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} توقعات مجتمع الأعمال بناء على رؤيته لتوجهات}}
-    
+
     \vspace{0.2em}
     {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} الحكومة الفترة القادمة}}
-    
+
     \vspace{1em}
-    
+
     {\fontsize{10}{13}\selectfont \textbf{توقعات بارتفاع رسوم الطاقة والمياه، وانخفاض مدة انقطاع الكهرباء، واستقرار أسعار الفائدة، وسعر الصرف وباقي المتغيرات خلال الربع القادم وفقاً لآراء العينة (الشكل 2-7).}}
-    
+
 \end{minipage}
 
 \vspace{1.5em}
 
+% BLOCK:CHART chart=ch19.png title="الشكل 2-7 (توقعات السياسة الحكومية)"
 % ---------------------------------------------------------
 % FIGURE 2-7 (Gov Vision Expectations)
 % ---------------------------------------------------------
@@ -338,6 +369,7 @@
     \includegraphics[width=0.9\linewidth]{ch19.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 \vspace{0.5em}
 \noindent
 {\fontsize{8}{10}\selectfont المصدر: نتائج الاستبيان.}
