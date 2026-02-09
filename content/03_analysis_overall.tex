@@ -2,18 +2,19 @@
 % PAGE 12: BUSINESS BAROMETER INDEX (BBI)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=12
 % 1. Geometry
 % Standard margins for the main text area
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 % 2. Background Image & Graphics
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -27,27 +28,29 @@
 
 \end{tikzpicture}
 
+% BLOCK:TITLE level=1 color=ecestitle
 % ---------------------------------------------------------
 % TITLE SECTION
 % ---------------------------------------------------------
 % Use a minipage to prevent text from overlapping the top-right image
 \noindent
 \begin{minipage}{0.85\textwidth}
-    
+
     {\fontsize{20}{24}\selectfont \textbf{\color{ecestitle} Business Barometer Index (BBI)}}
-    
+
     \vspace{0.5em}
-    
+
     {\fontsize{18}{22}\selectfont \textbf{\color{ecestitle} I. Performance evaluation and expectations \\ according to the overall index}}
-    
+
     \vspace{0.8em}
-    
+
     {\fontsize{10}{13}\selectfont \textbf{The business performance index continued to surpass the neutral level during the quarter under study, with varying performance across sectors.}}
-    
+
 \end{minipage}
 
 \vspace{0.8em}
 
+% BLOCK:SUBHEADER_LEGEND text="1-1 Overall index"
 % ---------------------------------------------------------
 % SUBSECTION 1-1
 % ---------------------------------------------------------
@@ -56,6 +59,7 @@
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 The Business Performance Index for the quarter under study (\CurrentQuarterText) exceeded the neutral level by one point, as most indices surpassed this threshold, reflecting stable performance in the previous quarter. Compared to the previous quarter, the business performance index declined by about 7 points due to a sharp decline in the wage index following a significant jump during the previous quarter, as well as a decline in the production, sales, and capacity utilization indices, albeit still above the neutral level (Figure 1-1).
@@ -69,6 +73,7 @@ The performance expectations index for the quarter \NextQuarterText{} also recor
 
 \vspace{1em}
 
+% BLOCK:CHART chart=ch9.png title="Overall Index"
 % ---------------------------------------------------------
 % CHART (Overall Index)
 % ---------------------------------------------------------
@@ -78,6 +83,7 @@ The performance expectations index for the quarter \NextQuarterText{} also recor
     \includegraphics[width=\linewidth]{ch9.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % FOOTNOTES / SOURCE
 % ---------------------------------------------------------
@@ -94,18 +100,19 @@ The performance expectations index for the quarter \NextQuarterText{} also recor
 % PAGE 13: CHARTS (Firm Size & Sectors)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=13
 % 1. Geometry & Page Setup
 % Tighter vertical margins for this page to fit multiple charts
 \newgeometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
 
 % 2. Background Image
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -113,12 +120,14 @@ The performance expectations index for the quarter \NextQuarterText{} also recor
 
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="1-2 The index according by firm size"
 % ---------------------------------------------------------
 % SECTION 1-2: INDEX BY FIRM SIZE
 % ---------------------------------------------------------
 \noindent
 {\fontsize{9}{11}\selectfont \textbf{\color{ecestitle} 1-2 The index according by firm size}}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{8}{11}\selectfont
 Performance is consistent across different sizes of firms, as the business performance index for all firms exceeded the neutral level during the quarter under study, recording lower values than in the previous quarter, although higher than the corresponding quarter. This reflects the stable performance of all sub-indices, with an improvement in the export index for large firms compared to the previous and corresponding quarters (Figure 1-3).
@@ -127,6 +136,7 @@ The expectations index (for \NextQuarterText) also exceeded the neutral level fo
 }
 
 
+% BLOCK:CHART chart=ch10.png title="Figures 1.3 & 1.4 (Size Charts)"
 % ---------------------------------------------------------
 % FIGURES 1.3 & 1.4 (Size Charts)
 % ---------------------------------------------------------
@@ -138,17 +148,20 @@ The expectations index (for \NextQuarterText) also exceeded the neutral level fo
 
 
 
+% BLOCK:SUBHEADER_LEGEND text="1-3 The index according to economic sectors"
 % ---------------------------------------------------------
 % SECTION 1-3: INDEX BY ECONOMIC SECTORS
 % ---------------------------------------------------------
 \noindent
 {\fontsize{9}{12}\selectfont \textbf{\color{ecestitle} 1-3 The index according to economic sectors}}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{8}{11}\selectfont
 The performance index for all sectors exceeded the neutral level except for manufacturing, which recorded values below the neutral level and the lowest performance among all sectors. Meanwhile, the values for the construction sector came at the neutral level, while telecommunications reported the best performance during the quarter under study. Compared to the previous quarter, the business performance index declined for all sectors. The sharpest decline came in tourism, followed by manufacturing industries.
 }
 
+% BLOCK:CHART chart=ch11.png title="Figure 1.5 (Sector Chart)"
 % ---------------------------------------------------------
 % FIGURE 1.5 (Sector Chart)
 % ---------------------------------------------------------
@@ -164,18 +177,19 @@ The performance index for all sectors exceeded the neutral level except for manu
 % PAGE 14: DETAILED SECTOR ANALYSIS
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=14
 % 1. Geometry
 % Reset to standard margins
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 % 2. Background Image
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -183,21 +197,23 @@ The performance index for all sectors exceeded the neutral level except for manu
 
 \end{tikzpicture}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % INTRO TEXT
 % ---------------------------------------------------------
 \noindent
-{\fontsize{10}{13}\selectfont \textbf{The following is an analysis of performance of the economic sectors during the quarter under study, based on the sample’s responses, and compared to the previous and corresponding quarters:}}
+{\fontsize{10}{13}\selectfont \textbf{The following is an analysis of performance of the economic sectors during the quarter under study, based on the sample's responses, and compared to the previous and corresponding quarters:}}
 
 \vspace{0.5em}
 
+% BLOCK:BULLET_LIST
 % ---------------------------------------------------------
 % MAIN BULLET POINTS (Past Performance)
 % ---------------------------------------------------------
 \begin{itemize} \itemsep0.6em
     \item \fontsize{10}{13}\selectfont The manufacturing industries sector recorded the lowest performance of all sectors, with values below the neutral level by two points, and less than the previous quarter by 7 points, albeit higher than the corresponding quarter by one point. This is primarily due to production, sales, and export indices falling below the neutral level during the quarter under review, and their decline compared to the previous quarter. This decline is due to lower demand, particularly after the end of the holidays and the school year, which was clearly evident in the ready-made garment and food industries.
 
-    \item \fontsize{10}{13}\selectfont The construction sector posted values at the neutral level during the quarter under review, which is 3 points lower than the previous quarter and 4 points higher than the corresponding quarter. This is attributed to the stability of all indices during the quarter under review, as a result of continued demand for housing in resorts and new cities, and the launch of new projects in El-Wahat [Oases] and the North Coast. Furthermore, the government’s infrastructure, road, and new city projects played a significant role in the sector’s recovery. Rising input prices remain the sector’s biggest challenge during the current quarter.
+    \item \fontsize{10}{13}\selectfont The construction sector posted values at the neutral level during the quarter under review, which is 3 points lower than the previous quarter and 4 points higher than the corresponding quarter. This is attributed to the stability of all indices during the quarter under review, as a result of continued demand for housing in resorts and new cities, and the launch of new projects in El-Wahat [Oases] and the North Coast. Furthermore, the government's infrastructure, road, and new city projects played a significant role in the sector's recovery. Rising input prices remain the sector's biggest challenge during the current quarter.
 
     \item \fontsize{10}{13}\selectfont The tourism sector posted higher values than neutral by 7 points, and lower than the previous quarter by 9 points, albeit 9 points higher than the corresponding quarter. This is attributed to the recovery in inbound tourism to Egypt during the quarter under study, higher occupancy rates in hotels and tourist resorts, increased demand for airline reservations, and a rise in outbound tourism due to the Hajj and Umrah seasons, in addition to an increase in domestic tourism with the arrival of the summer and the end of the school year.
 
@@ -210,12 +226,14 @@ The performance index for all sectors exceeded the neutral level except for manu
 
 \vspace{1em}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % OUTLOOK SECTION
 % ---------------------------------------------------------
 \noindent
 {\fontsize{10}{13}\selectfont \textbf{On the outlook side, the expectations index exceeded the neutral level for all sectors, with the telecommunications sector reporting the best values:}}
 
+% BLOCK:BULLET_LIST
 \begin{itemize} \itemsep0.6em
     \item \fontsize{10}{13}\selectfont The outlook index for the manufacturing sector exceeded the neutral level by 4 points, with values higher than the previous and corresponding quarters. This is due to expectations that all sub-indices will remain stable during the upcoming quarter.
 \end{itemize}
@@ -226,16 +244,17 @@ The performance index for all sectors exceeded the neutral level except for manu
 % PAGE 15: SECTOR OUTLOOK ANALYSIS (Continued)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=15
 % 1. Geometry (Persists from previous page)
 
 % 2. Background Image
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -243,6 +262,7 @@ The performance index for all sectors exceeded the neutral level except for manu
 
 \end{tikzpicture}
 
+% BLOCK:BULLET_LIST
 % ---------------------------------------------------------
 % BULLET POINTS (Sector Outlooks)
 % ---------------------------------------------------------
@@ -260,6 +280,7 @@ The performance index for all sectors exceeded the neutral level except for manu
 
 \vspace{0.5em}
 
+% BLOCK:CHART chart=ch12.png title="Figure 1.6 (Outlook Chart)"
 % ---------------------------------------------------------
 % FIGURE 1.6 (Outlook Chart)
 % ---------------------------------------------------------

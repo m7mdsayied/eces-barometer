@@ -2,18 +2,19 @@
 % PAGE 16: CONSTRAINTS & PRIORITIES (Section II)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=16
 % 1. Geometry
 % Standard margins
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -21,6 +22,7 @@
 
 \end{tikzpicture}
 
+% BLOCK:TITLE level=1 color=ecestitle icon=ph.png
 % ---------------------------------------------------------
 % HEADER SECTION (Title + Logo)
 % ---------------------------------------------------------
@@ -39,6 +41,7 @@
 
 \vspace{1.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="2-1 Constraints faced by the business community"
 % ---------------------------------------------------------
 % SUBHEADER (2-1)
 % ---------------------------------------------------------
@@ -47,6 +50,7 @@
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % BOLD INTRO PARAGRAPH
 % ---------------------------------------------------------
@@ -55,6 +59,7 @@
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -64,7 +69,7 @@ Figure 2-1 shows the main constraints that faced the business community during t
 
 \vspace{0.8em}
 
-Higher energy and water tariffs topped the list of constraints that faced all firms during the quarter under study, as continuous rises in energy and water tariffs leads to higher production costs, especially for energy- and water-intensive activities, and production activities in general, which represents an additional burden on firms. High inflation came in second place, as it negatively impacts the business community on both the supply and demand sides, in addition to the workers’ constant demands for higher wages and lack of cash liquidity for investment. Difficulties in dealing with government agencies came in third, as it negatively impacts the business community due to slow procedures, bureaucracy, and employee treatment, in addition to the multiplicity of judicial police officers in many government agencies, opening the door wide to corruption and unofficial payments. In fourth place came uncertainty regarding future economic policy directions and lack of disclosure of the country’s future economic directions as a constraint that prevents firms from developing future plans. Also, there is the absence of a long-term vision, especially with regard to investment and debt. The high fees of government services came in fifth place, as the disparity in policies across governorates and border crossings in terms of fees or logistical restrictions (such as transit permits) led to changing costs and operational processes, and reduced profit margins for firms.
+Higher energy and water tariffs topped the list of constraints that faced all firms during the quarter under study, as continuous rises in energy and water tariffs leads to higher production costs, especially for energy- and water-intensive activities, and production activities in general, which represents an additional burden on firms. High inflation came in second place, as it negatively impacts the business community on both the supply and demand sides, in addition to the workers' constant demands for higher wages and lack of cash liquidity for investment. Difficulties in dealing with government agencies came in third, as it negatively impacts the business community due to slow procedures, bureaucracy, and employee treatment, in addition to the multiplicity of judicial police officers in many government agencies, opening the door wide to corruption and unofficial payments. In fourth place came uncertainty regarding future economic policy directions and lack of disclosure of the country's future economic directions as a constraint that prevents firms from developing future plans. Also, there is the absence of a long-term vision, especially with regard to investment and debt. The high fees of government services came in fifth place, as the disparity in policies across governorates and border crossings in terms of fees or logistical restrictions (such as transit permits) led to changing costs and operational processes, and reduced profit margins for firms.
 }
 
 \clearpage
@@ -73,17 +78,18 @@ Higher energy and water tariffs topped the list of constraints that faced all fi
 % PAGE 17: CONSTRAINTS (Figure 2.1 & Size Analysis)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=17
 % 1. Geometry (Persist Standard margins)
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -91,6 +97,7 @@ Higher energy and water tariffs topped the list of constraints that faced all fi
 
 \end{tikzpicture}
 
+% BLOCK:CHART chart=ch13.png title="Figure 2.1 (Constraints Chart)"
 % ---------------------------------------------------------
 % FIGURE 2.1 (Constraints Chart)
 % ---------------------------------------------------------
@@ -100,6 +107,7 @@ Higher energy and water tariffs topped the list of constraints that faced all fi
     \includegraphics[width=\linewidth]{ch13.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------
@@ -112,6 +120,7 @@ The numbers refer to the percentage of firms that identified specific obstacles,
 
 \vspace{1.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="2-1-1 Constraints according to the size of firms"
 % ---------------------------------------------------------
 % SUBSECTION 2-1-1
 % ---------------------------------------------------------
@@ -120,6 +129,7 @@ The numbers refer to the percentage of firms that identified specific obstacles,
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -146,16 +156,17 @@ Figure 2-2 shows the main constraints faced by both large and small and medium-s
 % PAGE 18: CONSTRAINTS BY FIRM SIZE (Figure 2.2)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=18
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -163,6 +174,7 @@ Figure 2-2 shows the main constraints faced by both large and small and medium-s
 
 \end{tikzpicture}
 
+% BLOCK:CHART chart=ch14.png title="Figure 2.2 (Size Chart)"
 % ---------------------------------------------------------
 % FIGURE 2.2 (Size Chart)
 % ---------------------------------------------------------
@@ -172,6 +184,7 @@ Figure 2-2 shows the main constraints faced by both large and small and medium-s
     \includegraphics[width=\linewidth]{ch14.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------
@@ -183,6 +196,7 @@ Source: Survey Results.\\
 
 \vspace{1.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="2-1-2 Constraints according to economic sectors"
 % ---------------------------------------------------------
 % SUBSECTION 2-1-2
 % ---------------------------------------------------------
@@ -191,6 +205,7 @@ Source: Survey Results.\\
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -205,16 +220,17 @@ The views of economic sectors regarding the main constraints faced varied. High 
 % PAGE 19: CONSTRAINTS BY SECTOR (Figure 2.3)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=19
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -222,6 +238,7 @@ The views of economic sectors regarding the main constraints faced varied. High 
 
 \end{tikzpicture}
 
+% BLOCK:CHART chart=ch15.png title="Figure 2.3 (Sector Chart)"
 % ---------------------------------------------------------
 % FIGURE 2.3 (Sector Chart)
 % ---------------------------------------------------------
@@ -231,6 +248,7 @@ The views of economic sectors regarding the main constraints faced varied. High 
     \includegraphics[width=\linewidth]{ch15.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------
@@ -246,16 +264,17 @@ The views of economic sectors regarding the main constraints faced varied. High 
 % PAGE 20: PRIORITIES FOR IMPROVING BUSINESS CLIMATE
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=20
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -263,6 +282,7 @@ The views of economic sectors regarding the main constraints faced varied. High 
 
 \end{tikzpicture}
 
+% BLOCK:TITLE level=2 color=ecestitle icon=ph2.png
 % ---------------------------------------------------------
 % HEADER SECTION (Title + Logo)
 % ---------------------------------------------------------
@@ -281,6 +301,7 @@ The views of economic sectors regarding the main constraints faced varied. High 
 
 \vspace{1.5em}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % INTRO PARAGRAPH (Bold)
 % ---------------------------------------------------------
@@ -288,6 +309,7 @@ The views of economic sectors regarding the main constraints faced varied. High 
 {\fontsize{10}{13}\selectfont \textbf{The most important priorities to focus on from a corporate perspective: Controlling inflation, revisiting energy and water prices, disclosing the directions of future economic policies, and continuing efforts to solve tax system problems, with the need to facilitate government procedures.}}
 
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -297,6 +319,7 @@ Revisiting energy and water tariffs led the priorities that the sample of firms 
 }
 
 
+% BLOCK:CHART chart=ch16.png title="Figure 2.4 (Priorities Chart)"
 % ---------------------------------------------------------
 % FIGURE 2.4 (Priorities Chart)
 % ---------------------------------------------------------
@@ -306,6 +329,7 @@ Revisiting energy and water tariffs led the priorities that the sample of firms 
     \includegraphics[width=\linewidth]{ch16.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------
@@ -321,16 +345,17 @@ Source: Survey Results.\\
 % PAGE 21: PRIORITIES BY FIRM SIZE
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=21
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -338,6 +363,7 @@ Source: Survey Results.\\
 
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="2-2-1 Priorities according to firm sizes"
 % ---------------------------------------------------------
 % SECTION HEADER
 % ---------------------------------------------------------
@@ -346,11 +372,13 @@ Source: Survey Results.\\
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH bold=true
 \noindent
 {\fontsize{10}{13}\selectfont \textbf{Comparing priorities according to firm sizes reveals the following:}}
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -361,6 +389,7 @@ Priorities varied depending on the size of the firms. For large firms, addressin
 
 \vspace{1em}
 
+% BLOCK:CHART chart=ch17.png title="Figure 2.5 (Size Priorities Chart)"
 % ---------------------------------------------------------
 % FIGURE 2.5 (Size Priorities Chart)
 % ---------------------------------------------------------
@@ -370,6 +399,7 @@ Priorities varied depending on the size of the firms. For large firms, addressin
     \includegraphics[width=\linewidth]{ch17.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------
@@ -386,16 +416,17 @@ Source: Survey Results.\\
 % PAGE 22: PRIORITIES BY SECTOR
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=22
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -403,6 +434,7 @@ Source: Survey Results.\\
 
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="2-2-2 Priorities according to economic sectors"
 % ---------------------------------------------------------
 % SECTION HEADER
 % ---------------------------------------------------------
@@ -411,6 +443,7 @@ Source: Survey Results.\\
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -421,6 +454,7 @@ The manufacturing and tourism sectors agree that their top priority is revisitin
 
 \vspace{1.5em}
 
+% BLOCK:CHART chart=ch18.png title="Figure 2.6 (Sector Priorities Chart)"
 % ---------------------------------------------------------
 % FIGURE 2.6 (Sector Priorities Chart)
 % ---------------------------------------------------------
@@ -430,6 +464,7 @@ The manufacturing and tourism sectors agree that their top priority is revisitin
     \includegraphics[width=\linewidth]{ch18.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------
@@ -445,16 +480,17 @@ Source: Survey results.
 % PAGE 23: BUSINESS COMMUNITY EXPECTATIONS
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=23
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -462,6 +498,7 @@ Source: Survey results.
 
 \end{tikzpicture}
 
+% BLOCK:TITLE level=2 color=ecestitle icon=ph3.png
 % ---------------------------------------------------------
 % HEADER SECTION (Title + Logo)
 % ---------------------------------------------------------
@@ -480,6 +517,7 @@ Source: Survey results.
 
 \vspace{2em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -490,6 +528,7 @@ Expectations of higher energy and water tariffs, and a decrease in the duration 
 
 \vspace{1.5em}
 
+% BLOCK:CHART chart=ch19.png title="Figure 2.7 (Expectations Chart)"
 % ---------------------------------------------------------
 % FIGURE 2.7 (Expectations Chart)
 % ---------------------------------------------------------
@@ -499,6 +538,7 @@ Expectations of higher energy and water tariffs, and a decrease in the duration 
     \includegraphics[width=\linewidth]{ch19.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------

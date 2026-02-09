@@ -2,6 +2,7 @@
 % PAGE 8: MACROECONOMIC OVERVIEW
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=mc_bg.png page=8
 % 1. Geometry
 % Use the Sidebar Layout margins (Left margin clears the graphic)
 \newgeometry{left=5cm, right=1.5cm, top=3.5cm, bottom=2.5cm}
@@ -12,23 +13,25 @@
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{mc_bg.png}
     };
-    
+
     % Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
     };
 \end{tikzpicture}
 
+% BLOCK:TITLE level=1 color=ecestitle
 % ---------------------------------------------------------
 % TITLE & INTRO
 % ---------------------------------------------------------
 \noindent
-{\fontsize{21}{25}\selectfont \textbf{\color{ecestitle} 
+{\fontsize{21}{25}\selectfont \textbf{\color{ecestitle}
 Macroeconomic Overview
 }}
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH bold=true
 \noindent
 {\fontsize{10}{13}\selectfont \textbf{
     Globally: Global growth forecasts continue their downward trend, with low and uneven growth and multiple challenges facing the global economy.
@@ -36,6 +39,7 @@ Macroeconomic Overview
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -53,7 +57,7 @@ The composite Purchasing Managers' Index (PMI) continued to grow for the sixth m
 
 \vspace{0.8em}
 
-\textbf{Locally:} 
+\textbf{Locally:}
 There are signs of macroeconomic stability during the first half of 2025 due to improved tourism, Ras El-Hekma investments, and a narrowing foreign exchange gap. However, completing structural reforms is essential to maximize benefits from macroeconomic stability and enhance the resilience of the Egyptian economy in the face of crises.
 
 \vspace{0.8em}
@@ -65,6 +69,7 @@ The fourth review by the International Monetary Fund (IMF) has been concluded, u
 To build on economic stability and enhance resilience in the face of global challenges, the Fund stressed the need to complete structural reforms. Most importantly, the state must rapidly withdraw from non-strategic activities, complete the removal of energy subsidies, improve governance and oversight of off-budget entities, and continue to avail a business environment that ensures fair competition between the state and the private sector. Finally, there is a need to integrate climate change efforts into strategic plans.
 }
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % FOOTNOTES SECTION
 % ---------------------------------------------------------
@@ -77,15 +82,15 @@ To build on economic stability and enhance resilience in the face of global chal
 
 \noindent
 {\fontsize{7}{9}\selectfont
-\textsuperscript{1} 
+\textsuperscript{1}
 IMF, World Economic Outlook July 2025.\\
-\textsuperscript{2} 
+\textsuperscript{2}
 World Bank, Global Economic Prospects June 2025.\\
-\textsuperscript{3} 
+\textsuperscript{3}
 Ibid.\\
-\textsuperscript{4} 
+\textsuperscript{4}
 IMF, World Economic Outlook July 2025\\
-\textsuperscript{5} 
+\textsuperscript{5}
 Ibid.\\
 \textsuperscript{6} \underline{\href{https://www.spglobal.com/marketintelligence/en/mi/research-analysis/global-economic-expansion-gains-momentum-in-march-Apr24.html}{\color{eceslink} https://www.spglobal.com/marketintelligence/en/mi/research-analysis/global-economic-expansion-gains-momentum-in-march-Apr24.html}}
 }
@@ -96,6 +101,7 @@ Ibid.\\
 % PAGE 9: MACROECONOMIC INDICATORS (GDP & INFLATION)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=mc_bg.png page=9
 % 1. Geometry (Maintains sidebar layout)
 \newgeometry{left=5cm, right=1.5cm, top=3.5cm, bottom=2.5cm}
 
@@ -105,13 +111,14 @@ Ibid.\\
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{mc_bg.png}
     };
-    
+
     % Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
     };
 \end{tikzpicture}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % INTRO TEXT
 % ---------------------------------------------------------
@@ -122,17 +129,20 @@ The following section includes a brief overview of developments in the most impo
 
 \vspace{0.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="I. GDP Growth"
 % ---------------------------------------------------------
 % SECTION I: GDP GROWTH
 % ---------------------------------------------------------
 \noindent
 {\fontsize{11}{14}\selectfont \textbf{I. GDP Growth}}
 
+% BLOCK:BULLET_LIST
 \begin{itemize}
     \item \fontsize{10}{13}\selectfont
     GDP grew at a rate of 4.7\% in the third quarter of fiscal year \CurrentFiscalYear{} (January - March 2025), representing an increase of approximately 11\% compared to the previous quarter and 115\% compared to the corresponding quarter of the previous fiscal year (2023/2024). This increase is due to the positive contribution of net exports to growth, which offset the slight decline in the contribution of household consumption, in addition to the recovery of growth in non-oil manufacturing, tourism, and communications and information technology. Growth was inhibited by the continued decline in Suez Canal activity due to ongoing geopolitical tensions, as well as the declining performance of the extraction sector.\textsuperscript{10}
 \end{itemize}
 
+% BLOCK:CHART chart=ch6.png title="Figure 1: Real GDP Growth"
 % ---------------------------------------------------------
 % FIGURE 1
 % ---------------------------------------------------------
@@ -150,12 +160,14 @@ The following section includes a brief overview of developments in the most impo
 
 \vspace{1em}
 
+% BLOCK:SUBHEADER_LEGEND text="II. Inflation"
 % ---------------------------------------------------------
 % SECTION II: INFLATION
 % ---------------------------------------------------------
 \noindent
 {\fontsize{11}{14}\selectfont \textbf{II. Inflation}}
 
+% BLOCK:BULLET_LIST
 \begin{itemize}
     \item \fontsize{10}{13}\selectfont
     Following the increased average annual headline inflation rate for the entire republic over the previous three months, it declined to 14.4\% in June, compared to about 16.5\% in May 2025. This reflects the fading impact of the shocks resulting from the fuel price hike in April 2025,\textsuperscript{12} which increased the cost of land transportation, services and consumer goods, especially pharmaceutical products. It also mirrors the fading effect of the seasonal increase in demand for food commodities after the end of Ramadan and the holidays (Central Agency for Public Mobilization and Statistics, 2025).
@@ -163,11 +175,13 @@ The following section includes a brief overview of developments in the most impo
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 To sustain the downward trend in inflation, the Monetary Policy Committee of the Central Bank of Egypt decided, in its meeting on Thursday, July 10, 2025, to maintain the overnight deposit and lending rates, and the rate of the Central Bank's main operation, at 24.00\%, 25.00\%, and 24.50\%, respectively. It also decided to keep the credit and discount rate at 24.50\%. \textsuperscript{13}
 }
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % FOOTNOTES
 % ---------------------------------------------------------
@@ -191,6 +205,7 @@ To sustain the downward trend in inflation, the Monetary Policy Committee of the
 % PAGE 10: INFLATION CHART & FOREIGN TRANSACTIONS
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=mc_bg.png page=10
 % 1. Geometry (Maintains sidebar layout)
 \newgeometry{left=5cm, right=1.5cm, top=3cm, bottom=2.5cm}
 
@@ -200,13 +215,14 @@ To sustain the downward trend in inflation, the Monetary Policy Committee of the
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{mc_bg.png}
     };
-    
+
     % Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
     };
 \end{tikzpicture}
 
+% BLOCK:CHART chart=ch7.png title="Figure 2: Inflation and Key Interest Rates"
 % ---------------------------------------------------------
 % FIGURE 2: INFLATION AND RATES
 % ---------------------------------------------------------
@@ -223,6 +239,7 @@ To sustain the downward trend in inflation, the Monetary Policy Committee of the
 
 \vspace{1em}
 
+% BLOCK:SUBHEADER_LEGEND text="III. Foreign transactions"
 % ---------------------------------------------------------
 % SECTION III: FOREIGN TRANSACTIONS
 % ---------------------------------------------------------
@@ -231,6 +248,7 @@ To sustain the downward trend in inflation, the Monetary Policy Committee of the
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 \textbf{Balance of payments:} The July-March period of fiscal year \CurrentFiscalYear{} saw the balance of payments shift from an overall surplus of approximately \$4.1 billion to an overall deficit of \$1.9 billion. This is due to a decline in net capital inflows and financial transactions to \$7.7 billion during the mentioned period, compared to \$20 billion during the period July-March 2023/2024, thanks to investments in Ras-El-Hekma.
@@ -256,6 +274,7 @@ The improvement in the current account was offset by the increased deficit in th
 The value of the Egyptian pound against the US dollar stabilized during the quarter under study (\CurrentQuarterText) at 50.38, representing a recovery of approximately 0.1\% for the pound compared to the previous quarter, while representing a decline of approximately 6\% compared to its value in the corresponding quarter of fiscal year 2023/2024 (Figure 3).
 }
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % FOOTNOTES
 % ---------------------------------------------------------
@@ -278,6 +297,7 @@ The value of the Egyptian pound against the US dollar stabilized during the quar
 % PAGE 11: PUBLIC FINANCE
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=mc_bg.png page=11
 % 1. Geometry (Maintains sidebar layout)
 \newgeometry{left=5cm, right=1.5cm, top=3cm, bottom=2.5cm}
 
@@ -287,13 +307,14 @@ The value of the Egyptian pound against the US dollar stabilized during the quar
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{mc_bg.png}
     };
-    
+
     % Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
     };
 \end{tikzpicture}
 
+% BLOCK:CHART chart=ch8.png title="Figure 3: Net International Reserves and Exchange Rate"
 % ---------------------------------------------------------
 % FIGURE 3: RESERVES & EXCHANGE RATE
 % ---------------------------------------------------------
@@ -311,6 +332,7 @@ The value of the Egyptian pound against the US dollar stabilized during the quar
 
 \vspace{1.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="IV. Public Finance"
 % ---------------------------------------------------------
 % SECTION IV: PUBLIC FINANCE
 % ---------------------------------------------------------
@@ -319,19 +341,22 @@ The value of the Egyptian pound against the US dollar stabilized during the quar
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 The overall deficit in the State's general budget as a percentage of GDP decreased during the period July-May \CurrentFiscalYear{} to -6.9\% compared to -7.3\% in the corresponding period of the previous fiscal year. This is due to:
 }
 
+% BLOCK:BULLET_LIST
 \begin{itemize} \itemsep0.6em
     \item \fontsize{10}{13}\selectfont Public revenues rising by 1.3\% to EGP 2,246.6 billion, driven by a 36\% increase in tax revenues.
-    
+
     \item \fontsize{10}{13}\selectfont Public expenditures increasing by approximately 25.2\% to EGP 3,408.7 billion, while public spending continued to be controlled at a ceiling of EGP 1 trillion (Ministry of Finance 2025).\textsuperscript{22}
-    
+
     \item \fontsize{10}{13}\selectfont According to the Ministry of Finance, the debt-to-GDP ratio decreased from 89.4\% in June 2024 to 85\% in June 2025, as a result of a decline in domestic debt by approximately eight percentage points and external debt by approximately 2.7 percentage points.
 \end{itemize}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % FOOTNOTES
 % ---------------------------------------------------------

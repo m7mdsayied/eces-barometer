@@ -2,18 +2,19 @@
 % PAGE 24: SUB-INDICES PERFORMANCE (Figure 3.1)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=24
 % 1. Geometry
 % Standard margins
 \newgeometry{left=2cm, right=2cm, top=3cm, bottom=2.5cm}
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -21,6 +22,7 @@
 
 \end{tikzpicture}
 
+% BLOCK:TITLE level=1 color=ecestitle
 % ---------------------------------------------------------
 % SECTION TITLE
 % ---------------------------------------------------------
@@ -29,6 +31,7 @@
 
 \vspace{1em}
 
+% BLOCK:SUBHEADER_LEGEND text="3.1. Performance evaluation"
 % ---------------------------------------------------------
 % SUBSECTION 3.1
 % ---------------------------------------------------------
@@ -37,6 +40,7 @@
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % BODY TEXT
 % ---------------------------------------------------------
@@ -51,6 +55,7 @@ Small and medium enterprises scored higher values than neutral by 5 points in th
 
 \vspace{0.5em}
 
+% BLOCK:CHART chart=ch20.png title="Figure 3.1 (Sub-indices Performance)"
 % ---------------------------------------------------------
 % FIGURE 3.1 (Sub-indices Performance)
 % ---------------------------------------------------------
@@ -60,6 +65,7 @@ Small and medium enterprises scored higher values than neutral by 5 points in th
     \includegraphics[width=\linewidth]{ch20.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------
@@ -76,16 +82,17 @@ Source: Survey results.\\
 % PAGE 25: PRICES, WAGES, INVESTMENT, EMPLOYMENT INDICES
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=25
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -93,6 +100,7 @@ Source: Survey results.\\
 
 \end{tikzpicture}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % SECTION 1: PRICES AND WAGES
 % ---------------------------------------------------------
@@ -101,6 +109,7 @@ Source: Survey results.\\
 
 \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 The final product prices index for all firms exceeded the neutral level, reflecting price stability during the quarter under study. The wage index exceeded the neutral level by 4 points during the quarter under study, but declined from the previous quarter (Figure 3-2).
@@ -108,6 +117,7 @@ The final product prices index for all firms exceeded the neutral level, reflect
 
 \vspace{1em}
 
+% BLOCK:CHART chart=ch21.png title="Figure 3.2 (Prices/Wages)"
 % ---------------------------------------------------------
 % FIGURE 3.2 (Prices/Wages)
 % ---------------------------------------------------------
@@ -117,6 +127,7 @@ The final product prices index for all firms exceeded the neutral level, reflect
     \includegraphics[width=\linewidth]{ch21.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 \vspace{-0.5em}
 \noindent
 {\fontsize{8}{10}\selectfont
@@ -126,20 +137,23 @@ Source: Survey results.\\
 
 \vspace{1.5em}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % SECTION 2: INVESTMENT AND EMPLOYMENT
 % ---------------------------------------------------------
 \noindent
 {\fontsize{11}{13}\selectfont \textbf{Stable investment and employment indices for all firms}}
 
+% BLOCK:BULLET_LIST
 \begin{itemize} \itemsep0.6em
     \item \fontsize{10}{13}\selectfont For large firms, the investment index during the quarter under study scored higher values than the neutral level by one point, and less than the previous and corresponding quarters. The employment index scored values at the neutral level and below the previous and corresponding quartiles.
-    
+
     \item \fontsize{10}{13}\selectfont With regards to small and medium-sized enterprises, the investment index came at the neutral level, recording a decrease compared to the previous quarter. However, it scored the same values as the corresponding quarter. Meanwhile, the employment index scored higher values than neutral by one point, and higher than the previous and corresponding quarters (Figure 3-3).
 \end{itemize}
 
 \vspace{0.5em}
 
+% BLOCK:CHART chart=ch22.png title="Figure 3.3 (Invest/Employ)"
 % ---------------------------------------------------------
 % FIGURE 3.3 (Invest/Employ)
 % ---------------------------------------------------------
@@ -149,6 +163,7 @@ Source: Survey results.\\
     \includegraphics[width=\linewidth]{ch22.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 \vspace{-0.5em}
 \noindent
 {\fontsize{8}{10}\selectfont
@@ -161,16 +176,17 @@ Source: Survey results.
 % PAGE 26: PERFORMANCE EXPECTATIONS (Figure 3.4)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=26
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -178,6 +194,7 @@ Source: Survey results.
 
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="3.2. Performance Expectations"
 % ---------------------------------------------------------
 % SECTION HEADER
 % ---------------------------------------------------------
@@ -186,6 +203,7 @@ Source: Survey results.
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % INTRO TEXT
 % ---------------------------------------------------------
@@ -204,6 +222,7 @@ The expectations of small and medium enterprises for domestic sales and inventor
 
 \vspace{0.5em}
 
+% BLOCK:CHART chart=ch23.png title="Figure 3.4 (Expectations Size)"
 % ---------------------------------------------------------
 % FIGURE 3.4 (Expectations Size)
 % ---------------------------------------------------------
@@ -213,6 +232,7 @@ The expectations of small and medium enterprises for domestic sales and inventor
     \includegraphics[width=\linewidth]{ch23.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES
 % ---------------------------------------------------------
@@ -225,6 +245,7 @@ Source: Survey results.\\
 
 \vspace{1.5em}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % BOTTOM TEXT
 % ---------------------------------------------------------
@@ -233,6 +254,7 @@ Source: Survey results.\\
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 The final product price index declined compared to the previous and corresponding quarters, but exceeded the neutral level, driven by the higher input price index from the previous and the corresponding quarters.
@@ -248,16 +270,17 @@ In the meantime, small and medium enterprises expect a stable wage index at the 
 % PAGE 27: PRICES, WAGES, INVESTMENT OUTLOOK
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=con_bg.png page=27
 % 1. Geometry (Persist)
 
 % 2. Background Image (con_bg.png)
 \begin{tikzpicture}[remember picture, overlay]
-    
+
     % A. Main Background
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{con_bg.png}
     };
-    
+
     % B. Page Number (Dynamic)
     \node[anchor=south east] at ([xshift=-1cm, yshift=1cm]current page.south east) {
         \fontsize{14}{14}\selectfont \textbf{\thepage}
@@ -265,6 +288,7 @@ In the meantime, small and medium enterprises expect a stable wage index at the 
 
 \end{tikzpicture}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % TOP TEXT (Continuation)
 % ---------------------------------------------------------
@@ -275,6 +299,7 @@ by one point. The expectations of large firms came one point higher than the pre
 
 \vspace{0.5em}
 
+% BLOCK:CHART chart=ch24.png title="Figure 3.5 (Expectations Prices)"
 % ---------------------------------------------------------
 % FIGURE 3.5 (Expectations Prices)
 % ---------------------------------------------------------
@@ -284,6 +309,7 @@ by one point. The expectations of large firms came one point higher than the pre
     \includegraphics[width=\linewidth]{ch24.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE & NOTES FOR FIG 3.5
 % ---------------------------------------------------------
@@ -296,6 +322,7 @@ Source: Survey results.\\
 
 \vspace{2em}
 
+% BLOCK:PARAGRAPH bold=true
 % ---------------------------------------------------------
 % MIDDLE SECTION: INVESTMENT AND EMPLOYMENT
 % ---------------------------------------------------------
@@ -304,6 +331,7 @@ Source: Survey results.\\
 
 \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 All firms expect the investment index to exceed the neutral level as well as the previous and corresponding quarters by one point. They also expect the employment index to exceed the previous quarter by one point, similar to the corresponding quarter, and to record higher values than neutral by one point (Figure 3-6).
@@ -311,6 +339,7 @@ All firms expect the investment index to exceed the neutral level as well as the
 
 \vspace{0.5em}
 
+% BLOCK:CHART chart=ch25.png title="Figure 3.6 (Expectations Invest/Employ)"
 % ---------------------------------------------------------
 % FIGURE 3.6 (Expectations Invest/Employ)
 % ---------------------------------------------------------
@@ -320,6 +349,7 @@ All firms expect the investment index to exceed the neutral level as well as the
     \includegraphics[width=\linewidth]{ch25.png}
 \end{figure}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % SOURCE FOR FIG 3.6
 % ---------------------------------------------------------

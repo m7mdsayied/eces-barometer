@@ -2,6 +2,7 @@
 % PAGE 2: EXECUTIVE SUMMARY (START)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=exc_bg_ar.png page=2
 % 1. Adjust Geometry for RTL Sidebar
 % Right margin = 5cm (for sidebar), Left margin = 1.5cm
 \newgeometry{right=5cm, left=1.5cm, top=3cm, bottom=2.5cm}
@@ -11,21 +12,23 @@
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{exc_bg_ar.png}
     };
-    
+
     % Page Number "2"
     \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
         \fontsize{14}{14}\selectfont \textbf{2}
     };
 \end{tikzpicture}
 
+% BLOCK:TITLE level=1 color=ecestitle
 % ---------------------------------------------------------
 % TITLE
 % ---------------------------------------------------------
 \noindent
-{\fontsize{22}{26}\selectfont \textbf{\color{ecestitle} 
+{\fontsize{22}{26}\selectfont \textbf{\color{ecestitle}
 ملخص تنفيذي
 }} \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % INTRO PARAGRAPH
 % ---------------------------------------------------------
@@ -34,13 +37,14 @@
 يستعرض هذا التقرير تقييما دوريا يقوم به المركز المصري للدراسات الاقتصادية لعينة تضم 120 شركة من شركات القطاع الخاص تغطي مختلف القطاعات والأحجام، ويعكس رأي مجتمع الأعمال بشأن التطورات التي شهدتها مجموعة من المتغيرات، وتحديداً: الإنتاج، والمبيعات المحلية، والصادرات، والمخزون السلعي، ومستوى استغلال الطاقة الإنتاجية، والأسعار، والأجور، والتوظيف، والاستثمار، وذلك خلال الربع (\CurrentQuarterText)، وتوقعاته للربع (\NextQuarterText) مع مقارنة النتائج بالربع السابق والربع المناظر. وفيما يلي عرض موجز لأهم النتائج التي انتهى إليها التقرير للربع محل الدراسة (\CurrentQuarterText).
 } \vspace{0.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="تقييم الأداء والتوقعات"
 % ---------------------------------------------------------
 % SUBHEADER AND ARROW LEGEND
 % ---------------------------------------------------------
 \noindent
 % RTL Order: 1st Minipage = RIGHT, 2nd Minipage = LEFT
 \begin{minipage}[t]{0.50\textwidth}
-    \vspace{0pt} 
+    \vspace{0pt}
     \raggedright
     \textbf{\underline{
         تقييم الأداء والتوقعات وفقا للمؤشر الإجمالي
@@ -48,7 +52,7 @@
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.45\textwidth}
-    \vspace{0pt} 
+    \vspace{0pt}
     \centering
     % The legend image
     \includegraphics[width=\linewidth, height=1cm]{arrow.png}
@@ -56,6 +60,7 @@
 
 \vspace{0.5em}
 
+% BLOCK:HIGHLIGHT_BOX
 % ---------------------------------------------------------
 % BOXED CONTENT (HIGHLIGHTS)
 % ---------------------------------------------------------
@@ -64,10 +69,10 @@
     % Box width reduced to 12cm to prevent overflow with sidebar margins
     \node[draw=ecesteal, line width=1pt, inner sep=10pt, align=justify, text width=12cm] (box) {
         \fontsize{10}{13}\selectfont
-        
+
         \textbf{-- ارتفاع مؤشر أداء الأعمال خلال الربع محل الدراسة عن المستوى المحايد}\\
         \textbf{-- ارتفاع مؤشر التوقعات عن المستوى المحايد خلال الربع القادم}
-        
+
         \vspace{0.5em}
         \textbf{\color{textblue} \underline{
             وفقا للحجم:
@@ -86,7 +91,7 @@
         \textbf{\color{textgreen} \underline{
             التحديات:
             }} \\
-        \color{textgreen} 
+        \color{textgreen}
         -- الزيادة المتكررة في أسعار الطاقة والمياه تتصدر قائمة المعوقات التي واجهت كافة الشركات يليها التحديات المرتبطة بارتفاع التضخم، ثم إجراءات التعامل مع الجهات الحكومية\\
         -- قطاعا الصناعة التحويلية والتشييد والبناء والشركات الصغيرة والمتوسطة الأكثر معاناة.
     };
@@ -94,6 +99,7 @@
 
 \vspace{1em}
 
+% BLOCK:TEXT_CHART_ROW chart=ch1.png
 % ---------------------------------------------------------
 % BOTTOM TEXT AND CHART (PAGE 2)
 % ---------------------------------------------------------
@@ -103,7 +109,7 @@
     \fontsize{10}{13}\selectfont
     سجل مؤشر أداء الأعمال للربع محل الدراسة (\CurrentQuarterText) قيماً أعلى من \textbf{المستوى المحايد} بمقدار نقطة واحدة. استقرار المؤشرات الفرعية على أدائها الجيد. \textbf{ومقارنة بالربع السابق}، تراجع مؤشر أداء الأعمال بنحو 7 نقاط. ويرجع ذلك إلى انخفاض حاد في مؤشر الأجور بعد قفزة كبيرة شهدها خلال الربع السابق، وإلى تراجع مؤشرات الإنتاج، والمبيعات، ومستوى استغلال الطاقة الإنتاجية الا انها لا تزال تسجل قيما اعلي من المستوى المحايد.
     \vspace{0.8em}
-    
+
     كما سجل مؤشر توقعات الأداء للربع (\NextQuarterText) قيماً أعلى من \textbf{المستوى المحايد} بمقدار 4 نقاط وهو ما يُعزى إلى التوقعات بارتفاع كافة المؤشرات الفرعية \textbf{عن المستوى المحايد لتعكس توقع ثبات المؤشرات عند نفس أداء الربع الحالي باستثناء قطاعات السياحة والاتصالات والخدمات المالية التي يتوقع أن تشهد مؤشراتها الفرعية ارتفاعا خلال الربع القادم.}
 \end{minipage}%
 \hfill
@@ -120,6 +126,7 @@
 % PAGE 3: DETAILED ANALYSIS (SIZE & SECTOR)
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=exc_bg_ar.png page=3
 % Geometry persists from Page 2
 
 \begin{tikzpicture}[remember picture, overlay]
@@ -127,20 +134,21 @@
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{exc_bg_ar.png}
     };
-    
+
     % Page Number "3"
     \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
         \fontsize{14}{14}\selectfont \textbf{3}
     };
 \end{tikzpicture}
 
+% BLOCK:TEXT_CHART_ROW chart=ch2.png
 % ---------------------------------------------------------
 % SECTION 1: ACCORDING TO SIZE (وفقا للحجم)
 % ---------------------------------------------------------
 \noindent
 % Text (Right)
 \begin{minipage}[t]{0.58\textwidth}
-    \vspace{0pt} 
+    \vspace{0pt}
     {\fontsize{11}{14}\selectfont \textbf{\color{textblue} \underline{وفقا للحجم:}}} \vspace{0.5em}
 
     \fontsize{10}{13}\selectfont
@@ -149,19 +157,21 @@
 \hfill
 % Chart (Left) - ch2.png
 \begin{minipage}[t]{0.40\textwidth}
-    \vspace{0pt} 
+    \vspace{0pt}
     \centering
     \includegraphics[width=\linewidth]{ch2.png}
 \end{minipage}
 
 \vspace{1.5em}
 
+% BLOCK:SUBHEADER_LEGEND text="وفقا للقطاع"
 % ---------------------------------------------------------
 % SECTION 2: SECTORALLY (وفقا للقطاع)
 % ---------------------------------------------------------
 \noindent
 {\fontsize{11}{14}\selectfont \textbf{\color{textpurple} \underline{وفقا للقطاع:}}} \vspace{0.5em}
 
+% BLOCK:PARAGRAPH
 \noindent
 {\fontsize{10}{13}\selectfont
 تجاوزت مؤشرات الأداء لكافة القطاعات المستوى المحايد باستثناء قطاع الصناعات التحويلية الذي شهد أقل أداء على مستوى القطاعات محققا قيما دون المستوى المحايد. بينما سجل مؤشر الأداء لقطاع التشييد والبناء قيما عند المستوى المحايد.
@@ -169,6 +179,7 @@
 
 \vspace{1em}
 
+% BLOCK:CHART chart=ch3.png
 % Middle Chart (ch3.png)
 \noindent
 \begin{figure}[h!]
@@ -178,6 +189,7 @@
 
 \vspace{1em}
 
+% BLOCK:PARAGRAPH
 % ---------------------------------------------------------
 % DETAILED SECTOR TEXT
 % ---------------------------------------------------------
@@ -196,6 +208,7 @@
 % PAGE 4: CHALLENGES & MACROECONOMIC DEVELOPMENTS
 % =========================================================
 
+% BLOCK:PAGE_SETUP background=exc_bg_ar.png page=4
 % Geometry persists
 
 \begin{tikzpicture}[remember picture, overlay]
@@ -203,13 +216,14 @@
     \node[anchor=north west, inner sep=0pt] at (current page.north west) {
         \includegraphics[width=\paperwidth, height=\paperheight]{exc_bg_ar.png}
     };
-    
+
     % Page Number "4"
     \node[anchor=south west] at ([xshift=1cm, yshift=1.2cm]current page.south west) {
         \fontsize{14}{14}\selectfont \textbf{4}
     };
 \end{tikzpicture}
 
+% BLOCK:SUBHEADER_LEGEND text="التحديات والأولويات"
 % ---------------------------------------------------------
 % SECTION: CHALLENGES AND PRIORITIES
 % ---------------------------------------------------------
@@ -217,10 +231,12 @@
 \noindent
 {\fontsize{11}{14}\selectfont \textbf{\color{textgreen} \underline{التحديات والأولويات من وجهة نظر مجتمع الأعمال:}}} \vspace{0.8em}
 
+% BLOCK:PARAGRAPH bold=true
 % Bold Intro
 \noindent
 {\fontsize{10}{13}\selectfont \textbf{لا تزال الزيادة المتكررة في أسعار الطاقة والمياه تتصدر قائمة المعوقات التي واجهت كافة الشركات خلال الربع محل الدراسة.}} \vspace{0.8em}
 
+% BLOCK:PARAGRAPH
 % Main Text
 \noindent
 {\fontsize{10}{13}\selectfont
@@ -237,6 +253,7 @@
 
 \vspace{2em}
 
+% BLOCK:SUBHEADER_LEGEND text="أهم التطورات الاقتصادية الكلية"
 % ---------------------------------------------------------
 % SECTION: MACROECONOMIC DEVELOPMENTS
 % ---------------------------------------------------------
@@ -244,12 +261,14 @@
 \noindent
 {\fontsize{11}{14}\selectfont \textbf{\color{black} \underline{أهم التطورات الاقتصادية الكلية:}}} \vspace{0.5em}
 
+% BLOCK:BULLET_LIST
 \begin{itemize} \itemsep0.5em
     \item \fontsize{10}{13}\selectfont \textbf{عالميا:} استمرار التوقعات بتراجع النمو العالمي، نمو منخفض ومتفاوت وتحديات متعددة تواجه الاقتصاد العالمي.
 
     \item \fontsize{10}{13}\selectfont \textbf{محليا:} مؤشرات لاستقرار اقتصادي كلي خلال النصف الأول من عام 2025 بسبب تحسن السياحة واستثمارات رأس الحكمة، وتقلص فجوة الصرف الأجنبي. ضرورة استكمال الإصلاحات الهيكلية لتعظيم الاستفادة من الاستقرار الاقتصادي الكلي وتعزيز صمود الاقتصاد المصري.
 \end{itemize}
 
+% BLOCK:FOOTNOTE
 % ---------------------------------------------------------
 % FOOTNOTE
 % ---------------------------------------------------------
