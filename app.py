@@ -928,6 +928,7 @@ def render_block_editor(section_name: str, section_type: SectionType, filepath: 
             st.session_state[editor_key] = {
                 "manager": manager,
                 "selected_block": None,
+                "preview_pdf": None,  # Store PDF path for persistence across edits
             }
         except Exception as e:
             st.error(f"Error parsing LaTeX file: {str(e)}")
@@ -1632,7 +1633,8 @@ if selected_view == "📝 Report Sections":
         with col_preview:
             st.markdown("### " + ("👁️ معاينة" if is_arabic else "👁️ Preview"))
 
-            btn_prev_txt = "👁️ Generate Preview" if not is_arabic else "👁️ إنشاء معاينة"
+            # Preview button - regenerate only when clicked
+            btn_prev_txt = "🔄 Generate Preview" if not is_arabic else "🔄 إنشاء معاينة"
             if st.button(btn_prev_txt, type="primary", use_container_width=True, key=f"preview_block_{current_section_name}"):
                 # Get current content from the block manager
                 if editor_key in st.session_state:
@@ -1645,12 +1647,24 @@ if selected_view == "📝 Report Sections":
 
                         if pdf_path and os.path.exists(pdf_path):
                             status.update(label="Ready!", state="complete", expanded=False)
-                            display_pdf(pdf_path)
+                            # Store PDF path in session state for persistence
+                            st.session_state[editor_key]["preview_pdf"] = pdf_path
+                            st.rerun()  # Rerun to display the preview persistently
                         else:
                             status.update(label="Failed", state="error")
                             st.error("⚠️ LaTeX Compilation Error")
                             with st.expander("Error Details", expanded=True):
                                 st.code(error_msg, language="tex")
+
+            # Always display preview if it exists (persists across edits)
+            if editor_key in st.session_state:
+                preview_pdf = st.session_state[editor_key].get("preview_pdf")
+                if preview_pdf and os.path.exists(preview_pdf):
+                    display_pdf(preview_pdf)
+                elif preview_pdf:
+                    # PDF file was deleted/expired
+                    st.info("Preview expired. Click Generate Preview." if not is_arabic
+                            else "انتهت صلاحية المعاينة. انقر لإعادة التوليد.")
 
     # ===== LEGACY EDITOR MODE =====
     else:
