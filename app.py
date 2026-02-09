@@ -177,16 +177,6 @@ class AuditLogger:
 if 'language' not in st.session_state:
     st.session_state['language'] = 'English'
 
-# Initialize Persistent Preview State
-if 'preview_pdf_path' not in st.session_state:
-    st.session_state['preview_pdf_path'] = None
-if 'preview_error' not in st.session_state:
-    st.session_state['preview_error'] = None
-if 'preview_section' not in st.session_state:
-    st.session_state['preview_section'] = None
-if 'preview_generated_at' not in st.session_state:
-    st.session_state['preview_generated_at'] = None
-
 # Define Language-Specific Logic
 is_arabic = st.session_state['language'] == 'Arabic'
 text_direction = "rtl" if is_arabic else "ltr"
@@ -381,75 +371,6 @@ st.markdown(f"""
 
     ::-webkit-scrollbar-thumb:hover {{
         background: var(--accent-blue);
-    }}
-
-    /* Scrollable Editor Panel - Left side */
-    .scrollable-editor {{
-        max-height: calc(100vh - 250px);
-        overflow-y: auto;
-        padding-right: 0.5rem;
-    }}
-
-    .scrollable-editor::-webkit-scrollbar {{
-        width: 6px;
-    }}
-
-    .scrollable-editor::-webkit-scrollbar-track {{
-        background: var(--bg-secondary);
-        border-radius: 3px;
-    }}
-
-    .scrollable-editor::-webkit-scrollbar-thumb {{
-        background: var(--accent-blue);
-        border-radius: 3px;
-    }}
-
-    /* Fixed Preview Panel - Right side */
-    .fixed-preview {{
-        position: sticky;
-        top: 20px;
-        max-height: calc(100vh - 180px);
-        overflow-y: auto;
-        background: var(--card-bg);
-        border-radius: 8px;
-        padding: 1rem;
-        border: 1px solid var(--border-color);
-    }}
-
-    .fixed-preview::-webkit-scrollbar {{
-        width: 6px;
-    }}
-
-    .fixed-preview::-webkit-scrollbar-track {{
-        background: var(--bg-secondary);
-        border-radius: 3px;
-    }}
-
-    .fixed-preview::-webkit-scrollbar-thumb {{
-        background: var(--accent-blue);
-        border-radius: 3px;
-    }}
-
-    /* Preview Header - Sticky controls */
-    .preview-controls {{
-        position: sticky;
-        top: 0;
-        background: var(--card-bg);
-        z-index: 10;
-        padding-bottom: 0.75rem;
-        margin-bottom: 0.75rem;
-        border-bottom: 1px solid var(--border-color);
-    }}
-
-    /* Editor Header - Sticky controls */
-    .editor-controls {{
-        position: sticky;
-        top: 0;
-        background: var(--bg-primary);
-        z-index: 10;
-        padding-bottom: 0.75rem;
-        margin-bottom: 0.75rem;
-        border-bottom: 1px solid var(--border-color);
     }}
     </style>
 """, unsafe_allow_html=True)
@@ -1028,9 +949,6 @@ def render_block_editor(section_name: str, section_type: SectionType, filepath: 
         st.caption(f"{block_count} {'كتل' if is_arabic else 'blocks'} | ~{len(page_breaks)+1} {'صفحات' if is_arabic else 'pages'}")
 
     # ===== MAIN LAYOUT =====
-    # Scrollable area contains both palette and blocks
-    st.markdown('<div class="scrollable-editor">', unsafe_allow_html=True)
-    
     col_blocks, col_palette = st.columns([3, 1])
 
     # ===== BLOCK PALETTE (Right side) =====
@@ -1096,8 +1014,6 @@ def render_block_editor(section_name: str, section_type: SectionType, filepath: 
 
                 # Render block card
                 render_block_card(manager, idx, block, section_name, is_arabic)
-    
-    st.markdown('</div>', unsafe_allow_html=True)
 
 
 def render_block_card(manager: BlockManager, idx: int, block: Block, section_name: str, is_arabic: bool):
@@ -1682,16 +1598,9 @@ if selected_view == "📝 Report Sections":
         section_type = SECTION_TYPE_MAP.get(current_section_name, SectionType.ANALYSIS_OVERALL)
         editor_key = f"block_editor_{current_section_name}_{st.session_state.get('language', 'en')}"
 
-        # Auto-clear preview when switching sections
-        if st.session_state.get('preview_section') != current_section_name:
-            st.session_state['preview_pdf_path'] = None
-            st.session_state['preview_error'] = None
-            st.session_state['preview_section'] = current_section_name
-
         # Split view: Editor left, Preview right
         col_editor, col_preview = st.columns([1, 1])
 
-        # === LEFT COLUMN: Scrollable Editor ===
         with col_editor:
             st.markdown("### " + ("📝 محرر الكتل" if is_arabic else "📝 Block Editor"))
 
@@ -1717,74 +1626,36 @@ if selected_view == "📝 Report Sections":
                         del st.session_state[editor_key]
                     st.rerun()
 
-            # Scrollable block editor using container with explicit height
-            with st.container(height=600):
-                render_block_editor(current_section_name, section_type, current_file_path)
+            # Render block editor (without its own save button)
+            render_block_editor(current_section_name, section_type, current_file_path)
 
-        # === RIGHT COLUMN: Fixed Preview ===
         with col_preview:
             st.markdown("### " + ("👁️ معاينة" if is_arabic else "👁️ Preview"))
-            
-            # Preview controls
-            col_gen, col_clear = st.columns(2)
-            with col_gen:
-                btn_prev_txt = "👁️ " + ("تحديث المعاينة" if is_arabic else "Regenerate")
-                if st.button(btn_prev_txt, type="primary", use_container_width=True, key=f"preview_block_{current_section_name}"):
-                    # Get current content from the block manager
-                    if editor_key in st.session_state:
-                        manager = st.session_state[editor_key]["manager"]
-                        current_draft_latex = manager.generate_latex()
 
-                        status_txt = "جاري تجميع ملف المعاينة..." if is_arabic else "Compiling Preview..."
-                        with st.status(status_txt, expanded=True) as status:
-                            pdf_path, error_msg = generate_preview(current_draft_latex)
+            btn_prev_txt = "👁️ Generate Preview" if not is_arabic else "👁️ إنشاء معاينة"
+            if st.button(btn_prev_txt, type="primary", use_container_width=True, key=f"preview_block_{current_section_name}"):
+                # Get current content from the block manager
+                if editor_key in st.session_state:
+                    manager = st.session_state[editor_key]["manager"]
+                    current_draft_latex = manager.generate_latex()
 
-                            if pdf_path and os.path.exists(pdf_path):
-                                status.update(label="✅ " + ("تم بنجاح" if is_arabic else "Success!"), state="complete", expanded=False)
-                                st.session_state['preview_pdf_path'] = pdf_path
-                                st.session_state['preview_error'] = None
-                                st.session_state['preview_generated_at'] = datetime.now().strftime("%H:%M:%S")
-                                st.rerun()
-                            else:
-                                status.update(label="❌ " + ("فشل" if is_arabic else "Failed"), state="error")
-                                st.session_state['preview_pdf_path'] = None
-                                st.session_state['preview_error'] = error_msg
-            
-            with col_clear:
-                clear_txt = "🗑️ " + ("مسح" if is_arabic else "Clear")
-                if st.button(clear_txt, use_container_width=True, key=f"clear_preview_{current_section_name}"):
-                    st.session_state['preview_pdf_path'] = None
-                    st.session_state['preview_error'] = None
-                    st.rerun()
+                    status_txt = "جاري تجميع ملف المعاينة..." if is_arabic else "Compiling Preview..."
+                    with st.status(status_txt, expanded=True) as status:
+                        pdf_path, error_msg = generate_preview(current_draft_latex)
 
-            # Show preview status indicator
-            if st.session_state.get('preview_pdf_path') and os.path.exists(st.session_state['preview_pdf_path']):
-                gen_time = st.session_state.get('preview_generated_at', '')
-                st.success("📄 " + ("معاينة محفوظة" if is_arabic else "Cached Preview") + f" ({gen_time})")
-            elif st.session_state.get('preview_error'):
-                st.error("⚠️ " + ("خطأ في المعاينة السابقة" if is_arabic else "Previous preview had error"))
-
-            # Fixed preview container with scroll
-            with st.container(height=550):
-                if st.session_state.get('preview_pdf_path') and os.path.exists(st.session_state['preview_pdf_path']):
-                    display_pdf(st.session_state['preview_pdf_path'])
-                elif st.session_state.get('preview_error'):
-                    st.error("⚠️ LaTeX Compilation Error")
-                    with st.expander("Error Details", expanded=True):
-                        st.code(st.session_state['preview_error'], language="tex")
-                else:
-                    st.info("👆 " + ("اضغط على تحديث المعاينة لعرض النتيجة" if is_arabic else "Click 'Regenerate' to generate preview"))
+                        if pdf_path and os.path.exists(pdf_path):
+                            status.update(label="Ready!", state="complete", expanded=False)
+                            display_pdf(pdf_path)
+                        else:
+                            status.update(label="Failed", state="error")
+                            st.error("⚠️ LaTeX Compilation Error")
+                            with st.expander("Error Details", expanded=True):
+                                st.code(error_msg, language="tex")
 
     # ===== LEGACY EDITOR MODE =====
     else:
         raw_content = load_file(current_file_path)
         blocks = parse_latex_blocks(raw_content)
-
-        # Auto-clear preview when switching sections
-        if st.session_state.get('preview_section') != current_section_name:
-            st.session_state['preview_pdf_path'] = None
-            st.session_state['preview_error'] = None
-            st.session_state['preview_section'] = current_section_name
 
         col_editor, col_preview = st.columns([1, 1])
 
@@ -1825,51 +1696,32 @@ if selected_view == "📝 Report Sections":
         with col_preview:
             st.subheader("Live Preview" if not is_arabic else "المعاينة الحية")
 
-            # Preview controls
-            col_gen, col_clear = st.columns(2)
-            with col_gen:
-                btn_prev_txt = "👁️ " + ("تحديث المعاينة" if is_arabic else "Regenerate")
-                if st.button(btn_prev_txt, use_container_width=True, type="primary", key=f"preview_{current_section_name}"):
-                    status_txt = "جاري تجميع ملف المعاينة..." if is_arabic else "Compiling Preview..."
-                    with st.status(status_txt, expanded=True) as status:
-                        pdf_path, error_msg = generate_preview(current_draft_latex)
+            # Preview button - OUTSIDE form, above preview area
+            btn_prev_txt = "👁️ Generate Preview" if not is_arabic else "👁️ إنشاء معاينة"
+            if st.button(btn_prev_txt, use_container_width=True, type="primary", key=f"preview_{current_section_name}"):
+                st.session_state['preview_clicked'] = True
+                st.rerun()
 
-                        if pdf_path and os.path.exists(pdf_path):
-                            status.update(label="✅ " + ("تم بنجاح" if is_arabic else "Success!"), state="complete", expanded=False)
-                            st.session_state['preview_pdf_path'] = pdf_path
-                            st.session_state['preview_error'] = None
-                            st.session_state['preview_generated_at'] = datetime.now().strftime("%H:%M:%S")
-                            st.rerun()
-                        else:
-                            status.update(label="❌ " + ("فشل" if is_arabic else "Failed"), state="error")
-                            st.session_state['preview_pdf_path'] = None
-                            st.session_state['preview_error'] = error_msg
-            
-            with col_clear:
-                clear_txt = "🗑️ " + ("مسح" if is_arabic else "Clear")
-                if st.button(clear_txt, use_container_width=True, key=f"clear_preview_legacy_{current_section_name}"):
-                    st.session_state['preview_pdf_path'] = None
-                    st.session_state['preview_error'] = None
-                    st.rerun()
+            preview_container = st.empty()
 
-            # Show preview status indicator
-            if st.session_state.get('preview_pdf_path') and os.path.exists(st.session_state['preview_pdf_path']):
-                gen_time = st.session_state.get('preview_generated_at', '')
-                st.success("📄 " + ("معاينة محفوظة" if is_arabic else "Cached Preview") + f" ({gen_time})")
-            elif st.session_state.get('preview_error'):
-                st.error("⚠️ " + ("خطأ في المعاينة السابقة" if is_arabic else "Previous preview had error"))
+            # Check if preview was triggered
+            if st.session_state.get('preview_clicked'):
+                status_txt = "جاري تجميع ملف المعاينة..." if is_arabic else "Compiling Preview..."
+                with st.status(status_txt, expanded=True) as status:
+                    pdf_path, error_msg = generate_preview(current_draft_latex)
 
-            # Display persistent preview with fixed positioning and internal scrolling
-            st.markdown('<div class="fixed-preview">', unsafe_allow_html=True)
-            if st.session_state.get('preview_pdf_path') and os.path.exists(st.session_state['preview_pdf_path']):
-                display_pdf(st.session_state['preview_pdf_path'])
-            elif st.session_state.get('preview_error'):
-                st.error("⚠️ LaTeX Compilation Error")
-                with st.expander("Error Details", expanded=True):
-                    st.code(st.session_state['preview_error'], language="tex")
+                    if pdf_path and os.path.exists(pdf_path):
+                        status.update(label="Ready!", state="complete", expanded=False)
+                        with preview_container.container():
+                            display_pdf(pdf_path)
+                        st.session_state['preview_clicked'] = False
+                    else:
+                        status.update(label="Failed", state="error")
+                        st.error("⚠️ LaTeX Compilation Error")
+                        with st.expander("Error Details", expanded=True):
+                            st.code(error_msg, language="tex")
             else:
-                st.info("👆 " + ("اضغط على تحديث المعاينة لعرض النتيجة" if is_arabic else "Click 'Regenerate' to generate preview"))
-            st.markdown('</div>', unsafe_allow_html=True)
+                preview_container.info("Click Preview / اضغط على المعاينة")
 
 # ==========================================
 # 6. VIEW: VARIABLES
