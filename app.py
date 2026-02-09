@@ -10,6 +10,14 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, Dict, List
 
+# Import block system for visual editor
+from block_system import (
+    BlockManager, BlockType, SectionType, Block,
+    parse_section_file, save_section_file,
+    get_default_block_content, get_block_icon, get_block_name,
+    estimate_block_height, SECTION_PALETTES
+)
+
 # ==========================================
 # 1. CONFIGURATION & THEME
 # ==========================================
@@ -698,18 +706,70 @@ def display_pdf(pdf_path):
 # 3. COMPILER & TOOLS
 # ==========================================
 def parse_latex_log(log_path):
-    if not os.path.exists(log_path): return "Log file not found."
+    """Parse LaTeX log file for detailed error information"""
+    if not os.path.exists(log_path):
+        return "Log file not found."
+
     errors = []
+    warnings = []
+
     try:
         with open(log_path, "r", encoding="latin-1", errors='ignore') as f:
             lines = f.readlines()
-        for i, line in enumerate(lines):
+
+        i = 0
+        while i < len(lines):
+            line = lines[i]
+
+            # Critical errors starting with !
             if line.startswith("!"):
-                context = lines[i:i+3] 
-                errors.append("".join(context).strip())
-    except:
-        return "Could not parse log."
-    return "\n\n".join(errors) if errors else "Unknown error. Check syntax."
+                context = lines[i:i+5]  # Get more context
+                error_block = "".join(context).strip()
+                errors.append(f"❌ ERROR:\n{error_block}")
+                i += 5
+                continue
+
+            # Missing file errors
+            if "File" in line and "not found" in line:
+                errors.append(f"📁 MISSING FILE:\n{line.strip()}")
+
+            # Font errors
+            if "Font" in line and ("not found" in line or "undefined" in line.lower()):
+                errors.append(f"🔤 FONT ERROR:\n{line.strip()}")
+
+            # Undefined control sequence
+            if "Undefined control sequence" in line:
+                context = lines[i:i+3]
+                errors.append(f"⚠️ UNDEFINED COMMAND:\n{''.join(context).strip()}")
+                i += 3
+                continue
+
+            # Missing package
+            if "LaTeX Error: File" in line and ".sty" in line:
+                errors.append(f"📦 MISSING PACKAGE:\n{line.strip()}")
+
+            # Overfull/underfull boxes (warnings)
+            if "Overfull" in line or "Underfull" in line:
+                warnings.append(line.strip())
+
+            i += 1
+
+        # Build result
+        result_parts = []
+
+        if errors:
+            result_parts.append("=== ERRORS ===\n" + "\n\n".join(errors))
+
+        if warnings and len(warnings) <= 10:  # Only show if not too many
+            result_parts.append("=== WARNINGS ===\n" + "\n".join(warnings[:5]))
+
+        if result_parts:
+            return "\n\n".join(result_parts)
+        else:
+            return "Unknown error. Check LaTeX syntax and file paths."
+
+    except Exception as e:
+        return f"Could not parse log: {str(e)}"
 
 def render_toolbar():
     # Toolbar text logic adjusted for current language if needed (optional)
@@ -767,7 +827,13 @@ def generate_preview(content_latex):
         
     try:
         # ALWAYS use xelatex for best compatibility (required for Arabic, fine for English)
-        subprocess.run(["xelatex", "-interaction=nonstopmode", preview_tex], cwd=BASE_DIR, stdout=subprocess.DEVNULL)
+        result = subprocess.run(
+            ["xelatex", "-interaction=nonstopmode", preview_tex],
+            cwd=BASE_DIR,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
 
         if os.path.exists(preview_pdf):
             # Log successful preview
@@ -830,6 +896,454 @@ def parse_latex_blocks(content):
 
 def reconstruct_latex(blocks):
     return "\n".join([b['content'] for b in blocks])
+
+
+# ==========================================
+# BLOCK EDITOR UI FUNCTIONS
+# ==========================================
+
+# Section type mapping
+SECTION_TYPE_MAP = {
+    "Executive Summary": SectionType.EXECUTIVE_SUMMARY,
+    "Macroeconomic Overview": SectionType.MACRO_OVERVIEW,
+    "Analysis: Overall Index": SectionType.ANALYSIS_OVERALL,
+    "Analysis: Constraints": SectionType.CONSTRAINTS,
+    "Analysis: Sub-Indices": SectionType.SUBINDICES,
+    "Appendix: Data Tables": SectionType.TABLES,
+}
+
+
+def render_block_editor(section_name: str, section_type: SectionType, filepath: str):
+    """
+    Render visual block editor for a section
+    """
+    is_arabic = st.session_state.get('language') == 'Arabic'
+
+    # Initialize session state for this section
+    editor_key = f"block_editor_{section_name}_{st.session_state.get('language', 'en')}"
+
+    if editor_key not in st.session_state:
+        try:
+            manager = parse_section_file(filepath, section_type)
+            st.session_state[editor_key] = {
+                "manager": manager,
+                "selected_block": None,
+            }
+        except Exception as e:
+            st.error(f"Error parsing LaTeX file: {str(e)}")
+            st.code(str(e))
+            return
+
+    editor_state = st.session_state[editor_key]
+    manager: BlockManager = editor_state["manager"]
+
+    # ===== HEADER (compact - save/reload buttons are in parent) =====
+    col_info, col_stats = st.columns([2, 1])
+
+    with col_info:
+        st.caption(f"📄 {os.path.basename(filepath)}")
+
+    with col_stats:
+        block_count = len(manager.blocks)
+        page_breaks = manager.get_page_breaks()
+        st.caption(f"{block_count} {'كتل' if is_arabic else 'blocks'} | ~{len(page_breaks)+1} {'صفحات' if is_arabic else 'pages'}")
+
+    # ===== MAIN LAYOUT =====
+    col_blocks, col_palette = st.columns([3, 1])
+
+    # ===== BLOCK PALETTE (Right side) =====
+    with col_palette:
+        st.markdown("### " + ("➕ إضافة كتلة" if is_arabic else "➕ Add Block"))
+
+        available_blocks = SECTION_PALETTES.get(section_type, list(BlockType))
+
+        # Core blocks
+        core_types = [BlockType.PARAGRAPH, BlockType.TITLE, BlockType.CHART,
+                      BlockType.BULLET_LIST, BlockType.TEXT_CHART_ROW, BlockType.SPACER]
+        core_blocks = [b for b in available_blocks if b in core_types]
+
+        # Special blocks
+        special_blocks = [b for b in available_blocks if b not in core_types]
+
+        st.markdown("**" + ("الكتل الأساسية" if is_arabic else "Core Blocks") + ":**")
+        for block_type in core_blocks:
+            icon = get_block_icon(block_type)
+            name = get_block_name(block_type)
+
+            if st.button(f"{icon} {name}", use_container_width=True,
+                        key=f"add_{block_type.value}_{section_name}"):
+                content, metadata = get_default_block_content(block_type)
+                manager.add_block(block_type, content, metadata)
+                st.rerun()
+
+        if special_blocks:
+            st.markdown("---")
+            st.markdown("**" + ("كتل خاصة" if is_arabic else "Special Blocks") + ":**")
+            for block_type in special_blocks:
+                icon = get_block_icon(block_type)
+                name = get_block_name(block_type)
+
+                if st.button(f"{icon} {name}", use_container_width=True,
+                            key=f"add_{block_type.value}_{section_name}"):
+                    content, metadata = get_default_block_content(block_type)
+                    manager.add_block(block_type, content, metadata)
+                    st.rerun()
+
+        # Page info
+        st.markdown("---")
+        page_breaks = manager.get_page_breaks()
+        total_pages = len(page_breaks) + 1
+        total_height = manager.get_total_height()
+        st.info(f"📄 ~{total_pages} " + ("صفحات" if is_arabic else "pages") + f"\n📏 {total_height}px")
+
+    # ===== BLOCK LIST (Left side) =====
+    with col_blocks:
+        st.markdown("### " + ("📚 الكتل" if is_arabic else "📚 Content Blocks"))
+
+        if not manager.blocks:
+            st.info("" + ("لا توجد كتل. أضف كتلة من اللوحة الجانبية." if is_arabic else "No blocks yet. Add blocks from the palette."))
+        else:
+            page_breaks = manager.get_page_breaks()
+            current_page = 1
+
+            for idx, block in enumerate(manager.blocks):
+                # Page break indicator
+                if idx in page_breaks:
+                    st.markdown(f"---\n**📄 " + ("صفحة" if is_arabic else "Page") + f" {current_page}** " + ("تنتهي" if is_arabic else "ends") + f" | **" + ("صفحة" if is_arabic else "Page") + f" {current_page + 1}** " + ("تبدأ" if is_arabic else "starts") + "\n---")
+                    current_page += 1
+
+                # Render block card
+                render_block_card(manager, idx, block, section_name, is_arabic)
+
+
+def render_block_card(manager: BlockManager, idx: int, block: Block, section_name: str, is_arabic: bool):
+    """Render a single block as an editable card"""
+
+    icon = get_block_icon(block.type)
+    name = get_block_name(block.type)
+
+    with st.container(border=True):
+        # Header row
+        col_info, col_actions = st.columns([3, 2])
+
+        with col_info:
+            st.markdown(f"**{icon} {name}** | ~{block.estimated_height}px")
+
+        with col_actions:
+            col_up, col_down, col_del = st.columns(3)
+
+            with col_up:
+                if idx > 0:
+                    if st.button("↑", key=f"up_{idx}_{section_name}", use_container_width=True):
+                        manager.move_block(idx, idx - 1)
+                        st.rerun()
+
+            with col_down:
+                if idx < len(manager.blocks) - 1:
+                    if st.button("↓", key=f"down_{idx}_{section_name}", use_container_width=True):
+                        manager.move_block(idx, idx + 1)
+                        st.rerun()
+
+            with col_del:
+                if st.button("🗑️", key=f"del_{idx}_{section_name}", use_container_width=True):
+                    manager.remove_block(idx)
+                    st.rerun()
+
+        # Block content editor (expandable)
+        with st.expander("✏️ " + ("تعديل" if is_arabic else "Edit"), expanded=False):
+            render_block_editor_form(manager, idx, block, section_name, is_arabic)
+
+
+def render_block_editor_form(manager: BlockManager, idx: int, block: Block, section_name: str, is_arabic: bool):
+    """Render edit form for a specific block type"""
+
+    if block.type == BlockType.PARAGRAPH:
+        new_content = st.text_area(
+            "المحتوى" if is_arabic else "Content",
+            value=block.content,
+            height=150,
+            key=f"edit_para_{idx}_{section_name}"
+        )
+
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            font_size = st.number_input(
+                "حجم الخط" if is_arabic else "Font Size",
+                value=block.metadata.get("font_size", 10),
+                min_value=8, max_value=20,
+                key=f"fs_{idx}_{section_name}"
+            )
+        with col2:
+            bold = st.checkbox(
+                "عريض" if is_arabic else "Bold",
+                value=block.metadata.get("bold", False),
+                key=f"bold_{idx}_{section_name}"
+            )
+        with col3:
+            color_options = ["black", "ecesteal", "textblue", "textpurple", "textgreen"]
+            current_color = block.metadata.get("color", "black")
+            color_idx = color_options.index(current_color) if current_color in color_options else 0
+            color = st.selectbox(
+                "اللون" if is_arabic else "Color",
+                color_options,
+                index=color_idx,
+                key=f"color_{idx}_{section_name}"
+            )
+
+        if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_para_{idx}_{section_name}", type="primary"):
+            manager.update_block(idx, content=new_content, metadata={"font_size": font_size, "bold": bold, "color": color})
+            st.success("✅")
+            st.rerun()
+
+    elif block.type == BlockType.TITLE:
+        new_content = st.text_input(
+            "نص العنوان" if is_arabic else "Title Text",
+            value=block.content,
+            key=f"edit_title_{idx}_{section_name}"
+        )
+
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            level = st.selectbox(
+                "المستوى" if is_arabic else "Level",
+                [1, 2, 3],
+                index=[1, 2, 3].index(block.metadata.get("level", 1)),
+                key=f"lvl_{idx}_{section_name}"
+            )
+        with col2:
+            color_options = ["ecestitle", "textblue", "textpurple", "textgreen", "black"]
+            current_color = block.metadata.get("color", "ecestitle")
+            color_idx = color_options.index(current_color) if current_color in color_options else 0
+            color = st.selectbox(
+                "اللون" if is_arabic else "Color",
+                color_options,
+                index=color_idx,
+                key=f"tcolor_{idx}_{section_name}"
+            )
+        with col3:
+            underline = st.checkbox(
+                "تسطير" if is_arabic else "Underline",
+                value=block.metadata.get("underline", False),
+                key=f"uline_{idx}_{section_name}"
+            )
+
+        if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_title_{idx}_{section_name}", type="primary"):
+            manager.update_block(idx, content=new_content, metadata={"level": level, "color": color, "underline": underline})
+            st.success("✅")
+            st.rerun()
+
+    elif block.type == BlockType.CHART:
+        st.markdown("**" + ("الرسم الحالي" if is_arabic else "Current Chart") + ":**")
+
+        # Show current chart if exists
+        chart_path = os.path.join(IMAGES_DIR, block.content)
+        if os.path.exists(chart_path):
+            st.image(chart_path, width=250)
+        else:
+            st.warning(f"Image not found: {block.content}")
+
+        # Chart selector
+        if os.path.exists(IMAGES_DIR):
+            charts = sorted([f for f in os.listdir(IMAGES_DIR) if f.lower().endswith(('.png', '.jpg', '.jpeg'))])
+            if charts:
+                current_chart = block.content if block.content in charts else charts[0]
+                selected_chart = st.selectbox(
+                    "اختر رسم" if is_arabic else "Select Chart",
+                    charts,
+                    index=charts.index(current_chart) if current_chart in charts else 0,
+                    key=f"chart_{idx}_{section_name}"
+                )
+
+                if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_chart_{idx}_{section_name}", type="primary"):
+                    manager.update_block(idx, content=selected_chart)
+                    st.success("✅")
+                    st.rerun()
+            else:
+                st.warning("No charts found in images/charts folder")
+
+    elif block.type == BlockType.BULLET_LIST:
+        items = block.content if isinstance(block.content, list) else []
+
+        st.markdown("**" + ("عناصر القائمة" if is_arabic else "List Items") + ":**")
+
+        new_items = []
+        for i, item in enumerate(items):
+            new_item = st.text_input(
+                f"Item {i+1}",
+                value=item,
+                key=f"item_{idx}_{i}_{section_name}",
+                label_visibility="collapsed"
+            )
+            new_items.append(new_item)
+
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("➕ " + ("إضافة عنصر" if is_arabic else "Add Item"), key=f"add_item_{idx}_{section_name}"):
+                new_items.append("New item")
+                manager.update_block(idx, content=new_items)
+                st.rerun()
+
+        with col2:
+            if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_list_{idx}_{section_name}", type="primary"):
+                # Filter empty items
+                new_items = [item for item in new_items if item.strip()]
+                manager.update_block(idx, content=new_items)
+                st.success("✅")
+                st.rerun()
+
+    elif block.type == BlockType.TEXT_CHART_ROW:
+        content = block.content if isinstance(block.content, dict) else {"text": "", "chart_file": "ch1.png"}
+
+        new_text = st.text_area(
+            "النص" if is_arabic else "Text Content",
+            value=content.get("text", ""),
+            height=100,
+            key=f"tcr_text_{idx}_{section_name}"
+        )
+
+        # Chart selector
+        if os.path.exists(IMAGES_DIR):
+            charts = sorted([f for f in os.listdir(IMAGES_DIR) if f.lower().endswith(('.png', '.jpg', '.jpeg'))])
+            if charts:
+                current_chart = content.get("chart_file", "ch1.png")
+                new_chart = st.selectbox(
+                    "الرسم" if is_arabic else "Chart",
+                    charts,
+                    index=charts.index(current_chart) if current_chart in charts else 0,
+                    key=f"tcr_chart_{idx}_{section_name}"
+                )
+
+                if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_tcr_{idx}_{section_name}", type="primary"):
+                    manager.update_block(idx, content={"text": new_text, "chart_file": new_chart})
+                    st.success("✅")
+                    st.rerun()
+
+    elif block.type == BlockType.HIGHLIGHT_BOX:
+        sections = block.content if isinstance(block.content, list) else []
+
+        st.markdown("**" + ("أقسام الصندوق" if is_arabic else "Box Sections") + ":**")
+
+        new_sections = []
+        for i, section in enumerate(sections):
+            st.markdown(f"--- Section {i+1} ---")
+
+            title = st.text_input(
+                "العنوان" if is_arabic else "Title",
+                value=section.get("title", ""),
+                key=f"hb_title_{idx}_{i}_{section_name}"
+            )
+
+            color_options = ["textblue", "textpurple", "textgreen", "black"]
+            current_color = section.get("color", "textblue")
+            color = st.selectbox(
+                "اللون" if is_arabic else "Color",
+                color_options,
+                index=color_options.index(current_color) if current_color in color_options else 0,
+                key=f"hb_color_{idx}_{i}_{section_name}"
+            )
+
+            content = st.text_area(
+                "المحتوى" if is_arabic else "Content",
+                value=section.get("content", ""),
+                height=80,
+                key=f"hb_content_{idx}_{i}_{section_name}"
+            )
+
+            new_sections.append({"title": title, "color": color, "content": content})
+
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("➕ " + ("إضافة قسم" if is_arabic else "Add Section"), key=f"add_hb_section_{idx}_{section_name}"):
+                new_sections.append({"title": "New Section:", "color": "textblue", "content": "-- Content"})
+                manager.update_block(idx, content=new_sections)
+                st.rerun()
+
+        with col2:
+            if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_hb_{idx}_{section_name}", type="primary"):
+                manager.update_block(idx, content=new_sections)
+                st.success("✅")
+                st.rerun()
+
+    elif block.type == BlockType.PAGE_SETUP:
+        content = block.content if isinstance(block.content, dict) else {}
+
+        # Background selector
+        bg_options = ["exc_bg.png", "con_bg.png", "mc_bg.png"]
+        current_bg = content.get("background", "con_bg.png")
+        background = st.selectbox(
+            "الخلفية" if is_arabic else "Background",
+            bg_options,
+            index=bg_options.index(current_bg) if current_bg in bg_options else 1,
+            key=f"ps_bg_{idx}_{section_name}"
+        )
+
+        page_number = st.number_input(
+            "رقم الصفحة" if is_arabic else "Page Number",
+            value=content.get("page_number", 1),
+            min_value=1,
+            key=f"ps_page_{idx}_{section_name}"
+        )
+
+        # Geometry
+        st.markdown("**" + ("الهوامش" if is_arabic else "Margins") + ":**")
+        geometry = content.get("geometry", {"left": "2cm", "right": "1.5cm", "top": "3cm", "bottom": "2.5cm"})
+
+        col1, col2 = st.columns(2)
+        with col1:
+            left = st.text_input("Left", value=geometry.get("left", "2cm"), key=f"ps_left_{idx}_{section_name}")
+            top = st.text_input("Top", value=geometry.get("top", "3cm"), key=f"ps_top_{idx}_{section_name}")
+        with col2:
+            right = st.text_input("Right", value=geometry.get("right", "1.5cm"), key=f"ps_right_{idx}_{section_name}")
+            bottom = st.text_input("Bottom", value=geometry.get("bottom", "2.5cm"), key=f"ps_bottom_{idx}_{section_name}")
+
+        if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_ps_{idx}_{section_name}", type="primary"):
+            manager.update_block(idx, content={
+                "background": background,
+                "page_number": page_number,
+                "geometry": {"left": left, "right": right, "top": top, "bottom": bottom}
+            })
+            st.success("✅")
+            st.rerun()
+
+    elif block.type == BlockType.SUBHEADER_LEGEND:
+        content = block.content if isinstance(block.content, dict) else {"text": "", "legend_image": "arrow.png"}
+
+        new_text = st.text_area(
+            "النص" if is_arabic else "Text",
+            value=content.get("text", ""),
+            height=60,
+            key=f"shl_text_{idx}_{section_name}"
+        )
+
+        legend_image = st.text_input(
+            "صورة الدليل" if is_arabic else "Legend Image",
+            value=content.get("legend_image", "arrow.png"),
+            key=f"shl_img_{idx}_{section_name}"
+        )
+
+        if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_shl_{idx}_{section_name}", type="primary"):
+            manager.update_block(idx, content={"text": new_text, "legend_image": legend_image})
+            st.success("✅")
+            st.rerun()
+
+    elif block.type == BlockType.SPACER:
+        size_options = ["0.5em", "1em", "1.5em", "2em"]
+        current_size = block.metadata.get("size", "1em")
+        size = st.selectbox(
+            "الحجم" if is_arabic else "Size",
+            size_options,
+            index=size_options.index(current_size) if current_size in size_options else 1,
+            key=f"spacer_size_{idx}_{section_name}"
+        )
+
+        if st.button("💾 " + ("تحديث" if is_arabic else "Update"), key=f"update_spacer_{idx}_{section_name}", type="primary"):
+            manager.update_block(idx, metadata={"size": size})
+            st.success("✅")
+            st.rerun()
+
+    else:
+        st.info("Editor not available for this block type")
+
 
 # ==========================================
 # 4. SIDEBAR NAVIGATION
@@ -910,16 +1424,11 @@ with st.sidebar:
     
     # Map Arabic selections back to English logic keys
     nav_map = dict(zip(nav_options["Arabic"], nav_options["English"]))
-    
-    selected_view_display = st.radio(
-        "Navigation",
-        nav_options[st.session_state['language']],
-        label_visibility="collapsed"
-    )
-    
-    # Normalize view variable
-    selected_view = nav_map.get(selected_view_display, selected_view_display)
-    
+
+    # Store navigation options for use outside sidebar
+    st.session_state['nav_options'] = nav_options
+    st.session_state['nav_map'] = nav_map
+
     st.markdown("---")
     if is_arabic:
         st.info("💡 **تلميح:** 'المعاينة' تقوم بتجميع القسم الحالي فقط.")
@@ -1001,103 +1510,218 @@ with st.sidebar:
                         st.error(msg)
 
 # ==========================================
+# HORIZONTAL NAVIGATION (MAIN CONTENT)
+# ==========================================
+nav_options = st.session_state.get('nav_options', {
+    "English": ["📝 Report Sections", "⚙️ Report Variables", "📊 Chart Manager", "🚀 Finalize & Publish"],
+    "Arabic": ["📝 أقسام التقرير", "⚙️ متغيرات التقرير", "📊 إدارة الرسوم البيانية", "🚀 إنهاء ونشر"]
+})
+nav_map = st.session_state.get('nav_map', {})
+
+# Add admin panel if user is admin
+if current_role == "admin":
+    if "👥 User Management" not in nav_options["English"]:
+        nav_options["English"].append("👥 User Management")
+        nav_options["Arabic"].append("👥 إدارة المستخدمين")
+        nav_map["👥 إدارة المستخدمين"] = "👥 User Management"
+
+# Initialize selected navigation
+if 'selected_nav' not in st.session_state:
+    st.session_state['selected_nav'] = nav_options[st.session_state['language']][0]
+
+# Horizontal navigation tabs
+nav_cols = st.columns(len(nav_options[st.session_state['language']]))
+for i, (col, nav_item) in enumerate(zip(nav_cols, nav_options[st.session_state['language']])):
+    with col:
+        is_selected = st.session_state['selected_nav'] == nav_item
+        btn_type = "primary" if is_selected else "secondary"
+        if st.button(nav_item, use_container_width=True, type=btn_type, key=f"nav_{i}"):
+            st.session_state['selected_nav'] = nav_item
+            st.rerun()
+
+# Get the normalized view name
+selected_view_display = st.session_state['selected_nav']
+selected_view = nav_map.get(selected_view_display, selected_view_display)
+
+st.markdown("---")
+
+# ==========================================
 # 5. VIEW: REPORT SECTIONS
 # ==========================================
 if selected_view == "📝 Report Sections":
     header_text = "📝 محرر المحتوى والمعاينة" if is_arabic else "📝 Content Editor & Preview"
     st.markdown(f"## {header_text}")
-    
-    # Section Selector
-    section_keys = list(SECTION_MAP.keys())
-    col_sel, col_info = st.columns([1, 2])
+
+    # Initialize editor mode in session state
+    if 'editor_mode' not in st.session_state:
+        st.session_state['editor_mode'] = 'block'  # Default to block editor
+
+    # Section Selector and Editor Mode Toggle
+    col_sel, col_mode, col_info = st.columns([2, 1, 2])
+
     with col_sel:
         lbl = "اختر القسم" if is_arabic else "Select Section"
+        section_keys = list(SECTION_MAP.keys())
         current_section_name = st.selectbox(lbl, section_keys)
-    
+
+    with col_mode:
+        mode_lbl = "وضع المحرر" if is_arabic else "Editor Mode"
+        editor_mode = st.radio(
+            mode_lbl,
+            ["🧱 Block", "📝 Legacy"],
+            index=0 if st.session_state['editor_mode'] == 'block' else 1,
+            horizontal=True,
+            label_visibility="collapsed"
+        )
+        st.session_state['editor_mode'] = 'block' if editor_mode == "🧱 Block" else 'legacy'
+
     current_file_path = os.path.join(BASE_DIR, SECTION_MAP[current_section_name])
-    
+
     # Check if file exists, if not create empty
     if not os.path.exists(current_file_path):
         save_file(current_file_path, "% New Section")
-    
-    raw_content = load_file(current_file_path)
-    blocks = parse_latex_blocks(raw_content)
-    
+
     with col_info:
         st.markdown(f"""
-        <div style="padding-top: 25px;">
+        <div style="padding-top: 5px;">
             <span style="background:#262730; padding: 5px 10px; border-radius:5px; border:1px solid #383b42;">
-                File: <code>{os.path.basename(current_file_path)}</code> | Mode: <b>{st.session_state['language']}</b>
+                📄 <code>{os.path.basename(current_file_path)}</code> | {st.session_state['language']}
             </span>
         </div>
         """, unsafe_allow_html=True)
 
     st.markdown("---")
-    col_editor, col_preview = st.columns([1, 1])
 
-    # --- EDITOR ---
-    with col_editor:
-        st.subheader("Edit Content" if not is_arabic else "تحرير المحتوى")
-        
-        with st.container(height=800):
-            with st.form(f"edit_form_{current_section_name}"):
-                edited_blocks = []
-                for idx, block in enumerate(blocks):
-                    if block['type'] == 'code':
-                        edited_blocks.append(block)
-                    else:
-                        h = max(100, len(block['content']) // 1.5)
-                        new_text = st.text_area(
-                            f"##",
-                            value=block['content'],
-                            height=int(h),
-                            label_visibility="collapsed",
-                            key=f"{st.session_state['language']}_{current_section_name}_{idx}"
+    # ===== BLOCK EDITOR MODE =====
+    if st.session_state['editor_mode'] == 'block':
+        # Get section type
+        section_type = SECTION_TYPE_MAP.get(current_section_name, SectionType.ANALYSIS_OVERALL)
+        editor_key = f"block_editor_{current_section_name}_{st.session_state.get('language', 'en')}"
+
+        # Split view: Editor left, Preview right
+        col_editor, col_preview = st.columns([1, 1])
+
+        with col_editor:
+            st.markdown("### " + ("📝 محرر الكتل" if is_arabic else "📝 Block Editor"))
+
+            # Action buttons row
+            col_save, col_reload = st.columns(2)
+            with col_save:
+                if st.button("💾 " + ("حفظ" if is_arabic else "Save"), type="primary", use_container_width=True, key=f"save_block_{current_section_name}"):
+                    if editor_key in st.session_state:
+                        manager = st.session_state[editor_key]["manager"]
+                        latex_output = manager.generate_latex()
+                        save_file(current_file_path, latex_output)
+                        st.toast("✅ " + ("تم الحفظ" if is_arabic else "Saved!"))
+                        audit_logger.log(
+                            st.session_state.get('username', 'unknown'),
+                            "save_file",
+                            {"filepath": os.path.relpath(current_file_path, BASE_DIR), "editor": "block"}
                         )
-                        edited_blocks.append({'type': 'text', 'content': new_text})
-                        st.markdown("<div style='height:15px'></div>", unsafe_allow_html=True)
 
-                st.markdown("---")
-                btn_save_txt = "💾 حفظ الملف" if is_arabic else "💾 Save to File"
-                save_clicked = st.form_submit_button(btn_save_txt, type="primary", use_container_width=True)
+            with col_reload:
+                if st.button("🔄 " + ("إعادة تحميل" if is_arabic else "Reload"), use_container_width=True, key=f"reload_block_{current_section_name}"):
+                    # Force reload from file
+                    if editor_key in st.session_state:
+                        del st.session_state[editor_key]
+                    st.rerun()
 
-        # Reconstruct content OUTSIDE form so preview can access it
-        current_draft_latex = reconstruct_latex(edited_blocks)
+            # Render block editor (without its own save button)
+            render_block_editor(current_section_name, section_type, current_file_path)
 
-        if save_clicked:
-            save_file(current_file_path, current_draft_latex)
-            st.toast(f"✅ Saved {current_section_name}")
+        with col_preview:
+            st.markdown("### " + ("👁️ معاينة" if is_arabic else "👁️ Preview"))
 
-    # --- PREVIEW ---
-    with col_preview:
-        st.subheader("Live Preview" if not is_arabic else "المعاينة الحية")
+            btn_prev_txt = "👁️ Generate Preview" if not is_arabic else "👁️ إنشاء معاينة"
+            if st.button(btn_prev_txt, type="primary", use_container_width=True, key=f"preview_block_{current_section_name}"):
+                # Get current content from the block manager
+                if editor_key in st.session_state:
+                    manager = st.session_state[editor_key]["manager"]
+                    current_draft_latex = manager.generate_latex()
 
-        # Preview button - OUTSIDE form, above preview area
-        btn_prev_txt = "👁️ Generate Preview" if not is_arabic else "👁️ إنشاء معاينة"
-        if st.button(btn_prev_txt, use_container_width=True, type="primary", key=f"preview_{current_section_name}"):
-            st.session_state['preview_clicked'] = True
-            st.rerun()
+                    status_txt = "جاري تجميع ملف المعاينة..." if is_arabic else "Compiling Preview..."
+                    with st.status(status_txt, expanded=True) as status:
+                        pdf_path, error_msg = generate_preview(current_draft_latex)
 
-        preview_container = st.empty()
+                        if pdf_path and os.path.exists(pdf_path):
+                            status.update(label="Ready!", state="complete", expanded=False)
+                            display_pdf(pdf_path)
+                        else:
+                            status.update(label="Failed", state="error")
+                            st.error("⚠️ LaTeX Compilation Error")
+                            with st.expander("Error Details", expanded=True):
+                                st.code(error_msg, language="tex")
 
-        # Check if preview was triggered
-        if st.session_state.get('preview_clicked'):
-            status_txt = "جاري تجميع ملف المعاينة..." if is_arabic else "Compiling Preview..."
-            with st.status(status_txt, expanded=True) as status:
-                pdf_path, error_msg = generate_preview(current_draft_latex)
+    # ===== LEGACY EDITOR MODE =====
+    else:
+        raw_content = load_file(current_file_path)
+        blocks = parse_latex_blocks(raw_content)
 
-                if pdf_path and os.path.exists(pdf_path):
-                    status.update(label="Ready!", state="complete", expanded=False)
-                    with preview_container.container():
-                        display_pdf(pdf_path)
-                    st.session_state['preview_clicked'] = False
-                else:
-                    status.update(label="Failed", state="error")
-                    st.error("⚠️ LaTeX Compilation Error")
-                    with st.expander("Error Details", expanded=True):
-                        st.code(error_msg, language="tex")
-        else:
-            preview_container.info("Click Preview / اضغط على المعاينة")
+        col_editor, col_preview = st.columns([1, 1])
+
+        # --- EDITOR ---
+        with col_editor:
+            st.subheader("Edit Content" if not is_arabic else "تحرير المحتوى")
+
+            with st.container(height=800):
+                with st.form(f"edit_form_{current_section_name}"):
+                    edited_blocks = []
+                    for idx, block in enumerate(blocks):
+                        if block['type'] == 'code':
+                            edited_blocks.append(block)
+                        else:
+                            h = max(100, len(block['content']) // 1.5)
+                            new_text = st.text_area(
+                                f"##",
+                                value=block['content'],
+                                height=int(h),
+                                label_visibility="collapsed",
+                                key=f"{st.session_state['language']}_{current_section_name}_{idx}"
+                            )
+                            edited_blocks.append({'type': 'text', 'content': new_text})
+                            st.markdown("<div style='height:15px'></div>", unsafe_allow_html=True)
+
+                    st.markdown("---")
+                    btn_save_txt = "💾 حفظ الملف" if is_arabic else "💾 Save to File"
+                    save_clicked = st.form_submit_button(btn_save_txt, type="primary", use_container_width=True)
+
+            # Reconstruct content OUTSIDE form so preview can access it
+            current_draft_latex = reconstruct_latex(edited_blocks)
+
+            if save_clicked:
+                save_file(current_file_path, current_draft_latex)
+                st.toast(f"✅ Saved {current_section_name}")
+
+        # --- PREVIEW ---
+        with col_preview:
+            st.subheader("Live Preview" if not is_arabic else "المعاينة الحية")
+
+            # Preview button - OUTSIDE form, above preview area
+            btn_prev_txt = "👁️ Generate Preview" if not is_arabic else "👁️ إنشاء معاينة"
+            if st.button(btn_prev_txt, use_container_width=True, type="primary", key=f"preview_{current_section_name}"):
+                st.session_state['preview_clicked'] = True
+                st.rerun()
+
+            preview_container = st.empty()
+
+            # Check if preview was triggered
+            if st.session_state.get('preview_clicked'):
+                status_txt = "جاري تجميع ملف المعاينة..." if is_arabic else "Compiling Preview..."
+                with st.status(status_txt, expanded=True) as status:
+                    pdf_path, error_msg = generate_preview(current_draft_latex)
+
+                    if pdf_path and os.path.exists(pdf_path):
+                        status.update(label="Ready!", state="complete", expanded=False)
+                        with preview_container.container():
+                            display_pdf(pdf_path)
+                        st.session_state['preview_clicked'] = False
+                    else:
+                        status.update(label="Failed", state="error")
+                        st.error("⚠️ LaTeX Compilation Error")
+                        with st.expander("Error Details", expanded=True):
+                            st.code(error_msg, language="tex")
+            else:
+                preview_container.info("Click Preview / اضغط على المعاينة")
 
 # ==========================================
 # 6. VIEW: VARIABLES
@@ -1202,12 +1826,12 @@ elif selected_view == "🚀 Finalize & Publish":
                 try:
                     # IMPORTANT: Arabic needs xelatex
                     cmd = ["xelatex", "-interaction=nonstopmode", target_main]
-                    
+
                     st.write("Running xelatex (Pass 1)...")
-                    subprocess.run(cmd, cwd=BASE_DIR, stdout=subprocess.DEVNULL)
-                    
+                    result1 = subprocess.run(cmd, cwd=BASE_DIR, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
                     st.write("Running xelatex (Pass 2 for ToC)...")
-                    subprocess.run(cmd, cwd=BASE_DIR, stdout=subprocess.DEVNULL)
+                    result2 = subprocess.run(cmd, cwd=BASE_DIR, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                     
                     expected_pdf = target_main.replace(".tex", ".pdf")
                     if os.path.exists(os.path.join(BASE_DIR, expected_pdf)):
@@ -1226,17 +1850,26 @@ elif selected_view == "🚀 Finalize & Publish":
                         st.session_state['final_pdf_name'] = expected_pdf
                     else:
                         # Log failed compilation
+                        # Parse log file for detailed errors
+                        log_file = target_main.replace(".tex", ".log")
+                        error_details = parse_latex_log(os.path.join(BASE_DIR, log_file))
+
                         audit_logger.log(
                             st.session_state.get('username', 'unknown'),
                             "generate_pdf",
                             {
                                 "language": st.session_state.get('language', 'Unknown'),
                                 "main_file": target_main,
-                                "success": False
+                                "success": False,
+                                "error": error_details[:500] if error_details else "Unknown"
                             }
                         )
                         status.update(label="Compilation Failed", state="error")
-                        st.error("PDF was not created. Check logs.")
+                        st.error("PDF was not created. See error details below.")
+
+                        # Show detailed errors in expandable section
+                        with st.expander("📋 Compilation Error Details", expanded=True):
+                            st.code(error_details, language="text")
                 except Exception as e:
                     status.update(label="Error", state="error")
                     st.error(str(e))
